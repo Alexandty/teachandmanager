@@ -1,9 +1,22 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 
-const reducer = (state={}, action)=>{
-
+const initialState = {
+    user: []
+};
+const reducer = (state = {}, action) => {
+    if (action.type === "LOGIN") {
+        return {
+            ...state,
+            user: action.user
+        }
+    }
     return state;
 }
+const rootReducer = combineReducers({
+    reducerLogin: reducer,
+    form: formReducer
+})
 
-export default createStore(reducer, applyMiddleware(thunk));
+export default createStore(rootReducer, initialState, applyMiddleware(thunk));
