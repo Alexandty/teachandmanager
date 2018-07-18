@@ -8,11 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ta_request")
+@Table(name = "ta_vacation")
 public class SolicitudVacaciones {
 
 	@Id
-	private long idRequest;
+	@Column(name="id_request_vacation")
+	private long idVacationRequest;
 
 	@Column(name = "start_date")
 	private Date startDate;
@@ -21,17 +22,18 @@ public class SolicitudVacaciones {
 	private Date endDate;
 	@Column(name = "requested_days")
 	private int requestedDays;
+	
 
 	public SolicitudVacaciones() {
 		super();
 	}
 
 	public long getIdRequest() {
-		return idRequest;
+		return idVacationRequest;
 	}
 
-	public void setIdRequest(long idRequest) {
-		this.idRequest = idRequest;
+	public void setIdRequest(long idVacationRequest) {
+		this.idVacationRequest = idVacationRequest;
 	}
 
 	public Date getStartDate() {
