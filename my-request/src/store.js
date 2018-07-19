@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
+import vacationRequestReducer from '../src/reducers/vacationRequestReducer';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 
