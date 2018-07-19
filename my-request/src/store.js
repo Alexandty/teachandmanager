@@ -16,6 +16,7 @@ const reducer = (state = {}, action) => {
     return state;
 }
 const rootReducer = combineReducers({
+    vacationRequestReducer,
     reducerLogin: reducer,
     form: formReducer
 })
