@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Jumbotron } from 'react-bootstrap';
 
 import './App.css';
-import Banner from './Components/Banner';
-
+import NavbarApp from './Components/Navbar';
+import Login from './Container/Login';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-
+      <div>
+        <NavbarApp></NavbarApp>
         <AppRouter />
-
       </div>
     );
   }
 }
 
 const AppRouter = () => (
-  <Switch>
-    <Route exact path="/" component={Login} />
-    <Route path="/Consulta" component={Consulta} />
-  </Switch>
+  <Router>
+    <div>
+      <Route exact path="/" component={LoginView} />
+      <Route path="/Consulta" component={Consulta} />
+    </div>
+  </Router>
 );
 
 const Consulta = () => (
@@ -31,10 +33,10 @@ const Consulta = () => (
   </Jumbotron>
 );
 
-const Login = () => (
+const LoginView = () => (
   <Jumbotron>
     <h1>Login</h1>
-    {/* < /> */}
+    <Login />
   </Jumbotron>
 );
 
