@@ -14,8 +14,8 @@ export const LoginForm = props => {
             <div className="container">
                 <form onSubmit={handleSubmit(login)}>
                     <div>
-                        <label htmlFor='userName'>Username: </label>
-                        <Field name='userName' component='input'></Field>
+                        <label htmlFor='username'>Username: </label>
+                        <Field name='username' component='input'></Field>
                     </div>
                     <div>
                         <label htmlFor='password'>Password: </label>
