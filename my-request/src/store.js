@@ -1,17 +1,24 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import vacationRequestReducer from '../src/reducers/vacationRequestReducer';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 
 const initialState = {
-    user: []
+    user: [],
+    VacationRequest: []
+
 };
-const reducer = (state = {}, action) => {
+const reducer = (state = initialState, action) => {
     if (action.type === "LOGIN") {
         return {
             ...state,
             user: action.user
         }
+    }
+    else if (action.type === "REPLACE_VACATION_REQUEST") {
+        return {
+            ...state,
+            VacationRequest: action.VacationRequest
+        };
     }
     return state;
 }
@@ -20,4 +27,4 @@ const rootReducer = combineReducers({
     form: formReducer
 })
 
-export default createStore(rootReducer, initialState, applyMiddleware(thunk));
+export default createStore(rootReducer, applyMiddleware(thunk));

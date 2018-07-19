@@ -1,7 +1,6 @@
 import React from 'react'
 import Banner from 'react-banner'
 import 'react-banner/dist/style.css'
-import SolicitudVacacionesView from '../Components/SolicitudVacacionesView/SolicitudVacacionesView'
 
 export default props => {
     return (

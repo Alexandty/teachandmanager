@@ -13,7 +13,7 @@ export const addVacationRequest = (vacationRequestData = {
 }) => {
     return (dispatch) => {
         const vacationRequest = {
-            title: VacationRequestData.title,
+            title: vacationRequestData.title,
             description: vacationRequestData.description,
             author: vacationRequestData.author,
             published: vacationRequestData.published
