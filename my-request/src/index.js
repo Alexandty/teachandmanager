@@ -4,11 +4,10 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
-import store from './store';
-import {getVacationRequest} from './actions/vacationesRequestActions'
+import store from './store'
+import { loadVacationRequest } from './actionCreators';
 
-
-store.dispatch(getVacationRequest());
+store.dispatch(loadVacationRequest());
 
 ReactDOM.render(
     <Provider store={store} >
