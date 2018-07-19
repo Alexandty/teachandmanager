@@ -1,7 +1,10 @@
 package com.tns.request.request.validators;
 
+import org.springframework.stereotype.Service;
+
 import com.tns.request.request.model.User;
 
+@Service
 public class Validate {
 
 	private static final int MIN_LENGTH = 8;

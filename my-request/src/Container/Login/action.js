@@ -16,7 +16,11 @@ const actions = {
                     }
                 }
             })*/
-            return axios.post('http://localhost:8081/login/getUser', {username: values.username,password: values.password}
+            return axios.post('http://localhost:8081/login/get/user',
+                {
+                    username: values.username,
+                    password: values.password
+                }
             )
                 .then(response => {
                     // dispatch({
