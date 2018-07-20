@@ -4,9 +4,10 @@ import thunk from 'redux-thunk';
 
 const initialState = {
     user: [],
-    VacationRequest: []
+    VacationData: []
 
 };
+
 const reducer = (state = initialState, action) => {
     if (action.type === "LOGIN") {
         return {
@@ -17,13 +18,14 @@ const reducer = (state = initialState, action) => {
     else if (action.type === "REPLACE_VACATION_REQUEST") {
         return {
             ...state,
-            VacationRequest: action.VacationRequest
+            VacationData: action.VacationData
         };
     }
     return state;
 }
+
 const rootReducer = combineReducers({
-    reducerLogin: reducer,
+    reducer: reducer,
     form: formReducer
 })
 

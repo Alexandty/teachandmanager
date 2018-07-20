@@ -5,13 +5,19 @@ import { Jumbotron } from 'react-bootstrap';
 import './App.css';
 import NavbarApp from './Components/Navbar';
 import Login from './Container/Login';
+import ProductList from './Components/ProductList';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <NavbarApp></NavbarApp>
-        <AppRouter />
+        <div>
+          <NavbarApp></NavbarApp>
+          <AppRouter />
+        </div>
+        <div className="App">
+          <ProductList />
+        </div>
       </div>
     );
   }
