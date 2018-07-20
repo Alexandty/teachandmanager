@@ -1,18 +1,18 @@
 import axios from 'axios';
 
 
-const _loadProducts = (VacationData) => ({
-  type: 'REPLACE_PRODUCTS',
+const _loadVacation = (VacationData) => ({
+  type: 'REPLACE_VACATION_REQUEST',
   VacationData
 });
 
 
-const loadProducts = () => {
+const loadVacation = () => {
   return dispatch => {
-    return axios.get("http://localhost:8081/request/request/1"  )
+    return axios.get("http://localhost:8081/request/request/"  )
       .then(response => {
         console.log(response.data);
-        dispatch( _loadProducts(response.data) );
+        dispatch( _loadVacation(response.data) );
       });
   };
 };
@@ -20,4 +20,4 @@ const loadProducts = () => {
 
 
 
-export { loadProducts, loadVacationBuscar};
+export { loadVacation};

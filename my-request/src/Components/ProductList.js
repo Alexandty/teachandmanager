@@ -15,6 +15,8 @@ const styles = {
 };
 
 const ProductList = ({ VacationData }) => {
+  console.log("productList", VacationData
+)
   return (
     <div style={styles.products}>
       {VacationData.map(product =>

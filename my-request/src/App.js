@@ -10,15 +10,10 @@ import ProductList from './Components/ProductList';
 class App extends Component {
   render() {
     return (
-      <div>
-        <div>
+        <div className="App">
           <NavbarApp></NavbarApp>
           <AppRouter />
         </div>
-        <div className="App">
-          <ProductList />
-        </div>
-      </div>
     );
   }
 }
@@ -35,7 +30,7 @@ const AppRouter = () => (
 const Consulta = () => (
   <Jumbotron>
     <h1>Consulta</h1>
-    {/* < /> */}
+    <ProductList />
   </Jumbotron>
 );
 

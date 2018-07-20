@@ -30,12 +30,9 @@ dependencies {
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-<<<<<<< HEAD
 	testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
 	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
-=======
 
->>>>>>> consultavacaciones
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.11'
        
     
