@@ -28,7 +28,7 @@ public class UserBusiness {
 				// TODO: Que hacer en caso de no encontrar el usuario
 			} else {
 				if (user.getPassword().equals(userBD.getPassword())) {
-
+					//TODO: modificar test antes de modificar funcionalidad
 					System.out.println("user Found");
 					return userBD;
 				}
