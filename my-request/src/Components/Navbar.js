@@ -1,42 +1,18 @@
 import React from 'react'
-// import Banner from 'react-banner'
-// import 'react-banner/dist/style.css'
-
-// import { Link } from 'react-router-dom';
-
-
-// export default props => {
-//     return (
-//         <Banner
-//             logo="TECH AND MANAGER"
-//             url={window.location.pathname}
-//             links={[
-//                 { "title": "Example Link", "url": "/example" },
-//                 { "title": "Another", "url": "/another" },
-//                 {
-//                     "title": "Link w/ Children", "url": "/children", "children": [
-//                         { "title": "John", "url": "/children/john" },
-//                         { "title": "Jill", "url": "/children/jill" },
-//                         { "title": "Jack", "url": "/children/jack" }
-//                     ]
-//                 }
-//             ]} />
-//     )
-// }
-
+import '../styles.css';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 
 const NavbarApp = () => (
-    <Navbar inverse collapseOnSelect>
+    <Navbar bsStyle="default">
         <Navbar.Header>
             <Navbar.Brand>
-                <a href="#brand">React-Bootstrap</a>
+                <a href="#brand">Tech and Manager</a>
             </Navbar.Brand>
             <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-            <Nav>
+            <Nav bsStyle="primary">
                 <NavItem eventKey={1} href="#">
                     Link
       </NavItem>
@@ -52,12 +28,6 @@ const NavbarApp = () => (
                 </NavDropdown>
             </Nav>
             <Nav pullRight>
-                <NavItem eventKey={1} href="#">
-                    Link Right
-      </NavItem>
-                <NavItem eventKey={2} href="#">
-                    Link Right
-      </NavItem>
             </Nav>
         </Navbar.Collapse>
     </Navbar>
