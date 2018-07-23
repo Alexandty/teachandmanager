@@ -2,32 +2,287 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+body {
+  background-color: #f2f2f2;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+tbody tr.main-tr:nth-child(2n+2) {
+  background: rgba(204, 204, 204, 0.37);
 }
 
-.App-title {
-  font-size: 1.5em;
+tbody tr.main-tr:hover {
+  background: rgba(204, 204, 204, 0.75);
 }
 
-.App-intro {
-  font-size: large;
+textarea {
+  resize: none;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+h2 {
+  color: #551572;
+}
+
+th {
+  text-align: center;
+}
+
+.m-top {
+  margin-top: 15px;
+}
+
+.m-right {
+  margin-right: 15px;
+}
+
+.default-pointer {
+  cursor: pointer;
+}
+
+.validation-message {
+  font-size: small;
+  color: #551572;
+}
+
+.container-request-button {
+  margin: 33px auto;
+  text-align: center;
+}
+
+.return-time-span {
+  font-size: 100%;
+}
+
+.logo {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.logo img {
+  width: 200px;
+}
+
+.login-container {
+  margin-top: 10%;
+}
+
+.btn-primary {
+  background-color: #73378e;
+  border: 0;
+  border-radius: 0;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #632d7b;
+}
+
+.btn-secondary {
+  background-color: #e91d79;
+  border: 0;
+  border-radius: 0;
+  color: white !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:visited {
+  background-color: #b5255d;
+}
+
+.navbar {
+  border-radius: 0;
+  margin-bottom: initial;
 }
 
 .navbar-inverse {
-  background-color: #337ab7;
-  border-color: #080808;
+  background-color: #009bb0;
+  border-color: #009bb0;
+}
+
+.navbar-inverse .navbar-brand {
+  color: white !important;
+  font-weight: 900;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: white !important;
+  font-weight: 400;
+}
+
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:focus,
+.navbar-inverse .navbar-nav>.active>a:hover {
+  background-color: #03889a !important;
+}
+
+.welcome-msg {
+  font-size: 50px;
+  margin: 30px 0;
+  font-weight: 400;
+  color: #551572;
+}
+
+.container-bg-solvers {
+  border-bottom: 1px solid #c5c5c5;
+  -webkit-box-shadow: 2px 7px 8px -10px rgba(46, 46, 46, 1);
+  -moz-box-shadow: 2px 7px 8px -10px rgba(46, 46, 46, 1);
+  box-shadow: 2px 7px 8px -10px rgba(46, 46, 46, 1);
+  box-shadow: 2px 7px 8px -10px rgba(46, 46, 46, 1);
+  width: 60%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.img-bg-solvers {
+  max-width: 100%;
+}
+
+.dh-description {
+  text-align: center;
+  font-size: 25px;
+  color: #808080;
+  width: 45%;
+  margin: auto;
+  line-height: 27px;
+}
+
+.dh-logo {
+  width: 90px;
+  margin-top: 20px;
+}
+
+.label-success {
+  background-color: #de3174 !important;
+}
+
+.sb-main {
+  font-size: 18px;
+  color: #ee2c7a;
+  margin: auto;
+  display: initial;
+}
+
+.sb-desc {
+  font-size: 100%;
+  color: #de3174;
+  font-weight: 700;
+}
+
+.sec-row {
+  margin-top: 15px;
+}
+
+.holidays-footer-tb {
+  margin-left: 9px;
+}
+
+.footer-info-hol {
+  font-size: 13px;
+  color: #de3174;
+}
+
+.info-note {
+  font-size: 13px;
+  color: #de3174;
+}
+
+.readonly-input {
+  cursor: pointer;
+  background-color: white !important;
+}
+
+a {
+  color: #551572 !important;
+  text-decoration: none;
+}
+
+#permissionFilterDateIc+.popover {
+  width: 25em !important;
+}
+
+.ic-filtered-color {
+  color: #ee2c7a;
+}
+
+.ui-select-multiple.ui-select-bootstrap {
+  min-height: 33px;
+  height: auto;
+  padding: 3px 3px 0;
+}
+
+.tbl-actions {
+  padding: 3px 7px;
+}
+
+.td-center {
+  text-align: center;
+}
+
+.solicitudEliminada {
+  color: red;
+  text-decoration: line-through;
+}
+
+.chk-tbl {
+  margin-top: -10px !important;
+}
+
+.main-tbl-btn {
+  padding-bottom: initial;
+  display: table-cell;
+}
+
+.div-action-table {
+  margin-top: 18px;
+  text-align: right;
+  display: table;
+}
+
+.div-clean-select {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.profile-img {
+  float: left;
+  width: 35px;
+  margin: -7px 4px;
+}
+
+.sec-men {
+  margin-left: -7px !important;
+  background-color: #009bb0 !important;
+}
+
+.accept-pol-par {
+  float: left;
+}
+
+.login-box {
+  margin: 12% auto;
+}
+
+.time-spc-bot {
+  margin-top: -18px;
+}
+
+.date-spc-top {
+  margin-top: 10px;
+}
+
+.ctn-parent {
+  background-color: #fff;
+  padding-bottom: 26px;
+  min-height: 100vh;
+}
+
+.ctn-form-ctrl-sec-act {
+  margin-top: 25px;
+}
+
+.popover {
+  max-width: 100%;
 }

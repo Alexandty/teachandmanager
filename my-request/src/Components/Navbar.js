@@ -6,7 +6,7 @@ const NavbarApp = () => (
     <Navbar inverse collapseOnSelect>
         <Navbar.Header>
             <Navbar.Brand>
-                <img src="http://www.techandsolve.com/wp-content/themes/techandsolve/images/logo-tech-and-solve-footer.png" width="150" height="150"></img>
+                <img src="http://www.techandsolve.com/wp-content/themes/techandsolve/images/logo-tech-and-solve-footer.png" width="201" height="110" alt="logo"></img>
             </Navbar.Brand>
             <Navbar.Toggle />
         </Navbar.Header>
