@@ -1,5 +1,6 @@
 import React from 'react'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 import '../index.css'
 
 const NavbarApp = () => (
@@ -13,7 +14,7 @@ const NavbarApp = () => (
         <Navbar.Collapse>
             <Nav>
                 <NavItem eventKey={1} href="#">
-                    Link
+                    <Link to={"/Consulta"}>consulta</Link>
       </NavItem>
                 <NavItem eventKey={2} href="#">
                     Link
