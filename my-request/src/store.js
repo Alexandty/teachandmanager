@@ -14,10 +14,10 @@ const reducer = (state = initialState, action) => {
             user: action.user
         }
     }
-    else if (action.type === "REPLACE_VACATION_REQUEST") {
+    else if (action.type === "REPLACE_PRODUCTS") {
         return {
             ...state,
-            VacationRequest: action.VacationRequest
+            VacationData: action.VacationData
         };
     }
     return state;

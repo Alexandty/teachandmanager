@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { Jumbotron } from 'react-bootstrap';
 
-import './App.css';
 import NavbarApp from './Components/Navbar';
 import Login from './Container/Login';
+import './App.css';
+import ProductList from './Components/ProductList';
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="App">
         <NavbarApp></NavbarApp>
         <AppRouter />
       </div>
@@ -29,7 +30,7 @@ const AppRouter = () => (
 const Consulta = () => (
   <Jumbotron>
     <h1>Consulta</h1>
-    {/* < /> */}
+    <ProductList />
   </Jumbotron>
 );
 

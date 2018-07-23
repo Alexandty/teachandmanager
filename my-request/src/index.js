@@ -5,9 +5,9 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import store from './store'
-import { loadVacationRequest } from './actionCreators';
+import { loadProducts } from './actionCreators';
 
-store.dispatch(loadVacationRequest());
+store.dispatch(loadProducts());
 
 ReactDOM.render(
     <Provider store={store} >
