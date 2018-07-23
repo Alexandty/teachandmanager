@@ -5,7 +5,7 @@ const WelcomeMessage = (props) => {
         return <div>...</div>
     }
     return (
-        <h1>Welcome Solver! {props.name}</h1>
+        <h1 className="saludo">Welcome Solver! {props.name}</h1>
     )
 }
 export default WelcomeMessage;
