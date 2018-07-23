@@ -5,8 +5,6 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,9 +24,6 @@ public class SolicitudVacaciones {
 	@Column(name = "requested_days")
 	private int requestedDays;
 	
-	@JoinTable
-	@ManyToOne
-	private long cedula;
 
 	public SolicitudVacaciones() {
 		super();

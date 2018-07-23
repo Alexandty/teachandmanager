@@ -45,7 +45,6 @@ public class UtilDateTest {
 	
 	
 	@Test
-	@Ignore
 	public void diaDeLaSemana() throws ParseException {
 		Date date = getDateFromString("31/12/2017");
 		Calendar c = Calendar.getInstance();
