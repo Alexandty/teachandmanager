@@ -5,6 +5,10 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +28,18 @@ public class SolicitudVacaciones {
 	@Column(name = "requested_days")
 	private int requestedDays;
 	
+	@OneToOne
+	@JoinColumn(name="id_person")	
+	private Person person_id;
+	
+
+	public Person getPerso_id() {
+		return person_id;
+	}
+
+	public void setPerso_id(Person perso_id) {
+		this.person_id = perso_id;
+	}
 
 	public SolicitudVacaciones() {
 		super();
