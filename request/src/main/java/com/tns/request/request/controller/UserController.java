@@ -17,25 +17,11 @@ public class UserController {
 	@Autowired
 	private UserBusiness userBusiness;
 
-//	@RequestMapping("/get/user")
-//	public User getUser(@RequestBody User user) {
-//		System.out.println("In getuser " + user.getUsername());
-//		
-//		return userBusiness.getUser(user);
-//	}
 	@ResponseBody
 	@RequestMapping("/get/person")
 	public Person getPerson(@RequestBody User user) {
 		System.out.println("In get user controller" + user.getUsername());
 		return userBusiness.getPerson(user);
 	}
-
-	// @RequestMapping("/getUser")
-	// public User getUser(@RequestBody User user) {
-	// // userName = "usernametest";S
-	// //return userBusiness.getUser(user);
-	// System.out.println(user.getUsername());
-	// return user;
-	// }
 
 }

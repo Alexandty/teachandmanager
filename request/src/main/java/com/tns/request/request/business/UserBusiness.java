@@ -23,13 +23,15 @@ public class UserBusiness {
 
 	public User getUser(User user) {
 		if (validate.user(user)) {
-			User userBD = userRepository.findByUsername(user.getUsername());
-			if (null == userBD) {
-				throw new BusinessException("No existe el usuario");
-			} else {
-				if (user.getPassword().equals(userBD.getPassword())) {
-					System.out.println("User Found");
-					return userBD;
+			if (validate.specialCharacters(user.getPassword()) && validate.specialCharacters(user.getUsername())) {
+				User userBD = userRepository.findByUsername(user.getUsername());
+				if (null == userBD) {
+					throw new BusinessException("No existe el usuario");
+				} else {
+					if (user.getPassword().equals(userBD.getPassword())) {
+						System.out.println("User Found");
+						return userBD;
+					}
 				}
 			}
 		}

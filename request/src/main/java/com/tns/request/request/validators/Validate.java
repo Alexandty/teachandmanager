@@ -1,5 +1,8 @@
 package com.tns.request.request.validators;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.springframework.stereotype.Service;
 
 import com.tns.request.request.model.User;
@@ -24,6 +27,14 @@ public class Validate {
 
 	private boolean minimum(String text) {
 		return text.length() >= MIN_LENGTH;
+	}
+
+	public boolean specialCharacters(String string) {
+		Pattern pattern = Pattern.compile("[^&%$#@!~áéíóúñ+-]+");
+		Matcher matcher = pattern.matcher(string);
+		if (!matcher.matches()) 
+			return false;
+		return true;
 	}
 
 }

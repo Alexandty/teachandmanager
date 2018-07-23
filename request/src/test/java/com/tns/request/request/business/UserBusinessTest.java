@@ -38,6 +38,8 @@ public class UserBusinessTest {
 		userBD.setPassword("123");
 
 		when(validate.user(user)).thenReturn(true);
+		when(validate.specialCharacters(user.getPassword())).thenReturn(true);
+		when(validate.specialCharacters(user.getUsername())).thenReturn(true);
 		when(userRepository.findByUsername(user.getUsername())).thenReturn(userBD);
 		Assert.assertNotNull(userBusiness.getUser(user));
 
@@ -53,13 +55,14 @@ public class UserBusinessTest {
 		userBD.setPassword("juan");
 
 		when(validate.user(user)).thenReturn(true);
+		when(validate.specialCharacters(user.getPassword())).thenReturn(true);
 		when(userRepository.findByUsername(user.getUsername())).thenReturn(userBD);
 		userBusiness.getUser(user);
 		Assert.assertNotNull(userBusiness.getUser(user));
 
 	}
 
-	@Test(expected=BusinessException.class)
+	@Test(expected = BusinessException.class)
 	public void debeLanzarExcepcionConUsuarioNoValido() {
 		User user = new User();
 		when(validate.user(user)).thenReturn(false);
@@ -67,7 +70,7 @@ public class UserBusinessTest {
 
 	}
 
-	@Test(expected=BusinessException.class)
+	@Test(expected = BusinessException.class)
 	public void debeValidarPassKeySesitive() {
 		User user = new User();
 		user.setUsername("juan");
