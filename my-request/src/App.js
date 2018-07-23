@@ -35,10 +35,9 @@ const Consulta = () => (
 );
 
 const LoginView = () => (
-  <Jumbotron>
-    <h1>Login</h1>
+  <div>
     <Login />
-  </Jumbotron>
+  </div>
 );
 
 export default App;
