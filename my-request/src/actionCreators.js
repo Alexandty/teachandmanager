@@ -9,7 +9,7 @@ const _loadProducts = (VacationData) => ({
 
 const loadProducts = () => {
   return dispatch => {
-    return axios.get("http://localhost:8081/request/request/1"  )
+    return axios.get("http://localhost:8081/request/request/"  )
       .then(response => {
         console.log(response.data);
         dispatch( _loadProducts(response.data) );
