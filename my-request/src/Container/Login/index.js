@@ -37,10 +37,10 @@ export const LoginForm = props => {
                     <h1>Login</h1>
                     <form onSubmit={handleSubmit(login)}>
                         <div>
-                            <Field name='username' component={renderField} label='Username'></Field>
+                            <Field name='username' component={renderField} label='Username' type='text'></Field>
                         </div>
                         <div>
-                            <Field name='password' component={renderField} label='Password'></Field>
+                            <Field name='password' component={renderField} label='Password' type='password'></Field>
                         </div>
                         <button type="submit" disabled={pristine}>Login</button>
                         {/* <h1><ul>
