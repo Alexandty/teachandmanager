@@ -16,25 +16,21 @@ const actions = {
                     }
                 }
             })*/
-            return axios.post('http://localhost:8081/login/get/user',
-                {
-                    username: values.username,
-                    password: values.password
-                }
-            )
+            return axios.post('http://localhost:8080/login/get/person', {
+                username: values.username,
+                password: values.password
+            })
                 .then(response => {
-                    // dispatch({
-                    //     type: "LOGIN",
-                    //     user: response.data = 'user'
-                    // })
                     console.log(response.data);
-                    console.log(response.status)
+                    console.log(response.status);
+                    dispatch({
+                        type: "LOGIN",
+                        user: response.data
+                    })
                 })
         }
-
     }
 }
-
 
 export default actions;
 

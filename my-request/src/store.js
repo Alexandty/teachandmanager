@@ -3,18 +3,19 @@ import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 
 const initialState = {
-    user: [],
+    user: '',
     VacationRequest: []
-
 };
+
 const reducer = (state = initialState, action) => {
     if (action.type === "LOGIN") {
         return {
             ...state,
             user: action.user
         }
+        console.log('in reducer')
     }
-    else if (action.type === "REPLACE_VACATION_REQUEST") {
+    if (action.type === "REPLACE_VACATION_REQUEST") {
         return {
             ...state,
             VacationRequest: action.VacationRequest

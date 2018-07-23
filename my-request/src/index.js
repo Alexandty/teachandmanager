@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import store from './store'
 import { loadVacationRequest } from './actionCreators';
 
-store.dispatch(loadVacationRequest());
+//store.dispatch(loadVacationRequest());
 
 ReactDOM.render(
     <Provider store={store} >

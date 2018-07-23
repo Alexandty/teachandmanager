@@ -1,14 +1,14 @@
 package com.tns.request.request.exception;
 
-public class BusinessExcepcion extends RuntimeException{
+public class BusinessException extends RuntimeException{
 	
 	private static final long serialVersionUID = 1L;
 
-	public BusinessExcepcion() {
+	public BusinessException() {
 		super();
 	}
 
-	public BusinessExcepcion(String message) {
+	public BusinessException(String message) {
 		super(message);
 	}
 

@@ -1,29 +1,4 @@
 import React from 'react'
-// import Banner from 'react-banner'
-// import 'react-banner/dist/style.css'
-
-// import { Link } from 'react-router-dom';
-
-
-// export default props => {
-//     return (
-//         <Banner
-//             logo="TECH AND MANAGER"
-//             url={window.location.pathname}
-//             links={[
-//                 { "title": "Example Link", "url": "/example" },
-//                 { "title": "Another", "url": "/another" },
-//                 {
-//                     "title": "Link w/ Children", "url": "/children", "children": [
-//                         { "title": "John", "url": "/children/john" },
-//                         { "title": "Jill", "url": "/children/jill" },
-//                         { "title": "Jack", "url": "/children/jack" }
-//                     ]
-//                 }
-//             ]} />
-//     )
-// }
-
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 
@@ -31,7 +6,7 @@ const NavbarApp = () => (
     <Navbar inverse collapseOnSelect>
         <Navbar.Header>
             <Navbar.Brand>
-                <a href="#brand">React-Bootstrap</a>
+                <img src="http://www.techandsolve.com/wp-content/themes/techandsolve/images/logo-tech-and-solve-footer.png" width="150" height="150"></img>
             </Navbar.Brand>
             <Navbar.Toggle />
         </Navbar.Header>

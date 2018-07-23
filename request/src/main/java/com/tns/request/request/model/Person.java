@@ -14,15 +14,15 @@ public class Person {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "id_user")
+	@Column(name = "id_person")
 	private long idPerson;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "last_Name")
 	private String lastName;
-	
+
 	@OneToOne
 	@JoinColumn(name = "fk_user")
 	private User userId; // userFK

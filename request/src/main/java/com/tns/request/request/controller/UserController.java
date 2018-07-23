@@ -3,9 +3,9 @@ package com.tns.request.request.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tns.request.request.business.PersonBusiness;
 import com.tns.request.request.business.UserBusiness;
 import com.tns.request.request.model.Person;
 import com.tns.request.request.model.User;
@@ -17,19 +17,16 @@ public class UserController {
 	@Autowired
 	private UserBusiness userBusiness;
 
-	@Autowired
-	private PersonBusiness personBusiness;
-
 //	@RequestMapping("/get/user")
 //	public User getUser(@RequestBody User user) {
 //		System.out.println("In getuser " + user.getUsername());
 //		
 //		return userBusiness.getUser(user);
 //	}
-	
+	@ResponseBody
 	@RequestMapping("/get/person")
 	public Person getPerson(@RequestBody User user) {
-		System.out.println("In getuser " + user.getUsername());
+		System.out.println("In get user controller" + user.getUsername());
 		return userBusiness.getPerson(user);
 	}
 

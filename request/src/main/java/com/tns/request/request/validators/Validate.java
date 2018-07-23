@@ -11,20 +11,19 @@ public class Validate {
 	private static final int MAX_LENGTH = 20;
 
 	public boolean user(User user) {
-		
 		return correctLength(user.getPassword()) && correctLength(user.getUsername());
 	}
 
 	private boolean correctLength(String text) {
-		return minimun(text) && maximun(text);
+		return minimum(text) && maximum(text);
 	}
 
-	private boolean maximun(String text) {
-		return text.length()<=MAX_LENGTH;
+	private boolean maximum(String text) {
+		return text.length() <= MAX_LENGTH;
 	}
 
-	private boolean minimun(String text) {
-		return text.length()>=MIN_LENGTH;
+	private boolean minimum(String text) {
+		return text.length() >= MIN_LENGTH;
 	}
 
 }
