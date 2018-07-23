@@ -11,18 +11,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavbarApp></NavbarApp>
-        <AppRouter />
+        <AppRouter><NavbarApp></NavbarApp></AppRouter>
       </div>
     );
   }
 }
 
-const AppRouter = () => (
+const AppRouter = (props) => (
   <Router>
     <div>
+    {props.children}
       <Route exact path="/" component={LoginView} />
       <Route path="/Consulta" component={Consulta} />
+      
     </div>
   </Router>
 );

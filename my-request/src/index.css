@@ -10,3 +10,19 @@ h1 {
   color: #551572;
   font-family: 'Roboto', sans-serif;
 }
+
+button{
+  background-color:#009bb0;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+
+label{
+  color: #551572;
+  font-style: 'Roboto', sans-serif;
+}
+
+.login{
+  color: #551572;
+  font-style: 'Roboto', sans-serif;
+}

@@ -4,7 +4,8 @@ import { Row, Col, Jumbotron } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import validate from './validate';
 import actions from './action';
-import WelcomeMessage from '../../Components/WelcomeMessage'
+import WelcomeMessage from '../../Components/WelcomeMessage';
+import Button from '../../Components/Button';
 
 
 
@@ -34,7 +35,7 @@ export const LoginForm = props => {
             </Col>
             <Col xs={6} md={4}>
                 <Jumbotron>
-                    <h1>Login</h1>
+                    <h1 className="login">Login</h1>
                     <form onSubmit={handleSubmit(login)}>
                         <div>
                             <Field name='username' component={renderField} label='Username' type='text'></Field>
@@ -42,7 +43,8 @@ export const LoginForm = props => {
                         <div>
                             <Field name='password' component={renderField} label='Password' type='password'></Field>
                         </div>
-                        <button type="submit" disabled={pristine}>Login</button>
+                        <br/>
+                        <Button type="submit" disabled={pristine}>LOGIN</Button>
                         {/* <h1><ul>
                             {user.map(user => (
                                 <li key={user.id}>
