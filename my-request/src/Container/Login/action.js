@@ -1,5 +1,9 @@
-// import React from 'react';
 import axios from 'axios';
+
+// const dispatchLogin = (user) => ({
+//     type: 'LOGIN_DONE',
+//     user
+// })
 
 const actions = {
     login: values => {
@@ -16,7 +20,7 @@ const actions = {
                     }
                 }
             })*/
-            return axios.post('http://localhost:8080/login/get/person', {
+            return axios.post('http://localhost:8081/login/get/person', {
                 username: values.username,
                 password: values.password
             })
@@ -26,6 +30,7 @@ const actions = {
                     dispatch({
                         type: "LOGIN",
                         user: response.data
+                        // dispatchLogin(response.data)
                     })
                 })
         }

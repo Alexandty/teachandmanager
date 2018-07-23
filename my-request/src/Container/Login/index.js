@@ -8,6 +8,7 @@ import WelcomeMessage from '../../Components/WelcomeMessage'
 
 export const LoginForm = props => {
     const { login, handleSubmit, user } = props;
+    console.log(user)
     return (
         <Row className="show-grid">
             <Col xs={6} md={4}>
@@ -26,13 +27,15 @@ export const LoginForm = props => {
                         </div>
                         <button type="submit">Login</button>
                         {/* <h1><ul>
-                        {user.map(user => (
-                            <li key={user.id}>
-                                {user.name}
-                            </li>
-                        ))}
-                    </ul></h1> */}
-                        <WelcomeMessage />
+                            {user.map(user => (
+                                <li key={user.id}>
+                                    {user.name}
+                                </li>
+                            ))}
+                        </ul></h1> */}
+                        {user.name}
+                        <WelcomeMessage >
+                        </WelcomeMessage >
                     </form>
                 </Jumbotron>
             </Col>
@@ -48,7 +51,7 @@ const Login = reduxForm({
 
 const mapStateToProps = state => {
     return {
-        ...state.Login
+        ...state.reducerLogin
     };
 };
 

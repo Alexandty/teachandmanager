@@ -13,7 +13,6 @@ const reducer = (state = initialState, action) => {
             ...state,
             user: action.user
         }
-        console.log('in reducer')
     }
     if (action.type === "REPLACE_VACATION_REQUEST") {
         return {

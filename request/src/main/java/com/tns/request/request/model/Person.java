@@ -20,7 +20,7 @@ public class Person {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "last_Name")
+	@Column(name = "lastname")
 	private String lastName;
 
 	@OneToOne

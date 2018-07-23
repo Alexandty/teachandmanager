@@ -23,9 +23,9 @@ public class UserBusiness {
 
 	public User getUser(User user) {
 		if (validate.user(user)) {
-			User userBD = userRepository.findByUsername(user.getUsername().toLowerCase());
+			User userBD = userRepository.findByUsername(user.getUsername());
 			if (null == userBD) {
-				throw new BusinessException("Nombre de usuario o contraseña incorrecto");
+				throw new BusinessException("No existe el usuario");
 			} else {
 				if (user.getPassword().equals(userBD.getPassword())) {
 					System.out.println("User Found");

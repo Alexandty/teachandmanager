@@ -32,7 +32,7 @@ public class User {
 	}
 
 	public void setUsername(String username) {
-		this.username = username.trim();
+		this.username = username.trim().toLowerCase();
 	}
 
 	public String getPassword() {
