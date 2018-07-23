@@ -24,6 +24,13 @@ const actions = {
                 username: values.username,
                 password: values.password
             })
+                // .then(function (response) {
+                //     console.log(response.data);
+                //     console.log(response.status);
+                // }, function (error) {
+                //     alert(error.response.data.message);
+                //     console.log(error.response);
+                // })
                 .then(response => {
                     console.log(response.data);
                     console.log(response.status);
@@ -32,7 +39,11 @@ const actions = {
                         user: response.data
                         // dispatchLogin(response.data)
                     })
-                })
+                },
+                    error => {
+                        alert(error.response.data.message);
+                        console.log(error.response);
+                    })
         }
     }
 }

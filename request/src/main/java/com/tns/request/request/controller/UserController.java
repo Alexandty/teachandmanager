@@ -20,7 +20,6 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping("/get/person")
 	public Person getPerson(@RequestBody User user) {
-		System.out.println("In get user controller" + user.getUsername());
 		return userBusiness.getPerson(user);
 	}
 
