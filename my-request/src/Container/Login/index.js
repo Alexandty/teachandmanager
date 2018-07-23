@@ -8,7 +8,6 @@ import WelcomeMessage from '../../Components/WelcomeMessage'
 
 export const LoginForm = props => {
     const { login, handleSubmit, user } = props;
-    console.log(user)
     return (
         <Row className="show-grid">
             <Col xs={6} md={4}>
