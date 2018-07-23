@@ -20,4 +20,4 @@ const loadProducts = () => {
 
 
 
-export { loadProducts, loadVacationBuscar};
+export { loadProducts};
