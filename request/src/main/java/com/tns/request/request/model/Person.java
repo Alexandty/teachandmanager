@@ -1,5 +1,7 @@
 package com.tns.request.request.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +24,9 @@ public class Person {
 
 	@Column(name = "lastname")
 	private String lastName;
-	
+
+	@Column(name = "entry_date")
+	private Date entryDate;
 
 	@OneToOne
 	@JoinColumn(name = "fk_user")
