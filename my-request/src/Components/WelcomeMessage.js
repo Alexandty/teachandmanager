@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { loadProducts } from '../actionCreators';
 
-const WelcomeMessage = (props) => {
-    if (!props.name) {
+const WelcomeMessage = ({name, lastName, id}) => {
+    loadProducts(id)
+    if (!name) {
         return <div>...</div>
     }
     return (
         <div>
         <h1 className="saludo">Bienvenido</h1>
-        <h2>{props.name} {props.lastName}</h2>
+        <h2>{name} {lastName}</h2>
         </div>
     )
 }
@@ -19,4 +21,12 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(WelcomeMessage);
+const mapDispatchToProps = dispatch => {
+    return {
+      loadProducts(id) {
+        dispatch(loadProducts(id));
+      }
+    }
+  };
+
+export default connect(mapStateToProps,mapDispatchToProps)(WelcomeMessage);

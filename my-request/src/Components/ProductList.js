@@ -2,26 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
 
-const styles = {
-  products: {
-    display: 'flex',
-    alignItems: 'stretch',
-    flexWrap: 'wrap'
-  },
-  product: {
-    width: '220px',
-    marginLeft: 10,
-    marginRight: 10
-  }
-};
-
 const ProductList = ({ VacationData }) => {
   return (
     <div>
      {VacationData.map(prod => 
       prod.personId)
       .map(person => person.name +" "+ person.lastName+ " "+person.entryDate)}
-    <p>La persona a la que hay llamado no está</p>
       <Table striped bordered condensed hover>
         <thead>
           <tr>

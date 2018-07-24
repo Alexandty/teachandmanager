@@ -7,7 +7,6 @@ import Login from './Container/Login';
 import './App.css';
 import ProductList from './Components/ProductList';
 
-import { loadProducts } from './actionCreators';
 import WelcomeMessage from './Components/WelcomeMessage';
 
 import { connect } from 'react-redux';
@@ -60,17 +59,8 @@ const LoginView = () => (
 
 const mapStateToProps = state => {
   return {
-    logged: state.reducerLogin.logged,
-    user: state.reducerLogin.user
+    logged: state.reducerLogin.logged
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadProducts(id) {
-      dispatch(loadProducts(id));
-    }
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

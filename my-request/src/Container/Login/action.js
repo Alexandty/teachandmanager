@@ -16,7 +16,6 @@ const actions = {
                 },
                     error => {
                         alert(error.response.data.message);
-                        console.log(error.response);
                     })
         }
     }

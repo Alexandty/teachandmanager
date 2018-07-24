@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers , compose} from 'redux';
+import { createStore, applyMiddleware, combineReducers} from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 
@@ -17,7 +17,6 @@ const reducer = (state = initialState, action) => {
         }
     }
     else if (action.type === "REPLACE_PRODUCTS") {
-        console.log("Datos del store", action.VacationData);
         return {
             ...state,
             VacationData: action.VacationData
