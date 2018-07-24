@@ -16,13 +16,13 @@ public class User {
 	@GeneratedValue
 	@Column(name = "id_user")
 	private long idUser;
-	
+
 	@Column(name = "user_name")
 	private String username;
-	
+
 	@Column(name = "password")
 	private String password;
-	
+
 	public long getIdUser() {
 		return idUser;
 	}
@@ -42,7 +42,5 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 
 }
