@@ -11,7 +11,6 @@ import WelcomeMessage from './Components/WelcomeMessage';
 import { connect } from 'react-redux';
 
 const App = props => {
-  console.log(props)
     if(props.logged){
       return (
         <div className="App">
