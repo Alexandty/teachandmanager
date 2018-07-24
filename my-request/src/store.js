@@ -4,14 +4,16 @@ import thunk from 'redux-thunk';
 
 const initialState = {
     user: '',
-    VacationRequest: []
+    VacationRequest: [],
+    logged: false
 };
 
 const reducer = (state = initialState, action) => {
     if (action.type === "LOGIN") {
         return {
             ...state,
-            user: action.user
+            user: action.user,
+            logged: true
         }
     }
     else if (action.type === "REPLACE_PRODUCTS") {
