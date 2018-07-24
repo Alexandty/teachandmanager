@@ -17,34 +17,10 @@ public class SolicitudVacacionesController {
 
 	@Autowired
 	private SolicitudVacacionesService SolicitudVacacionesService;
-	//
-	// @PostMapping("vacaciones/add")
-	// public SolicitudVacaciones add(@RequestBody SolicitudVacaciones
-	// solicitudVacaciones) {
-	// return SolicitudVacacionesService.add(solicitudVacaciones);
-	//
-	// }
 
 	@GetMapping("vacaciones/consultar/{cedula}")
-	public SolicitudVacaciones geSolicitudVacacion(@PathVariable Long cedula) {		
+	public SolicitudVacaciones geSolicitudVacacion(@PathVariable Long cedula) {
 		return SolicitudVacacionesService.getSolicitudesByPersonId(cedula);
 	}
-
-	// @GetMapping("/consultar/todo")
-	// public List<SolicitudVacaciones> get() {
-	// return SolicitudVacacionesService.getAll();
-	//
-	// }
-	//
-	// @GetMapping("/consultar/todo")
-	// public List<SolicitudVacaciones> getAllById(long id) {
-	// return SolicitudVacacionesService.getAllById(id);
-	//
-	// }
-	//
-	// @DeleteMapping("/eliminar/{id}")
-	// public void delete(@PathVariable long cedula) {
-	// SolicitudVacacionesService.delete(cedula);
-	// }
 
 }

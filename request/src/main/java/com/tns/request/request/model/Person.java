@@ -11,6 +11,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ta_person")
 public class Person {
+	
+	public Person () {}
+	
 
 	@Id
 	@GeneratedValue
@@ -22,18 +25,17 @@ public class Person {
 
 	@Column(name = "lastname")
 	private String lastName;
-	
 
 	@OneToOne
 	@JoinColumn(name = "fk_user")
 	private User userId; // userFK
 
-	public User getUserId() {
-		return userId;
+	public long getIdPerson() {
+		return idPerson;
 	}
 
-	public void setUserId(User userId) {
-		this.userId = userId;
+	public void setIdPerson(long idPerson) {
+		this.idPerson = idPerson;
 	}
 
 	public String getName() {
@@ -50,6 +52,14 @@ public class Person {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public User getUserId() {
+		return userId;
+	}
+
+	public void setUserId(User userId) {
+		this.userId = userId;
 	}
 
 }
