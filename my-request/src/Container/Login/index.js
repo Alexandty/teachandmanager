@@ -4,8 +4,8 @@ import { Row, Col, Jumbotron } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import validate from './validate';
 import actions from './action';
-import WelcomeMessage from '../../Components/WelcomeMessage';
 import Button from '../../Components/Button';
+import '../../App.css';
 
 
 
@@ -53,8 +53,6 @@ export const LoginForm = props => {
                             ))}
                         </ul></h1> */}
                         {user.name}
-                        <WelcomeMessage >
-                        </WelcomeMessage >
                     </form>
                 </Jumbotron>
             </Col>

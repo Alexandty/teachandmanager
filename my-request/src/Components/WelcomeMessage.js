@@ -1,11 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const WelcomeMessage = (props) => {
     if (!props.name) {
         return <div>...</div>
     }
     return (
-        <h1 className="saludo">Welcome Solver! {props.name}</h1>
+        <h1 className="saludo">Bienvenido {props.name}</h1>
     )
 }
-export default WelcomeMessage;
+
+const mapStateToProps = state => {
+    return {
+        ...state.reducerLogin.user
+    };
+};
+
+export default connect(mapStateToProps)(WelcomeMessage);
