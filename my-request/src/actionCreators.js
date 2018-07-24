@@ -1,20 +1,22 @@
 import axios from 'axios';
 
 
+
 const _loadProducts = (VacationData) => ({
   type: 'REPLACE_PRODUCTS',
   VacationData
 });
 
 
-const loadProducts = (logo) => {
-  consol.log("dato", logo)
+const loadProducts = () => {
   return dispatch => {
-    return axios.get("http://localhost:8081/request/request/"  )
-      .then(response => {
-        console.log(response.data);
+    return axios.get("http://localhost:8081/solicitud/consultar/todo" )
+      .then(response => {      
+        console.log("datos", response);
         dispatch( _loadProducts(response.data) );
       });
+
+
   };
 };
 
