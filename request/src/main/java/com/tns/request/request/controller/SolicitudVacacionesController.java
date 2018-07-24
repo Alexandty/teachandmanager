@@ -33,6 +33,7 @@ public class SolicitudVacacionesController {
 
 	}
 	
+	
 	@GetMapping("/request/{id}")
 	public ResponseEntity<SolicitudVacaciones> getSolicitudByCedula(@PathVariable("id") Long id) {
 		System.out.println("Get Solicitud by id...");
