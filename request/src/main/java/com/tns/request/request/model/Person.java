@@ -22,6 +22,7 @@ public class Person {
 
 	@Column(name = "lastname")
 	private String lastName;
+	
 
 	@OneToOne
 	@JoinColumn(name = "fk_user")

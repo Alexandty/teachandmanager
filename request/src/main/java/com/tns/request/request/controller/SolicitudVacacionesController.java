@@ -1,15 +1,9 @@
 package com.tns.request.request.controller;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,8 +26,7 @@ public class SolicitudVacacionesController {
 	// }
 
 	@GetMapping("vacaciones/consultar/{cedula}")
-	public SolicitudVacaciones geSolicitudVacacion(@PathVariable Long cedula) {
-		System.out.println("Imprimiendo los datos" + cedula);
+	public SolicitudVacaciones geSolicitudVacacion(@PathVariable Long cedula) {		
 		return SolicitudVacacionesService.getSolicitudesByPersonId(cedula);
 	}
 
