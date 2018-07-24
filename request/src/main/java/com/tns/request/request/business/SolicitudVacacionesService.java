@@ -1,5 +1,6 @@
 package com.tns.request.request.business;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,9 @@ public class SolicitudVacacionesService {
 		return solicitudVacacionesRepository.findById(cedula);
 	}
 
-	public SolicitudVacaciones getSolicitudesByPersonId(Long id) {
+	public List<SolicitudVacaciones> getSolicitudesByPersonId(Long id) {
 		
-		SolicitudVacaciones solicitudBD = solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id);
+		List<SolicitudVacaciones> solicitudBD = solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id);
 
 		if (null == solicitudBD) {
 			throw new BusinessException("Usted no tiene solicitudes");

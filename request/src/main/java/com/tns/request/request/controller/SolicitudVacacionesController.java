@@ -1,5 +1,7 @@
 package com.tns.request.request.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +18,11 @@ import com.tns.request.request.model.SolicitudVacaciones;
 public class SolicitudVacacionesController {
 
 	@Autowired
-	private SolicitudVacacionesService SolicitudVacacionesService;
+	private SolicitudVacacionesService solicitudVacacionesService;
 
 	@GetMapping("vacaciones/consultar/{cedula}")
-	public SolicitudVacaciones geSolicitudVacacion(@PathVariable Long cedula) {
-		return SolicitudVacacionesService.getSolicitudesByPersonId(cedula);
+	public List<SolicitudVacaciones> geSolicitudVacacion(@PathVariable Long cedula) {
+		return solicitudVacacionesService.getSolicitudesByPersonId(cedula);
 	}
 
 }

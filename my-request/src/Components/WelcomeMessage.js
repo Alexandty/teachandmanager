@@ -2,8 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { loadProducts } from '../actionCreators';
 
-const WelcomeMessage = ({name, lastName, id}) => {
-    loadProducts(id)
+const WelcomeMessage = ({name, lastName, idPerson, loadProducts}) => {
+    
+    console.log(idPerson);
+    loadProducts(idPerson)
+    console.log('se despacho');
     if (!name) {
         return <div>...</div>
     }
@@ -23,8 +26,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-      loadProducts(id) {
-        dispatch(loadProducts(id));
+      loadProducts(idPerson) {
+        dispatch(loadProducts(idPerson));
       }
     }
   };

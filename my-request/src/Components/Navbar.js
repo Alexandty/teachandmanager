@@ -13,11 +13,11 @@ const NavbarApp = () => (
         </Navbar.Header>
         <Navbar.Collapse>
             <Nav>
-                <NavItem eventKey={1} href="#">
-                <Link to={"/"}>Inicio</Link>
+                <NavItem eventKey={1} componentClass='span'>
+                <Link to="/">Inicio</Link>
       </NavItem>
                 <NavDropdown eventKey={3} title="Vacaciones" id="basic-nav-dropdown">
-                    <MenuItem eventKey={3.1}><Link to={"/Consulta"}>Consulta de solicitudes</Link></MenuItem>
+                    <MenuItem eventKey={3.1} componentClass='span'><Link to={"/Consulta"}>Consulta de solicitudes</Link></MenuItem>
                 </NavDropdown>
             </Nav>
             <Nav pullRight>

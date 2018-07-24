@@ -10,6 +10,6 @@ import com.tns.request.request.model.SolicitudVacaciones;
 
 public interface SolicitudVacacionesRepository extends CrudRepository<SolicitudVacaciones, Long> {
 
-	SolicitudVacaciones findByPersonIdIdPersonOrderByPersonId(Long id);
+	List<SolicitudVacaciones> findByPersonIdIdPersonOrderByPersonId(Long id);
 
 }

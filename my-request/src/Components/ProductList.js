@@ -2,18 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
 
-const ProductList = ({ VacationData }) => {
+
+const ProductList = ({VacationData, user}) => {
+  console.log(VacationData);
+  
   return (
     <div>
-     {VacationData.map(prod => 
-      prod.personId)
-      .map(person => person.name +" "+ person.lastName+ " "+person.entryDate)}
+     {user.name} {user.lastName}
       <Table striped bordered condensed hover>
         <thead>
           <tr>
             <th>Fecha de nicio</th>
             <th>Fecha de Fin</th>
-            <th>Last Name</th>
+            <th>Dias solicitados</th>
           </tr>
         </thead>
 
@@ -36,7 +37,7 @@ const ProductList = ({ VacationData }) => {
 
 const mapStateToProps = state => {
   return {
-    VacationData: state.reducerLogin.VacationData
+    ...state.reducerLogin
   };
 };
 

@@ -10,7 +10,7 @@ const _loadProducts = (VacationData) => ({
 
 const loadProducts = (id) => {
   return dispatch => {
-    return axios.get("http://localhost:8081/solicitud/vacaciones/consultar/",id )
+    return axios.get("http://localhost:8081/solicitud/vacaciones/consultar/"+id )
       .then(response => {      
         dispatch( _loadProducts(response.data) );
       });

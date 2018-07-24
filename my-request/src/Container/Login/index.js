@@ -7,8 +7,6 @@ import actions from './action';
 import Button from '../../Components/Button';
 import '../../App.css';
 
-
-
   const renderField = ({
     input,
     label,
