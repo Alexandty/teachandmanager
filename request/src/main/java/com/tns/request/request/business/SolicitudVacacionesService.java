@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.tns.request.request.exception.BusinessException;
 import com.tns.request.request.model.SolicitudVacaciones;
 import com.tns.request.request.repository.SolicitudVacacionesRepository;
 
@@ -22,6 +23,8 @@ public class SolicitudVacacionesService {
 //
 //	}
 
+	
+	
 	public Optional<SolicitudVacaciones> getAllPersonById(Long cedula) {
 
 		return solicitudVacacionesRepository.findById(cedula);
@@ -29,7 +32,15 @@ public class SolicitudVacacionesService {
 	
 	public SolicitudVacaciones getSolicitudesByPersonId(Long id) {
 		
-		return solicitudVacacionesRepository.findByPersonIdIdPerson(id);
+		SolicitudVacaciones solicitudBD = solicitudVacacionesRepository.findByPersonIdIdPerson(id);
+		if (null == solicitudBD) {
+			throw new BusinessException("Usted no tiene solicitudes");
+		}else {
+			if (solicitudBD != null) {
+				return solicitudBD;
+			}
+		}
+		throw new BusinessException("No se encuentran solicitudes");
 	}
 
 //	public void delete(long cedula) {
