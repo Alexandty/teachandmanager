@@ -6,34 +6,37 @@ import NavbarApp from './Components/Navbar';
 import Login from './Container/Login';
 import './App.css';
 import ProductList from './Components/ProductList';
+
+import { loadProducts } from './actionCreators';
 import WelcomeMessage from './Components/WelcomeMessage';
 
 import { connect } from 'react-redux';
 
-const App = props => {
-    if(props.logged){
-      return (
-        <div className="App">
-          <AppRouter><NavbarApp/></AppRouter>
-        </div>
-      );
-    }else{
-      return(
-        <LoginView/>
-      )
-    }  
+const App = ({logged}) => {
+  if (logged) {
+    return (
+      <div className="App">
+        <AppRouter user><NavbarApp /></AppRouter>
+      </div>
+    );
+  } else {
+    return (
+      <LoginView />
+    )
+  }
 }
 
-const AppRouter = (props) => (
-  <Router>
-    <div>
-    {props.children}
-      <Route exact path="/" component={Welcome} />
-      <Route path="/Consulta" component={Consulta} />
-      
-    </div>
-  </Router>
-);
+const AppRouter = (props) => {
+  return (
+    <Router>
+      <div>
+        {props.children}
+        <Route exact path="/" component={Welcome} />
+        <Route path="/Consulta" component={Consulta} />
+      </div>
+    </Router>
+  )
+};
 
 const Consulta = () => (
   <Jumbotron>
@@ -42,11 +45,14 @@ const Consulta = () => (
   </Jumbotron>
 );
 
-const Welcome = () => (
-  <div>
-    <WelcomeMessage />
-  </div>
-);
+const Welcome = ({user, loadProducts}) => {
+  console.log('welcome',user)
+  return (
+    <div>
+      <WelcomeMessage />
+    </div>
+  )
+}
 
 
 const LoginView = () => (
@@ -57,8 +63,17 @@ const LoginView = () => (
 
 const mapStateToProps = state => {
   return {
-    logged: state.reducerLogin.logged
+    logged: state.reducerLogin.logged,
+    user: state.reducerLogin.user
   };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    loadProducts(id) {
+      dispatch(loadProducts(id));
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
