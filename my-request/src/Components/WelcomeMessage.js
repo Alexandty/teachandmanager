@@ -6,7 +6,10 @@ const WelcomeMessage = (props) => {
         return <div>...</div>
     }
     return (
-        <h1 className="saludo">Bienvenido {props.name}</h1>
+        <div>
+        <h1 className="saludo">Bienvenido</h1>
+        <h2>{props.name} {props.lastName}</h2>
+        </div>
     )
 }
 
