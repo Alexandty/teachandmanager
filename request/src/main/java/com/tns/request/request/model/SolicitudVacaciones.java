@@ -7,17 +7,22 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "ta_vacation")
+@NamedQueries({
+	@NamedQuery(name="SolicitudVacaciones.findByCedula", query="SELECT  S FROM SolicitudVacaciones S WHERE S.personId.idPerson = :cedula")
+})
 public class SolicitudVacaciones {
 
 	@Id
 	@Column(name="id_request_vacation")
-	private long idVacationRequest;
+	private Long idVacationRequest;
 
 	@Column(name = "start_date")
 	private Date startDate;
@@ -30,26 +35,26 @@ public class SolicitudVacaciones {
 	
 	@OneToOne
 	@JoinColumn(name="id_person")	
-	private Person person_id;
+	private Person personId;
 	
 
-	public Person getPerso_id() {
-		return person_id;
+	public Person getPersonId() {
+		return personId;
 	}
 
-	public void setPerso_id(Person perso_id) {
-		this.person_id = perso_id;
+	public void setPersonId(Person personId) {
+		this.personId = personId;
 	}
 
 	public SolicitudVacaciones() {
 		super();
 	}
 
-	public long getIdRequest() {
+	public Long getIdRequest() {
 		return idVacationRequest;
 	}
 
-	public void setIdRequest(long idVacationRequest) {
+	public void setIdRequest(Long idVacationRequest) {
 		this.idVacationRequest = idVacationRequest;
 	}
 
