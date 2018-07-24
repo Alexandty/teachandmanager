@@ -29,7 +29,6 @@ public class UserBusiness {
 					throw new BusinessException("No existe el usuario");
 				} else {
 					if (user.getPassword().equals(userBD.getPassword())) {
-						System.out.println("User Found");
 						return userBD;
 					}
 				}
