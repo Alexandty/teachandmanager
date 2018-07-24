@@ -8,7 +8,7 @@ const _loadProducts = (VacationData) => ({
 
 
 const loadProducts = (logo) => {
-  consol.log("dato", logo)
+  console.log("dato", logo)
   return dispatch => {
     return axios.get("http://localhost:8081/request/request/"  )
       .then(response => {
@@ -17,8 +17,5 @@ const loadProducts = (logo) => {
       });
   };
 };
-
-
-
 
 export { loadProducts};

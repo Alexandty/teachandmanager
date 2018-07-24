@@ -15,6 +15,7 @@ const styles = {
 };
 
 const ProductList = ({ VacationData }) => {
+  console.log()
   return (
     <div style={styles.products}>
       {VacationData.map(product =>
@@ -33,7 +34,7 @@ const ProductList = ({ VacationData }) => {
 
 const mapStateToProps = state => {
   return {
-    VacationData: state.VacationData
+    VacationData: state.reducerLogin.VacationData
   };
 };
 

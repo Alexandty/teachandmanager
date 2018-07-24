@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 
 const initialState = {
     user: '',
-    VacationRequest: []
+    VacationData: []
 };
 
 const reducer = (state = initialState, action) => {
