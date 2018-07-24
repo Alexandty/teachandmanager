@@ -12,7 +12,7 @@ import WelcomeMessage from './Components/WelcomeMessage';
 
 import { connect } from 'react-redux';
 
-const App = ({logged}) => {
+const App = ({ logged }) => {
   if (logged) {
     return (
       <div className="App">
@@ -45,14 +45,11 @@ const Consulta = () => (
   </Jumbotron>
 );
 
-const Welcome = ({user, loadProducts}) => {
-  console.log('welcome',user)
-  return (
-    <div>
-      <WelcomeMessage />
-    </div>
-  )
-}
+const Welcome = () => (
+  <div>
+    <WelcomeMessage />
+  </div>
+)
 
 
 const LoginView = () => (

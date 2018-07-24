@@ -16,12 +16,11 @@ const styles = {
 };
 
 const ProductList = ({ VacationData }) => {
-  console.log("Datos del Vacation productLsit", VacationData);
   return (
     <div>
      {VacationData.map(prod => 
       prod.personId)
-      .map(person => person.name +" "+ person.lastName)}
+      .map(person => person.name +" "+ person.lastName+ " "+person.entryDate)}
     <p>La persona a la que hay llamado no está</p>
       <Table striped bordered condensed hover>
         <thead>
@@ -53,7 +52,6 @@ const mapStateToProps = state => {
   return {
     VacationData: state.reducerLogin.VacationData
   };
-  console.log("State del productList", state.reducerLogin.products);
 };
 
 export default connect(mapStateToProps)(ProductList);
