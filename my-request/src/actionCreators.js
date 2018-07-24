@@ -20,7 +20,4 @@ const loadProducts = () => {
   };
 };
 
-
-
-
 export { loadProducts};
