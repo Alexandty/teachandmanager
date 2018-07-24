@@ -10,14 +10,6 @@ import com.tns.request.request.model.SolicitudVacaciones;
 
 public interface SolicitudVacacionesRepository extends CrudRepository<SolicitudVacaciones, Long> {
 
-	SolicitudVacaciones findByPersonIdIdPerson(Long id);
+	SolicitudVacaciones findByPersonIdIdPersonOrderByPersonId(Long id);
 
-//	List<SolicitudVacaciones> findByCedula(Long cedula);
-
-	
-
-	
-
-//	@Transactional
-//	Stream<SolicitudVacaciones> findAllByRange(final Date startDate, final Date endDate);
 }

@@ -16,27 +16,25 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ta_vacation")
 @NamedQueries({
-	@NamedQuery(name="SolicitudVacaciones.findByCedula", query="SELECT  S FROM SolicitudVacaciones S WHERE S.personId.idPerson = :cedula")
-})
+		@NamedQuery(name = "SolicitudVacaciones.findByCedula", query = "SELECT  S FROM SolicitudVacaciones S WHERE S.personId.idPerson = :cedula") })
 public class SolicitudVacaciones {
 
 	@Id
-	@Column(name="id_request_vacation")
+	@Column(name = "id_request_vacation")
 	private Long idVacationRequest;
 
 	@Column(name = "start_date")
 	private Date startDate;
-	
+
 	@Column(name = "end_date")
 	private Date endDate;
-	
+
 	@Column(name = "requested_days")
 	private int requestedDays;
-	
+
 	@OneToOne
-	@JoinColumn(name="id_person")	
+	@JoinColumn(name = "id_person")
 	private Person personId;
-	
 
 	public Person getPersonId() {
 		return personId;
@@ -77,7 +75,5 @@ public class SolicitudVacaciones {
 	public Date getEndDate() {
 		return endDate;
 	}
-
-	
 
 }
