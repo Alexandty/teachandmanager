@@ -43,6 +43,7 @@ public class UtilDateTest {
 		assertFalse(resultado == 2);
 	}
 
+	@Ignore
 	@Test
 	public void diaDeLaSemana() throws ParseException {
 		Date date = getDateFromString("31/12/2017");
