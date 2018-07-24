@@ -14,12 +14,14 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'jacoco'
 
 group = 'com.tns.request'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
+maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 	mavenCentral()
 }
 
@@ -43,5 +45,25 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-jersey')
 	compile('org.springframework.boot:spring-boot-starter-webflux')
 	testCompile('io.projectreactor:reactor-test')
+	
+jacoco {
+    toolVersion = "0.7.6.201602180812"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+test {
+    reports.junitXml.destination = file("build/test-results")
+    jacoco {
+        destinationFile = file("build/jacoco/jacoco.exec")
+        append = true
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("build/jacocoHtml")
+    }
+}
 	
 }
