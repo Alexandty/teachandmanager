@@ -58,4 +58,56 @@ public class UtilDateTest {
 		return simpleDateFormat.parse(fecha);
 	}
 
+	@Test
+	public void debeCalcularDiasDisponiblesSegunFormula() throws ParseException {
+		Date fechaI = getDateFromString("01/01/2017");
+		Date fechaF = getDateFromString("1/08/2017");
+
+		int resultado = UtilDate.calcularDiasDisponibles(fechaI, fechaF);
+
+		assertTrue(resultado == 9);
+	}
+
+	@Test
+	public void debeFallarAlCalcularDiasDisponiblesSegunFormula() throws ParseException {
+		Date fechaI = getDateFromString("01/01/2016");
+		Date fechaF = getDateFromString("01/01/2016");
+
+		int resultado = UtilDate.calcularDiasDisponibles(fechaI, fechaF);
+
+		assertFalse(resultado != 0);
+	}
+
+	@Test
+	public void debeCalcularDiasDisfrutadosEntreFechasDadas() throws ParseException {
+		Date fechaI = getDateFromString("01/01/2018");
+		Date fechaF = getDateFromString("25/01/2018");
+
+		int resultado = UtilDate.calcularDiasDisfrutados(fechaI, fechaF);
+
+		assertTrue(resultado == 19);
+	}
+
+	@Test
+	public void debeFallarAlCalcularDiasDisfrutadoEntreFechasDadas() throws ParseException {
+
+		Date fechaI = getDateFromString("01/07/2018");
+		Date fechaF = getDateFromString("02/11/2018");
+
+		int resultado = UtilDate.calcularDiasDisfrutados(fechaI, fechaF);
+
+		assertFalse(resultado == 0);
+
+	}
+
+	@Test
+	public void debeCalcularDiasDisfrutadosEntreFechasDadasDiferenteMes() throws ParseException {
+		Date fechaI = getDateFromString("01/01/2018");
+		Date fechaF = getDateFromString("25/02/2018");
+
+		int resultado = UtilDate.calcularDiasDisfrutados(fechaI, fechaF);
+
+		assertTrue(resultado == 40);
+	}
+
 }
