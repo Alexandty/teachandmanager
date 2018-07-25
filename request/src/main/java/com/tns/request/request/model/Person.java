@@ -13,9 +13,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ta_person")
 public class Person {
-	
-	public Person () {}
-	
 
 	@Id
 	@GeneratedValue
@@ -27,9 +24,17 @@ public class Person {
 
 	@Column(name = "lastname")
 	private String lastName;
-
+	
 	@Column(name = "entry_date")
 	private Date entryDate;
+
+	public Date getEntryDate() {
+		return entryDate;
+	}
+
+	public void setEntryDate(Date entryDate) {
+		this.entryDate = entryDate;
+	}
 
 	@OneToOne
 	@JoinColumn(name = "fk_user")

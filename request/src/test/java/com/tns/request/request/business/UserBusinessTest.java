@@ -36,7 +36,6 @@ public class UserBusinessTest {
 		User userBD = new User();
 		userBD.setUsername("juan");
 		userBD.setPassword("123");
-
 		when(validate.user(user)).thenReturn(true);
 		when(validate.specialCharacters(user.getPassword())).thenReturn(true);
 		when(validate.specialCharacters(user.getUsername())).thenReturn(true);

@@ -6,17 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "ta_vacation")
-@NamedQueries({
-		@NamedQuery(name = "SolicitudVacaciones.findByCedula", query = "SELECT  S FROM SolicitudVacaciones S WHERE S.personId.idPerson = :cedula") })
 public class SolicitudVacaciones {
 
 	@Id

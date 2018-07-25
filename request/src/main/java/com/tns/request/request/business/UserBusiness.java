@@ -3,8 +3,8 @@ package com.tns.request.request.business;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tns.request.request.dto.PersonDTO;
 import com.tns.request.request.exception.BusinessException;
-import com.tns.request.request.model.Person;
 import com.tns.request.request.model.User;
 import com.tns.request.request.repository.IUserRepository;
 import com.tns.request.request.validators.Validate;
@@ -37,7 +37,7 @@ public class UserBusiness {
 		throw new BusinessException("Nombre de usuario o contraseña incorrecto");
 	}
 
-	public Person getPerson(User user) {
+	public PersonDTO getPerson(User user) {
 		User userBD = getUser(user);
 		if (userBD != null)
 			return personBusiness.getPerson(userBD.getIdUser());
