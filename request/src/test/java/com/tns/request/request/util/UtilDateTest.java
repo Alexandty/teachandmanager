@@ -43,16 +43,6 @@ public class UtilDateTest {
 		assertFalse(resultado == 2);
 	}
 
-	@Ignore
-	@Test
-	public void diaDeLaSemana() throws ParseException {
-		Date date = getDateFromString("31/12/2017");
-		Calendar c = Calendar.getInstance();
-		c.setTime(date);
-		int i = c.get(Calendar.DAY_OF_WEEK);
-		System.out.println("" + i);
-	}
-
 	private Date getDateFromString(String fecha) throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		return simpleDateFormat.parse(fecha);
@@ -62,8 +52,9 @@ public class UtilDateTest {
 	public void debeCalcularDiasDisponiblesSegunFormula() throws ParseException {
 		Date fechaI = getDateFromString("01/01/2017");
 		Date fechaF = getDateFromString("1/08/2017");
+		int diasDisfrutados=0;
 
-		int resultado = UtilDate.calcularDiasDisponibles(fechaI, fechaF);
+		int resultado = UtilDate.calcularDiasDisponibles(fechaI, fechaF,diasDisfrutados);
 
 		assertTrue(resultado == 9);
 	}
@@ -72,8 +63,8 @@ public class UtilDateTest {
 	public void debeFallarAlCalcularDiasDisponiblesSegunFormula() throws ParseException {
 		Date fechaI = getDateFromString("01/01/2016");
 		Date fechaF = getDateFromString("01/01/2016");
-
-		int resultado = UtilDate.calcularDiasDisponibles(fechaI, fechaF);
+		int diasDisfrutados=0;
+		int resultado = UtilDate.calcularDiasDisponibles(fechaI, fechaF,diasDisfrutados);
 
 		assertFalse(resultado != 0);
 	}

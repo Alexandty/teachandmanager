@@ -22,8 +22,8 @@ public final class UtilDate {
 		return c.getTimeInMillis();
 	}
 
-	public static int calcularDiasDisponibles(Date fechaInicio, Date fechaIngreso) {
-		double diasdisponibles = ((diferenciaDias(fechaInicio, fechaIngreso) * CONS_CALCULO_VACIONES));
+	public static int calcularDiasDisponibles(Date fechaInicio, Date fechaIngreso,int diasDisfrutados) {
+		double diasdisponibles = ((diferenciaDias(fechaInicio, fechaIngreso) * CONS_CALCULO_VACIONES)-diasDisfrutados);
 		return aproximacionDecimal(diasdisponibles);
 	}
 
@@ -52,7 +52,6 @@ public final class UtilDate {
 			diasHabiles++;
 			day++;
 		}
-		System.out.println(diferenciaDias(fechaI, fechaF) - diasFinde + " " + diasFinde);
 		return diasHabiles - diasFinde + 1 ;
 	}
 
