@@ -12,17 +12,28 @@ public class PersonDTO {
 
 	private String user;
 
-	public PersonDTO(String name, String lastName, Date entryDate) {
+	private long idPerson;
+
+	public PersonDTO(String name, String lastName, Date entryDate, long idPerson) {
 		super();
 		this.name = name;
 		this.lastName = lastName;
 		this.entryDate = entryDate;
+		this.idPerson = idPerson;
 	}
 
 	public PersonDTO() {
 		super();
 	}
-	
+
+	public long getIdPerson() {
+		return idPerson;
+	}
+
+	public void setIdPerson(long idPerson) {
+		this.idPerson = idPerson;
+	}
+
 	public String getName() {
 		return name;
 	}

@@ -18,7 +18,8 @@ public class PersonBusiness {
 	}
 
 	public PersonDTO buildPersonDTO(Person person) {
-		PersonDTO personDTO = new PersonDTO(person.getName(), person.getLastName(), person.getEntryDate());
+		PersonDTO personDTO = new PersonDTO(person.getName(), person.getLastName(), person.getEntryDate(),
+				person.getIdPerson());
 		personDTO.setUser(person.getUserId().getUsername());
 		return personDTO;
 	}

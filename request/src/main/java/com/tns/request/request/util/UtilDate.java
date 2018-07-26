@@ -1,5 +1,7 @@
 package com.tns.request.request.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -12,6 +14,11 @@ public final class UtilDate {
 		super();
 	}
 
+	public static Date getDateFromString(String fecha) throws ParseException {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		return simpleDateFormat.parse(fecha);
+	}
+	
 	public static long diferenciaDias(Date fecha1, Date fecha2) {
 		return TimeUnit.MILLISECONDS.toDays(dateToMilli(fecha2) - dateToMilli(fecha1));
 	}
@@ -22,8 +29,8 @@ public final class UtilDate {
 		return c.getTimeInMillis();
 	}
 
-	public static int calcularDiasDisponibles(Date fechaInicio, Date fechaIngreso) {
-		double diasdisponibles = ((diferenciaDias(fechaInicio, fechaIngreso) * CONS_CALCULO_VACIONES));
+	public static int calcularDiasDisponibles(Date fechaInicio, Date fechaIngreso,int diasDisfrutados) {
+		double diasdisponibles = ((diferenciaDias(fechaInicio, fechaIngreso) * CONS_CALCULO_VACIONES)-diasDisfrutados);
 		return aproximacionDecimal(diasdisponibles);
 	}
 
@@ -52,7 +59,6 @@ public final class UtilDate {
 			diasHabiles++;
 			day++;
 		}
-		System.out.println(diferenciaDias(fechaI, fechaF) - diasFinde + " " + diasFinde);
 		return diasHabiles - diasFinde + 1 ;
 	}
 
