@@ -27,7 +27,7 @@ public class SolicitudVacacionesController {
 	
 	@GetMapping("vacaciones/disponibles/{id}")
 	public int getDiasDisponibles(@PathVariable Long id) {
-		return 0;
+		return solicitudVacacionesService.getDiasDisponibles(id);
 	}
 	
 	

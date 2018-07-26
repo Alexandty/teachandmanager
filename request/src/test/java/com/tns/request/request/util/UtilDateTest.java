@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -51,22 +52,21 @@ public class UtilDateTest {
 	@Test
 	public void debeCalcularDiasDisponiblesSegunFormula() throws ParseException {
 		Date fechaI = getDateFromString("01/01/2017");
-		Date fechaF = getDateFromString("1/08/2017");
+		Date fechaF = getDateFromString("01/08/2017");
 		int diasDisfrutados=0;
 
 		int resultado = UtilDate.calcularDiasDisponibles(fechaI, fechaF,diasDisfrutados);
-
-		assertTrue(resultado == 9);
+		Assert.assertEquals("se espera 9 dias disponibles",9, resultado);
 	}
 
 	@Test
 	public void debeFallarAlCalcularDiasDisponiblesSegunFormula() throws ParseException {
-		Date fechaI = getDateFromString("01/01/2016");
+		Date fechaI = getDateFromString("01/01/2017");
 		Date fechaF = getDateFromString("01/01/2016");
 		int diasDisfrutados=0;
 		int resultado = UtilDate.calcularDiasDisponibles(fechaI, fechaF,diasDisfrutados);
 
-		assertFalse(resultado != 0);
+		assertFalse(resultado != -15);
 	}
 
 	@Test
