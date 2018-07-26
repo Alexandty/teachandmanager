@@ -20,9 +20,9 @@ public class SolicitudVacacionesController {
 	@Autowired
 	private SolicitudVacacionesService solicitudVacacionesService;
 
-	@GetMapping("vacaciones/consultar/{id}")
-	public List<SolicitudVacaciones> getSolicitudVacacion(@PathVariable Long id) {
-		return solicitudVacacionesService.getSolicitudesByPersonId(id);
+	@GetMapping("vacaciones/consultar/{username}")
+	public List<SolicitudVacaciones> getSolicitudVacacion(@PathVariable String username) {
+		return solicitudVacacionesService.getSolicitudesByPersonId(username);
 	}
 	
 	@GetMapping("vacaciones/disponibles/{id}")

@@ -40,7 +40,7 @@ public class UserBusiness {
 	public PersonDTO getPerson(User user) {
 		User userBD = getUser(user);
 		if (userBD != null)
-			return personBusiness.getPerson(userBD.getIdUser());
+			return personBusiness.getPerson(userBD.getUsername());
 		// TODO: Person not found
 		throw new BusinessException("Nombre de usuario o contraseña incorrecto");
 	}

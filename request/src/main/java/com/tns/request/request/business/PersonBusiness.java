@@ -13,13 +13,12 @@ public class PersonBusiness {
 	@Autowired
 	IPersonRepository personRepository;
 
-	public PersonDTO getPerson(Long id) {
-		return buildPersonDTO(personRepository.findByUserIdIdUser(id));
+	public PersonDTO getPerson(String username) {
+		return buildPersonDTO(personRepository.findByUserIdUsername(username));
 	}
 
 	public PersonDTO buildPersonDTO(Person person) {
-		PersonDTO personDTO = new PersonDTO(person.getName(), person.getLastName(), person.getEntryDate(),
-				person.getIdPerson());
+		PersonDTO personDTO = new PersonDTO(person.getName(), person.getLastName(), person.getEntryDate());
 		personDTO.setUser(person.getUserId().getUsername());
 		return personDTO;
 	}

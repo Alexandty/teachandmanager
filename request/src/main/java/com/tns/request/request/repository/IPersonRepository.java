@@ -6,6 +6,6 @@ import com.tns.request.request.model.Person;
 
 public interface IPersonRepository extends CrudRepository<Person, Long> {
 
-	Person findByUserIdIdUser(Long id);
+	Person findByUserIdUsername(String username);
 
 }

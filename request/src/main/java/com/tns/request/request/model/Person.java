@@ -24,17 +24,9 @@ public class Person {
 
 	@Column(name = "lastname")
 	private String lastName;
-	
+
 	@Column(name = "entry_date")
 	private Date entryDate;
-
-	public Date getEntryDate() {
-		return entryDate;
-	}
-
-	public void setEntryDate(Date entryDate) {
-		this.entryDate = entryDate;
-	}
 
 	@OneToOne
 	@JoinColumn(name = "fk_user")
@@ -42,6 +34,14 @@ public class Person {
 
 	public long getIdPerson() {
 		return idPerson;
+	}
+
+	public Date getEntryDate() {
+		return entryDate;
+	}
+
+	public void setEntryDate(Date entryDate) {
+		this.entryDate = entryDate;
 	}
 
 	public void setIdPerson(long idPerson) {

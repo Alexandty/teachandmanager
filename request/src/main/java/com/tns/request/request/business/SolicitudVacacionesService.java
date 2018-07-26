@@ -21,9 +21,9 @@ public class SolicitudVacacionesService {
 		return solicitudVacacionesRepository.findById(cedula);
 	}
 
-	public List<SolicitudVacaciones> getSolicitudesByPersonId(Long id) {
+	public List<SolicitudVacaciones> getSolicitudesByPersonId(String username) {
 
-		List<SolicitudVacaciones> solicitudBD = solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id);
+		List<SolicitudVacaciones> solicitudBD = solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(username);
 
 		if (solicitudBD.isEmpty()) {
 			throw new BusinessException("Usted no tiene solicitudes");
@@ -31,12 +31,12 @@ public class SolicitudVacacionesService {
 		return solicitudBD;
 	}
 
-	public int obtenerTotalDiasDisfrutados(Long id) {
-		List<SolicitudVacaciones> solicitudBD = solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id);
-		if (solicitudBD.isEmpty()) {
-			throw new BusinessException("Usted no tiene solicitudes");
-		}
-		return solicitudBD.stream().map(s -> s.getRequestedDays()).reduce(0, (a, b) -> a + b).intValue();
-	}
+//	public int obtenerTotalDiasDisfrutados(Long id) {
+//		List<SolicitudVacaciones> solicitudBD = solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id);
+//		if (solicitudBD.isEmpty()) {
+//			throw new BusinessException("Usted no tiene solicitudes");
+//		}
+//		return solicitudBD.stream().map(s -> s.getRequestedDays()).reduce(0, (a, b) -> a + b).intValue();
+//	}
 
 }
