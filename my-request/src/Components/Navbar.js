@@ -18,6 +18,7 @@ const NavbarApp = () => (
       </NavItem>
                 <NavDropdown eventKey={3} title="Vacaciones" id="basic-nav-dropdown">
                     <MenuItem eventKey={3.1} componentClass='span'><Link to={"/Consulta"}>Consulta de solicitudes</Link></MenuItem>
+                    <MenuItem eventKey={3.2} componentClass='span'><Link to={"/Solicitud"}>Solicitud Vacaciones</Link></MenuItem>
                 </NavDropdown>
             </Nav>
             <Nav pullRight>
