@@ -26,10 +26,12 @@ public class PersonBusinessTest {
 		Person person = new Person();
 		person.setName("Alexander");
 		person.setLastName("Alexander");
+		person.setIdPerson(1);
 		person.setUserId(new User());
 		person.getUserId().setUsername("user");
 		PersonDTO personDTO = business.buildPersonDTO(person);
-		Assert.assertTrue(person.getName().equals(personDTO.getName()));
+//		Assert.assertTrue(person.getName().equals(personDTO.getName()));
+		Assert.assertEquals("Se esperaba id 1", person.getIdPerson(), personDTO.getIdPerson());
 	}
 
 }
