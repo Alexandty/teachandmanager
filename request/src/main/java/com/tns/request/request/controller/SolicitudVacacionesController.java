@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tns.request.request.business.SolicitudVacacionesService;
@@ -27,9 +29,14 @@ public class SolicitudVacacionesController {
 	
 	@GetMapping("vacaciones/disponibles/{id}")
 	public int getDiasDisponibles(@PathVariable Long id) {
-		return solicitudVacacionesService.getDiasDisponibles(id);
+		return solicitudVacacionesService.getDiasDisponiblesALaFecha(id);
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping("vacaciones/disponibles")
+	public int getDiasDisponibles(@RequestBody Object fechas) {
+		
+		return 0;
+	}
 
 }

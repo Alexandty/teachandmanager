@@ -96,7 +96,7 @@ public class SolicitudVacacionesServiceTest {
 		Person persona = new Person();
 		persona.setEntryDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
 		when(personRepository.findByUserIdIdUser(id)).thenReturn(persona);
-		int respuesta=business.getDiasDisponibles(id);
+		int respuesta=business.getDiasDisponiblesALaFecha(id);
 		Assert.assertEquals("se espera 0 dias disponibles",0, respuesta);
 	}
 	
@@ -108,7 +108,7 @@ public class SolicitudVacacionesServiceTest {
 		Person persona = new Person();
 		persona.setEntryDate(java.sql.Date.valueOf(java.time.LocalDate.of(2017, 07, 26)));
 		when(personRepository.findByUserIdIdUser(id)).thenReturn(persona);
-		int respuesta=business.getDiasDisponibles(id);
+		int respuesta=business.getDiasDisponiblesALaFecha(id);
 		Assert.assertEquals("se espera 15 dias disponibles",15, respuesta);
 	}
 }

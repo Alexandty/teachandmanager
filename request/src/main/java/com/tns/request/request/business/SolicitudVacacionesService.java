@@ -46,14 +46,12 @@ public class SolicitudVacacionesService {
 		return solicitudBD.stream().map(s -> s.getRequestedDays()).reduce(0, (a, b) -> a + b).intValue();
 	}
 
-	public int getDiasDisponibles(Long id) {
+	public int getDiasDisponiblesALaFecha(Long id) {
 		Date fechaActual =new Date();
 		int diasDisfrutados = obtenerTotalDiasDisfrutados(id);
 		Person persona = personRepository.findByUserIdIdUser(id);
 		Date fechaIngreso = persona.getEntryDate();
-		return UtilDate.calcularDiasDisponibles(fechaIngreso, fechaActual, diasDisfrutados);
-		
-		
+		return UtilDate.calcularDiasDisponibles(fechaIngreso, fechaActual, diasDisfrutados);		
 	}
 
 }
