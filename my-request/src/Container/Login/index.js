@@ -7,26 +7,26 @@ import actions from './action';
 import Button from '../../Components/Button';
 import '../../App.css';
 
-  const renderField = ({
+const renderField = ({
     input,
     label,
     type,
     meta: { touched, error, warning }
-  }) => (
-    <div>
-      <label>{label}</label>
-      <div>
-        <input {...input} placeholder={label} type={type} />
-        <br/>
-        {touched &&
-          ((error && <span>{error}</span>) ||
-            (warning && <span>{warning}</span>))}
-      </div>
-    </div>
-  )
+}) => (
+        <div>
+            <label>{label}</label>
+            <div>
+                <input {...input} placeholder={label} type={type} />
+                <br />
+                {touched &&
+                    ((error && <span>{error}</span>) ||
+                        (warning && <span>{warning}</span>))}
+            </div>
+        </div>
+    )
 
 export const LoginForm = props => {
-    const { login, handleSubmit, user, pristine } = props;
+    const { login, handleSubmit, pristine } = props;
     return (
         <Row className="show-grid">
             <Col xs={6} md={4}>
@@ -41,16 +41,8 @@ export const LoginForm = props => {
                         <div>
                             <Field name='password' component={renderField} label='Password' type='password'></Field>
                         </div>
-                        <br/>
+                        <br />
                         <Button type="submit" disabled={pristine}>LOGIN</Button>
-                        {/* <h1><ul>
-                            {user.map(user => (
-                                <li key={user.id}>
-                                    {user.name}
-                                </li>
-                            ))}
-                        </ul></h1> */}
-                        {user.name}
                     </form>
                 </Jumbotron>
             </Col>
@@ -67,7 +59,7 @@ const Login = reduxForm({
 
 const mapStateToProps = state => {
     return {
-        ...state.reducerLogin
+        ...state.reducer
     };
 };
 

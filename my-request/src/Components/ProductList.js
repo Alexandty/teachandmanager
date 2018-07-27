@@ -37,7 +37,7 @@ const ProductList = ({VacationData, user}) => {
 
 const mapStateToProps = state => {
   return {
-    ...state.reducerLogin
+    ...state.reducer
   };
 };
 

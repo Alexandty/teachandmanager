@@ -27,7 +27,7 @@ public class SolicitudVacacionesController {
 		return solicitudVacacionesService.getSolicitudesByPersonId(username);
 	}
 	
-	@GetMapping("vacaciones/disponibles/{id}")
+	@GetMapping("vacaciones/disponibles/{username}")
 	public int getDiasDisponibles(@PathVariable String username) {
 		return solicitudVacacionesService.getDiasDisponiblesALaFecha(username);
 	}

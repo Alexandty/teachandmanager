@@ -70,7 +70,7 @@ const LoginView = () => (
 
 const mapStateToProps = state => {
   return {
-    logged: state.reducerLogin.logged
+    logged: state.reducer.logged
   };
 };
 

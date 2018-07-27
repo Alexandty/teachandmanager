@@ -1,38 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import action from './action';
-import { Label, Button,  FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { Label, Button, FormGroup, ControlLabel } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
-
-
 
 const renderField = ({
     input,
     label,
     type,
     meta: { touched, error, warning }
-  }) => (
-    <div>
-      <label>{label}</label>
-      <div>
-        <input {...input} placeholder={label} type={type} />
-        {touched &&
-          ((error && <span>{error}</span>) ||
-            (warning && <span>{warning}</span>))}
-      </div>
-    </div>
-  )
+}) => (
+        <div>
+            <label>{label}</label>
+            <div>
+                <input {...input} placeholder={label} type={type} />
+                {touched &&
+                    ((error && <span>{error}</span>) ||
+                        (warning && <span>{warning}</span>))}
+            </div>
+        </div>
+    )
 
-const Solicitud = props => {
-
-    const { guardar , handleSubmit, avalableDaysData} = props;
-
+const SolicitudForm = props => {
+    const { guardar, handleSubmit, avalableDaysData, user } = props;
+    console.log(avalableDaysData)
+    console.log(user)
     return (
         <div>
-            
             <form onSubmit={handleSubmit(guardar)} >
                 <h3>
-                    Dias disponibles <Label bsStyle="primary">9</Label>
+                    Dias disponibles <Label bsStyle="primary"> {avalableDaysData} </Label>
                 </h3>
                 <FormGroup controlId="formInlineDate">
                     <ControlLabel>Fecha Inicio</ControlLabel>{' '}{' '}
@@ -44,23 +41,21 @@ const Solicitud = props => {
                 </FormGroup>{' '}
                 <Button bsStyle="success" type="submit">Success</Button>
             </form>
-
         </div >
     )
 }
 
-const SolicitudForm = reduxForm({
-    form : 'LoginForm'
-})(Solicitud)
+const Solicitud = reduxForm({
+    form: 'SolicitudForm',
+})(SolicitudForm)
 
 const mapStateToProps = state => {
     return {
-        ...state.addSolicitudvacaciones,
-        ...state.avalableDaysData
+        ...state.reducer
     };
 };
 
 export default connect(
     mapStateToProps,
     action
-)(SolicitudForm);
+)(Solicitud);

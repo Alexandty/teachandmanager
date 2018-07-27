@@ -6,8 +6,6 @@ const initialState = {
     user: '',
     VacationData: [],
     vacationSolicitudData: [],
-    startDate: '',
-    endDate: '',
     logged: false,
     avalableDaysData: 0
 };
@@ -41,7 +39,7 @@ const reducer = (state = initialState, action) => {
     return state;
 }
 const rootReducer = combineReducers({
-    reducerLogin: reducer,
+    reducer: reducer,
     form: formReducer
 })
 

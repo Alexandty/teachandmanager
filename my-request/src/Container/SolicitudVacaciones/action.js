@@ -6,9 +6,7 @@ const _addSolicitudVacaciones = (sVacaciones) => ({
 });
 
 const action = {
-
     guardar: values => {
-
         return (dispatch) => {
             const solicitudVacaciones = {
                 startDate: values.startDate,
