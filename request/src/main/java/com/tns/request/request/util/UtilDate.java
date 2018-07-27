@@ -1,5 +1,7 @@
 package com.tns.request.request.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -12,6 +14,11 @@ public final class UtilDate {
 		super();
 	}
 
+	public static Date getDateFromString(String fecha) throws ParseException {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		return simpleDateFormat.parse(fecha);
+	}
+	
 	public static long diferenciaDias(Date fecha1, Date fecha2) {
 		return TimeUnit.MILLISECONDS.toDays(dateToMilli(fecha2) - dateToMilli(fecha1));
 	}

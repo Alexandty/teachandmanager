@@ -2,7 +2,9 @@ package com.tns.request.request.business;
 
 import static org.mockito.Mockito.when;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -13,18 +15,24 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.tns.request.request.exception.BusinessException;
+import com.tns.request.request.model.Person;
 import com.tns.request.request.model.SolicitudVacaciones;
+import com.tns.request.request.repository.IPersonRepository;
 import com.tns.request.request.repository.SolicitudVacacionesRepository;
+import com.tns.request.request.util.UtilDate;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SolicitudVacacionesServiceTest {
 	
 	@InjectMocks
-	private SolicitudVacacionesService bussines;
+	private SolicitudVacacionesService business;
 	
 	@Mock
 	private SolicitudVacacionesRepository solicitudVacacionesRepository;
 
+	@Mock
+	private IPersonRepository personRepository;
+	
 	@Test
 	public void debeBuscarDiasHabilesdisfurtadosYDevolverLaSuma() {
 		SolicitudVacaciones solicitud1 = new SolicitudVacaciones();
@@ -38,19 +46,21 @@ public class SolicitudVacacionesServiceTest {
 		Long id= 0L;
 		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id)).thenReturn(solicitudBD);
 		
-		int resultado=bussines.obtenerTotalDiasDisfrutados(id);
+		int resultado=business.obtenerTotalDiasDisfrutados(id);
 		
 		Assert.assertEquals("se esperaba 9",9, resultado);
 	}
 	
-	@Test(expected=BusinessException.class)
-	public void debeFallarAlNoEncontrarDatos() {
+	@Test
+	public void debeRetornar0AlNoEncontrarDatos() {
 		List<SolicitudVacaciones> solicitudBD=new ArrayList<SolicitudVacaciones>();
 		
 		Long id= 0L;
 		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id)).thenReturn(solicitudBD);
 		
-		bussines.obtenerTotalDiasDisfrutados(id);
+		int respuesta=business.obtenerTotalDiasDisfrutados(id);
+
+		Assert.assertEquals("se espera 0 dias disponibles",0, respuesta);
 	}
 	
 	@Test(expected=BusinessException.class)
@@ -60,7 +70,7 @@ public class SolicitudVacacionesServiceTest {
 		Long id= 0L;
 		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id)).thenReturn(solicitudBD);
 		
-		bussines.getSolicitudesByPersonId(id);
+		business.getSolicitudesByPersonId(id);
 	}
 	
 	@Test
@@ -75,9 +85,35 @@ public class SolicitudVacacionesServiceTest {
 		Long id= 0L;
 		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id)).thenReturn(solicitudBD);
 		
-		List<SolicitudVacaciones> resultado=bussines.getSolicitudesByPersonId(id);
+		List<SolicitudVacaciones> resultado=business.getSolicitudesByPersonId(id);
 		
 		Assert.assertEquals("se esperaba una lista",solicitudBD, resultado);
 	}
 	
+	@Test
+	public void debeRetornarDiasDisponibles() {
+		Long id=1010L;
+		List<SolicitudVacaciones> solicitudBD=new ArrayList<SolicitudVacaciones>();
+		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id)).thenReturn(solicitudBD);
+		Person persona = new Person();
+		persona.setEntryDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
+		when(personRepository.findByUserIdIdUser(id)).thenReturn(persona);
+		int respuesta=business.getDiasDisponiblesALaFecha(id);
+		Assert.assertEquals("se espera 0 dias disponibles",0, respuesta);
+	}
+	
+	@Test
+	public void debeCalcularDiasVacacionesDisponiblesParaFechaSelecionada() throws ParseException {
+		Long id= 1010L;
+		Date fechaInicio= UtilDate.getDateFromString("26/07/2018");	
+		List<SolicitudVacaciones> solicitudBD=new ArrayList<SolicitudVacaciones>();
+		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id)).thenReturn(solicitudBD);
+		Person persona = new Person();
+		persona.setEntryDate(java.sql.Date.valueOf(java.time.LocalDate.of(2017, 07, 26)));
+		when(personRepository.findByUserIdIdUser(id)).thenReturn(persona);
+		
+		int respuesta=business.getDiasDisponibles(fechaInicio, id);
+		
+		Assert.assertEquals("se espera 15 dias disponibles",15, respuesta);
+	}
 }

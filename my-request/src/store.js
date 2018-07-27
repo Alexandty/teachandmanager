@@ -5,6 +5,9 @@ import thunk from 'redux-thunk';
 const initialState = {
     user: '',
     VacationData: [],
+    vacationSolicitudData: [],
+    startDate: '',
+    endDate: '',
     logged: false
 };
 
@@ -20,6 +23,13 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             VacationData: action.VacationData
+        };
+    }
+    else if (action.type === "ADD_SOLICITUD_VACACIONES") {        
+        return {
+            ...state,
+            vacationSolicitudData: action.vacationSolicitudData
+            
         };
     }
     return state;

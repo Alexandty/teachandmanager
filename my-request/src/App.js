@@ -6,13 +6,15 @@ import NavbarApp from './Components/Navbar';
 import Login from './Container/Login';
 import './App.css';
 import ProductList from './Components/ProductList';
+import Solicitud from './Container/SolicitudVacaciones/'
+
 
 import WelcomeMessage from './Components/WelcomeMessage';
 
 import { connect } from 'react-redux';
 
 const App = ({ logged }) => {
-  if (logged) {
+  if (true) {
     return (
       <div className="App">
         <AppRouter user><NavbarApp /></AppRouter>
@@ -32,6 +34,8 @@ const AppRouter = (props) => {
         {props.children}
         <Route exact path="/" component={Welcome} />
         <Route path="/Consulta" component={Consulta} />
+        <Route path="/Solicitud" component={SolicitudApp} />
+
       </div>
     </Router>
   )
@@ -42,6 +46,13 @@ const Consulta = () => (
     <h1>Consulta</h1>
     <ProductList />
   </Jumbotron>
+);
+const SolicitudApp = () =>(
+  <Jumbotron>
+    <h1>Solicitud</h1>
+    <Solicitud/>
+  </Jumbotron>
+
 );
 
 const Welcome = () => (
