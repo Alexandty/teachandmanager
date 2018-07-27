@@ -36,6 +36,8 @@ public class SolicitudVacacionesController {
 	@RequestMapping("vacaciones/disponibles")
 	public int getDiasDisponibles(@RequestBody Object fechas) {
 		
+		System.out.println("Lo que se imprime por consola" + fechas);
+		
 		return 0;
 	}
 
