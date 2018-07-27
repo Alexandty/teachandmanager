@@ -6,20 +6,33 @@ const _addSolicitudVacaciones = (sVacaciones) => ({
 });
 
 const action = {
-    guardar: values => {
+    guardar: (values) => {
         return (dispatch) => {
             const solicitudVacaciones = {
                 startDate: values.startDate,
-                endDate: values.endDate
+                endDate: values.endDate,
+                user: values.user
             };
-            console.log(solicitudVacaciones);
             return axios.post('http://localhost:8081/solicitud/vacaciones/disponibles', solicitudVacaciones)
                 .then(result => {
                     dispatch(_addSolicitudVacaciones(result.data));
                 });
         };
-
     }
-
 };
+
+// const action = (user) => {
+//     return (dispatch) => {
+//         const solicitudVacaciones = {
+//             // startDate: values.startDate,
+//             // endDate: values.endDate,
+//             user: user.username
+//         };
+//         console.log('in action', user);
+//         return axios.post('http://localhost:8081/solicitud/vacaciones/disponibles', solicitudVacaciones)
+//             .then(result => {
+//                 dispatch(_addSolicitudVacaciones(result.data));
+//             });
+//     };
+// };
 export default action;

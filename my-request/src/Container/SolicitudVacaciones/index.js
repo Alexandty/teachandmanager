@@ -23,11 +23,14 @@ const renderField = ({
 
 const SolicitudForm = props => {
     const { guardar, handleSubmit, avalableDaysData, user } = props;
-    console.log(avalableDaysData)
-    console.log(user)
+    console.log(user);
     return (
+        //onBlur={user}
         <div>
-            <form onSubmit={handleSubmit(guardar)} >
+            <form onSubmit={handleSubmit((values) => {
+                values.user = user.user;
+                return guardar(values)
+            })} >
                 <h3>
                     Dias disponibles <Label bsStyle="primary"> {avalableDaysData} </Label>
                 </h3>
@@ -40,6 +43,7 @@ const SolicitudForm = props => {
                     <Field type="Date" name="endDate" component={renderField} />
                 </FormGroup>{' '}
                 <Button bsStyle="success" type="submit">Success</Button>
+
             </form>
         </div >
     )
@@ -54,6 +58,14 @@ const mapStateToProps = state => {
         ...state.reducer
     };
 };
+
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         action(user) {
+//             dispatch(action(user));
+//         }
+//     }
+// };
 
 export default connect(
     mapStateToProps,
