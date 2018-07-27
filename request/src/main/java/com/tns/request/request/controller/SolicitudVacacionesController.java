@@ -28,8 +28,8 @@ public class SolicitudVacacionesController {
 	}
 	
 	@GetMapping("vacaciones/disponibles/{id}")
-	public int getDiasDisponibles(@PathVariable Long id) {
-		return solicitudVacacionesService.getDiasDisponiblesALaFecha(id);
+	public int getDiasDisponibles(@PathVariable String username) {
+		return solicitudVacacionesService.getDiasDisponiblesALaFecha(username);
 	}
 	
 	@ResponseBody

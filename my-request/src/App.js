@@ -14,7 +14,7 @@ import WelcomeMessage from './Components/WelcomeMessage';
 import { connect } from 'react-redux';
 
 const App = ({ logged }) => {
-  if (true) {
+  if (logged) {
     return (
       <div className="App">
         <AppRouter user><NavbarApp /></AppRouter>

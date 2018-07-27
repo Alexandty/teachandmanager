@@ -23,97 +23,96 @@ import com.tns.request.request.util.UtilDate;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SolicitudVacacionesServiceTest {
-	
+
 	@InjectMocks
 	private SolicitudVacacionesService business;
-	
+
 	@Mock
 	private SolicitudVacacionesRepository solicitudVacacionesRepository;
 
 	@Mock
 	private IPersonRepository personRepository;
-	
+
 	@Test
 	public void debeBuscarDiasHabilesdisfurtadosYDevolverLaSuma() {
 		SolicitudVacaciones solicitud1 = new SolicitudVacaciones();
 		solicitud1.setRequestedDays(4);
 		SolicitudVacaciones solicitud2 = new SolicitudVacaciones();
 		solicitud2.setRequestedDays(5);
-		List<SolicitudVacaciones> solicitudBD=new ArrayList<SolicitudVacaciones>();
+		List<SolicitudVacaciones> solicitudBD = new ArrayList<SolicitudVacaciones>();
 		solicitudBD.add(solicitud1);
 		solicitudBD.add(solicitud2);
-		
-		Long id= 0L;
-		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id)).thenReturn(solicitudBD);
-		
-		int resultado=business.obtenerTotalDiasDisfrutados(id);
-		
-		Assert.assertEquals("se esperaba 9",9, resultado);
+
+		String username = null;
+		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(username)).thenReturn(solicitudBD);
+
+		int resultado = business.obtenerTotalDiasDisfrutados(username);
+
+		Assert.assertEquals("se esperaba 9", 9, resultado);
 	}
-	
+
 	@Test
 	public void debeRetornar0AlNoEncontrarDatos() {
-		List<SolicitudVacaciones> solicitudBD=new ArrayList<SolicitudVacaciones>();
-		
-		Long id= 0L;
-		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id)).thenReturn(solicitudBD);
-		
-		int respuesta=business.obtenerTotalDiasDisfrutados(id);
+		List<SolicitudVacaciones> solicitudBD = new ArrayList<SolicitudVacaciones>();
 
-		Assert.assertEquals("se espera 0 dias disponibles",0, respuesta);
+		String username = null;
+		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(username)).thenReturn(solicitudBD);
+
+		int respuesta = business.obtenerTotalDiasDisfrutados(username);
+
+		Assert.assertEquals("se espera 0 dias disponibles", 0, respuesta);
 	}
-	
-	@Test(expected=BusinessException.class)
+
+	@Test(expected = BusinessException.class)
 	public void debeFallarAlNoEncontrarDatosEnBD() {
-		List<SolicitudVacaciones> solicitudBD=new ArrayList<SolicitudVacaciones>();
-		
-		Long id= 0L;
-		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id)).thenReturn(solicitudBD);
-		
-		business.getSolicitudesByPersonId(id);
+		List<SolicitudVacaciones> solicitudBD = new ArrayList<SolicitudVacaciones>();
+
+		String username = null;
+		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(username)).thenReturn(solicitudBD);
+
+		business.getSolicitudesByPersonId(username);
 	}
-	
+
 	@Test
 	public void debeEncontrarDatosEnLaBD() {
 		SolicitudVacaciones solicitud1 = new SolicitudVacaciones();
 		solicitud1.setIdRequest(23L);
 		solicitud1.setRequestedDays(4);
-		List<SolicitudVacaciones> solicitudBD=new ArrayList<SolicitudVacaciones>();
+		List<SolicitudVacaciones> solicitudBD = new ArrayList<SolicitudVacaciones>();
 		solicitudBD.add(solicitud1);
 
-		
-		Long id= 0L;
-		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id)).thenReturn(solicitudBD);
-		
-		List<SolicitudVacaciones> resultado=business.getSolicitudesByPersonId(id);
-		
-		Assert.assertEquals("se esperaba una lista",solicitudBD, resultado);
+		String username = null;
+		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(username)).thenReturn(solicitudBD);
+
+		List<SolicitudVacaciones> resultado = business.getSolicitudesByPersonId(username);
+
+		Assert.assertEquals("se esperaba una lista", solicitudBD, resultado);
 	}
-	
+
 	@Test
 	public void debeRetornarDiasDisponibles() {
-		Long id=1010L;
-		List<SolicitudVacaciones> solicitudBD=new ArrayList<SolicitudVacaciones>();
-		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id)).thenReturn(solicitudBD);
+		String username = null;
+		List<SolicitudVacaciones> solicitudBD = new ArrayList<SolicitudVacaciones>();
+		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(username)).thenReturn(solicitudBD);
 		Person persona = new Person();
 		persona.setEntryDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
-		when(personRepository.findByUserIdIdUser(id)).thenReturn(persona);
-		int respuesta=business.getDiasDisponiblesALaFecha(id);
-		Assert.assertEquals("se espera 0 dias disponibles",0, respuesta);
+		when(personRepository.findByUserIdUsername(username)).thenReturn(persona);
+		int respuesta = business.getDiasDisponiblesALaFecha(username);
+		Assert.assertEquals("se espera 0 dias disponibles", 0, respuesta);
 	}
-	
+
 	@Test
 	public void debeCalcularDiasVacacionesDisponiblesParaFechaSelecionada() throws ParseException {
-		Long id= 1010L;
-		Date fechaInicio= UtilDate.getDateFromString("26/07/2018");	
-		List<SolicitudVacaciones> solicitudBD=new ArrayList<SolicitudVacaciones>();
-		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id)).thenReturn(solicitudBD);
+		String username = null;
+		Date fechaInicio = UtilDate.getDateFromString("26/07/2018");
+		List<SolicitudVacaciones> solicitudBD = new ArrayList<SolicitudVacaciones>();
+		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(username)).thenReturn(solicitudBD);
 		Person persona = new Person();
 		persona.setEntryDate(java.sql.Date.valueOf(java.time.LocalDate.of(2017, 07, 26)));
-		when(personRepository.findByUserIdIdUser(id)).thenReturn(persona);
-		
-		int respuesta=business.getDiasDisponibles(fechaInicio, id);
-		
-		Assert.assertEquals("se espera 15 dias disponibles",15, respuesta);
+		when(personRepository.findByUserIdUsername(username)).thenReturn(persona);
+
+		int respuesta = business.getDiasDisponibles(fechaInicio, username);
+
+		Assert.assertEquals("se espera 15 dias disponibles", 15, respuesta);
 	}
 }

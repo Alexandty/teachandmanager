@@ -19,7 +19,7 @@ public class SolicitudVacacionesService {
 
 	@Autowired
 	private SolicitudVacacionesRepository solicitudVacacionesRepository;
-	
+
 	@Autowired
 	private IPersonRepository personRepository;
 
@@ -30,7 +30,8 @@ public class SolicitudVacacionesService {
 
 	public List<SolicitudVacaciones> getSolicitudesByPersonId(String username) {
 
-		List<SolicitudVacaciones> solicitudBD = solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(username);
+		List<SolicitudVacaciones> solicitudBD = solicitudVacacionesRepository
+				.findByPersonIdIdPersonOrderByPersonId(username);
 
 		if (solicitudBD.isEmpty()) {
 			throw new BusinessException("Usted no tiene solicitudes");
@@ -38,22 +39,23 @@ public class SolicitudVacacionesService {
 		return solicitudBD;
 	}
 
-	public int obtenerTotalDiasDisfrutados(Long id) {
-		List<SolicitudVacaciones> solicitudBD = solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id);
+	public int obtenerTotalDiasDisfrutados(String username) {
+		List<SolicitudVacaciones> solicitudBD = solicitudVacacionesRepository
+				.findByPersonIdIdPersonOrderByPersonId(username);
 		if (solicitudBD.isEmpty()) {
 			return 0;
 		}
 		return solicitudBD.stream().map(s -> s.getRequestedDays()).reduce(0, (a, b) -> a + b).intValue();
 	}
 
-	public int getDiasDisponiblesALaFecha(Long id) {
-		Date fechaActual =new Date();
-		return getDiasDisponibles(fechaActual, id);
+	public int getDiasDisponiblesALaFecha(String username) {
+		Date fechaActual = new Date();
+		return getDiasDisponibles(fechaActual, username);
 	}
 
-	public int getDiasDisponibles(Date fechaInicio, Long id) {
-		int diasDisfrutados = obtenerTotalDiasDisfrutados(id);
-		Person persona = personRepository.findByUserIdIdUser(id);
+	public int getDiasDisponibles(Date fechaInicio, String username) {
+		int diasDisfrutados = obtenerTotalDiasDisfrutados(username);
+		Person persona = personRepository.findByUserIdUsername(username);
 		Date fechaIngreso = persona.getEntryDate();
 		return UtilDate.calcularDiasDisponibles(fechaIngreso, fechaInicio, diasDisfrutados);
 	}
