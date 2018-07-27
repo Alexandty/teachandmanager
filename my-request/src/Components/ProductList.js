@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
 
 
-const ProductList = ({VacationData, user}) => {
+const RequestVacationList = ({VacationData, user}) => {
   console.log(VacationData);
   
   return (
@@ -41,4 +41,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ProductList);
+export default connect(mapStateToProps)(RequestVacationList);

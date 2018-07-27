@@ -14,18 +14,18 @@ const loadAvailableDays = (user) => {
   };
 };
 
-const _loadProducts = (VacationData) => ({
+const _loadRequestVacation = (VacationData) => ({
   type: 'REPLACE_PRODUCTS',
   VacationData
 });
 
-const loadProducts = (user) => {
+const loadRequestVacation = (user) => {
   return dispatch => {
     return axios.get("http://localhost:8081/solicitud/vacaciones/consultar/" + user)
       .then(response => {
-        dispatch(_loadProducts(response.data));
+        dispatch(_loadRequestVacation(response.data));
       });
   };
 };
 
-export { loadProducts, loadAvailableDays };
+export { loadRequestVacation, loadAvailableDays };
