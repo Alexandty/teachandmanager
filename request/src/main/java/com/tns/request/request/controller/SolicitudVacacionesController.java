@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tns.request.request.business.SolicitudVacacionesService;
+import com.tns.request.request.dto.SolicitudVacacionesDTO;
+import com.tns.request.request.dto.SolicitudVacacionesUsernameDTO;
 import com.tns.request.request.model.SolicitudVacaciones;
 
 @CrossOrigin(origins = "http://localhost:3000/")
@@ -26,17 +28,17 @@ public class SolicitudVacacionesController {
 	public List<SolicitudVacaciones> getSolicitudVacacion(@PathVariable String username) {
 		return solicitudVacacionesService.getSolicitudesByPersonId(username);
 	}
-	
+
 	@GetMapping("vacaciones/disponibles/{username}")
 	public int getDiasDisponibles(@PathVariable String username) {
 		return solicitudVacacionesService.getDiasDisponiblesALaFecha(username);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("vacaciones/disponibles")
-	public int getDiasDisponibles(@RequestBody Object fechas) {
-		
-		return 0;
+	public int getDiasDisponiblesPorFecha(@RequestBody SolicitudVacacionesUsernameDTO solicitudVacaUserDTO) {
+		return solicitudVacacionesService.getDiasDisponibles(solicitudVacaUserDTO.getStartDate(),
+				solicitudVacaUserDTO.getUser());
 	}
 
 }

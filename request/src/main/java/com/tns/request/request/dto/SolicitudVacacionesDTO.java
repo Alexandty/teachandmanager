@@ -16,11 +16,11 @@ public class SolicitudVacacionesDTO {
 		this.endDate = endDate;
 		this.requestedDays = requestedDays;
 	}
-	
+
 	public SolicitudVacacionesDTO() {
 		super();
 	}
-	
+
 	public Date getStartDate() {
 		return startDate;
 	}

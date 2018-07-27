@@ -13,26 +13,17 @@ const action = {
                 endDate: values.endDate,
                 user: values.user
             };
+            console.log(solicitudVacaciones)
             return axios.post('http://localhost:8081/solicitud/vacaciones/disponibles', solicitudVacaciones)
                 .then(result => {
                     dispatch(_addSolicitudVacaciones(result.data));
-                });
+                    console.log(result.data)
+                },
+                    error => {
+                        alert(error.response.data.message);
+                    });
         };
     }
 };
 
-// const action = (user) => {
-//     return (dispatch) => {
-//         const solicitudVacaciones = {
-//             // startDate: values.startDate,
-//             // endDate: values.endDate,
-//             user: user.username
-//         };
-//         console.log('in action', user);
-//         return axios.post('http://localhost:8081/solicitud/vacaciones/disponibles', solicitudVacaciones)
-//             .then(result => {
-//                 dispatch(_addSolicitudVacaciones(result.data));
-//             });
-//     };
-// };
 export default action;

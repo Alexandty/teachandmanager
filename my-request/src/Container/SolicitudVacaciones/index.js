@@ -59,14 +59,6 @@ const mapStateToProps = state => {
     };
 };
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         action(user) {
-//             dispatch(action(user));
-//         }
-//     }
-// };
-
 export default connect(
     mapStateToProps,
     action

@@ -60,4 +60,6 @@ public class SolicitudVacacionesService {
 		return UtilDate.calcularDiasDisponibles(fechaIngreso, fechaInicio, diasDisfrutados);
 	}
 
+	
+	
 }
