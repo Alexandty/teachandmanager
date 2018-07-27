@@ -5,6 +5,7 @@ import { Label, Button,  FormGroup, ControlLabel, FormControl } from 'react-boot
 import { Field, reduxForm } from 'redux-form';
 
 
+
 const renderField = ({
     input,
     label,
@@ -24,14 +25,14 @@ const renderField = ({
 
 const Solicitud = props => {
 
-    const { guardar , handleSubmit} = props;
+    const { guardar , handleSubmit, avalableDaysData} = props;
 
     return (
         <div>
             
             <form onSubmit={handleSubmit(guardar)} >
                 <h3>
-                    Dias disponibles <Label bsStyle="primary">6</Label>
+                    Dias disponibles <Label bsStyle="primary">9</Label>
                 </h3>
                 <FormGroup controlId="formInlineDate">
                     <ControlLabel>Fecha Inicio</ControlLabel>{' '}{' '}
@@ -54,7 +55,8 @@ const SolicitudForm = reduxForm({
 
 const mapStateToProps = state => {
     return {
-        ...state.addSolicitudvacaciones
+        ...state.addSolicitudvacaciones,
+        ...state.avalableDaysData
     };
 };
 

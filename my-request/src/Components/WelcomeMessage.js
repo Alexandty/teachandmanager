@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loadProducts } from '../actionCreators';
+import { loadProducts,loadAvailableDays } from '../actionCreators';
+
+
 
 const WelcomeMessage = ({name, lastName, idPerson, loadProducts}) => {
     
     console.log(idPerson);
     loadProducts(idPerson)
+  
     console.log('se despacho');
     if (!name) {
         return <div>...</div>
@@ -28,8 +31,12 @@ const mapDispatchToProps = dispatch => {
     return {
       loadProducts(idPerson) {
         dispatch(loadProducts(idPerson));
+      },
+      loadAvailableDays(userName) {
+        dispatch(loadAvailableDays(userName));
       }
     }
+    
   };
 
 export default connect(mapStateToProps,mapDispatchToProps)(WelcomeMessage);
