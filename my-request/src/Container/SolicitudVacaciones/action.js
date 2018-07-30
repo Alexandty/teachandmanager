@@ -10,7 +10,8 @@ const action = {
             const solicitudVacaciones = {
                 startDate: values.startDate,
                 endDate: values.endDate,
-                user: values.user
+                user: values.user,
+                availableDays: values.availableDays
             };
 
             console.log(solicitudVacaciones);

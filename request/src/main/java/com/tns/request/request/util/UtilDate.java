@@ -40,18 +40,31 @@ public final class UtilDate {
 		if (!checkCurrentDate(fechaInicio)) {
 			throw new BusinessException("Fecha incorrecta");
 		}
-
 		double diasdisponibles = ((diferenciaDias(fechaIngreso, fechaInicio) * CONS_CALCULO_VACIONES)
 				- diasDisfrutados);
 		return aproximacionDecimal(diasdisponibles);
 	}
 
 	public static boolean checkCurrentDate(Date fechaInicio) {
-		Date currentDate = new Date();		
+		Date currentDate = new Date();
 		if (getStringFromDate(currentDate).equals(getStringFromDate(fechaInicio)) || fechaInicio.after(currentDate)) {
 			return true;
 		}
 		return false;
+	}
+
+	public static boolean checkVacationDates(Date fechaInicio, Date fechaFin) {
+		if (fechaFin.after(fechaInicio)) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean checkAvailableDays(Date fechaInicio, Date fechaFin, int availableDays) {
+		if (diferenciaDias(fechaInicio, fechaFin) > availableDays) {
+			return false;
+		}
+		return true;
 	}
 
 	private static int aproximacionDecimal(double decimal) {

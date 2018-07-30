@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tns.request.request.dto.SolicitudVacacionesUsernameDTO;
 import com.tns.request.request.exception.BusinessException;
 import com.tns.request.request.model.Person;
 import com.tns.request.request.model.SolicitudVacaciones;
@@ -51,6 +52,16 @@ public class SolicitudVacacionesService {
 		Person persona = personRepository.findByUserIdUsername(username);
 		Date fechaIngreso = persona.getEntryDate();
 		return UtilDate.calcularDiasDisponibles(fechaIngreso, fechaInicio, diasDisfrutados);
+	}
+
+	public int getDiasDisponiblesVacaUserDTO(SolicitudVacacionesUsernameDTO solicitudVacaUserDTO) {
+		Date fechaInicio = solicitudVacaUserDTO.getStartDate();
+		Date fechaFin = solicitudVacaUserDTO.getEndDate();
+		if (!UtilDate.checkVacationDates(fechaInicio, fechaFin)
+				|| !UtilDate.checkAvailableDays(fechaInicio, fechaFin, solicitudVacaUserDTO.getAvailableDays())) {
+			throw new BusinessException("Fechas Incorrectas");
+		}
+		return getDiasDisponibles(fechaInicio, solicitudVacaUserDTO.getUser());
 	}
 
 }
