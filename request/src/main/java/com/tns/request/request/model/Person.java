@@ -30,7 +30,7 @@ public class Person {
 
 	@OneToOne
 	@JoinColumn(name = "fk_user")
-	private User userId; // userFK
+	private User userId;
 
 	public long getIdPerson() {
 		return idPerson;
