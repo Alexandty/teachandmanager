@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import action from './action';
 import validate from './validate';
-import { Label, Button, FormGroup, ControlLabel } from 'react-bootstrap';
+import { Label, Button, FormGroup, ControlLabel, Row, Col, Grid } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 
 
@@ -14,10 +14,10 @@ const renderField = ({
     input,
     label,
     type,
-    meta: { touched, error , warning }
+    meta: { touched, error, warning }
 }) => (
         <div>
-            <label>{label }</label>
+            <label>{label}</label>
             <div>
                 <input {...input} placeholder={label} type={type} />
                 {touched &&
@@ -39,19 +39,28 @@ const SolicitudForm = props => {
                 values.user = user.user;
                 return guardar(values)
             })} >
-                <h3>
-                    Dias disponibles <Label bsStyle="primary"> {avalableDaysData} </Label>
-                </h3>
-                <FormGroup controlId="formInlineDate">
-                    <ControlLabel>Fecha Inicio</ControlLabel>{' '}{' '}
-                    <input type="Date" name="startDate" component={renderField} />
-                </FormGroup>{' '}{' '}
-                <FormGroup controlId="formInlineDate">
-                    <ControlLabel>Fecha Fin</ControlLabel>{' '}
-                    <input type="Date" name="endDate" component={renderField} disabled={submitting} />
-                </FormGroup>{' '}
-                <Button bsStyle="success" type="submit"  disabled={pristine || submitting}>Solicitar</Button>
 
+
+
+                <Grid >
+                    <Row className="show-grid">
+                        <Col xs={12} md={8}>
+                            Dias disponibles <Label bsStyle="primary"> {avalableDaysData} </Label>
+                            <FormGroup controlId="formInlineDate">
+                                <Label>Fecha de Inicio</Label>
+                                <Field type="Date" name="startDate" component={renderField} />
+                            </FormGroup>
+                        </Col>
+                        <Col xs={12} md={8}>
+                        <FormGroup controlId="formInlineDate">
+                            <Label>Fecha de Fin</Label>
+                            <Field type="Date" name="endDate" component={renderField} />
+                        </FormGroup>
+                        </Col>
+                        <Button bsStyle="success" type="submit" disabled={pristine || submitting}>Solicitar</Button>
+
+                    </Row>
+                </Grid>
             </form>
         </div >
     )
