@@ -1,5 +1,6 @@
 package com.tns.request.request.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tns.request.request.business.SolicitudVacacionesService;
-import com.tns.request.request.dto.SolicitudVacacionesDTO;
 import com.tns.request.request.dto.SolicitudVacacionesUsernameDTO;
 import com.tns.request.request.model.SolicitudVacaciones;
 
@@ -31,7 +31,7 @@ public class SolicitudVacacionesController {
 
 	@GetMapping("vacaciones/disponibles/{username}")
 	public int getDiasDisponibles(@PathVariable String username) {
-		return solicitudVacacionesService.getDiasDisponiblesALaFecha(username);
+		return solicitudVacacionesService.getDiasDisponibles(new Date(), username);
 	}
 
 	@ResponseBody

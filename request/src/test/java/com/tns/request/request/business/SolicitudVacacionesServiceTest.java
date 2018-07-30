@@ -25,7 +25,7 @@ import com.tns.request.request.util.UtilDate;
 public class SolicitudVacacionesServiceTest {
 
 	@InjectMocks
-	private SolicitudVacacionesService business;
+	private SolicitudVacacionesService solicitudVacacionesService;
 
 	@Mock
 	private SolicitudVacacionesRepository solicitudVacacionesRepository;
@@ -46,7 +46,7 @@ public class SolicitudVacacionesServiceTest {
 		String username = null;
 		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(username)).thenReturn(solicitudBD);
 
-		int resultado = business.obtenerTotalDiasDisfrutados(username);
+		int resultado = solicitudVacacionesService.obtenerTotalDiasDisfrutados(username);
 
 		Assert.assertEquals("se esperaba 9", 9, resultado);
 	}
@@ -58,7 +58,7 @@ public class SolicitudVacacionesServiceTest {
 		String username = null;
 		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(username)).thenReturn(solicitudBD);
 
-		int respuesta = business.obtenerTotalDiasDisfrutados(username);
+		int respuesta = solicitudVacacionesService.obtenerTotalDiasDisfrutados(username);
 
 		Assert.assertEquals("se espera 0 dias disponibles", 0, respuesta);
 	}
@@ -70,7 +70,7 @@ public class SolicitudVacacionesServiceTest {
 		String username = null;
 		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(username)).thenReturn(solicitudBD);
 
-		business.getSolicitudesByPersonId(username);
+		solicitudVacacionesService.getSolicitudesByPersonId(username);
 	}
 
 	@Test
@@ -84,34 +84,22 @@ public class SolicitudVacacionesServiceTest {
 		String username = null;
 		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(username)).thenReturn(solicitudBD);
 
-		List<SolicitudVacaciones> resultado = business.getSolicitudesByPersonId(username);
+		List<SolicitudVacaciones> resultado = solicitudVacacionesService.getSolicitudesByPersonId(username);
 
 		Assert.assertEquals("se esperaba una lista", solicitudBD, resultado);
 	}
 
 	@Test
-	public void debeRetornarDiasDisponibles() {
-		String username = null;
-		List<SolicitudVacaciones> solicitudBD = new ArrayList<SolicitudVacaciones>();
-		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(username)).thenReturn(solicitudBD);
-		Person persona = new Person();
-		persona.setEntryDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
-		when(personRepository.findByUserIdUsername(username)).thenReturn(persona);
-		int respuesta = business.getDiasDisponiblesALaFecha(username);
-		Assert.assertEquals("se espera 0 dias disponibles", 0, respuesta);
-	}
-
-	@Test
 	public void debeCalcularDiasVacacionesDisponiblesParaFechaSelecionada() throws ParseException {
 		String username = null;
-		Date fechaInicio = UtilDate.getDateFromString("26/07/2018");
+		Date fechaInicio = UtilDate.getDateFromString("26/07/2020");
 		List<SolicitudVacaciones> solicitudBD = new ArrayList<SolicitudVacaciones>();
 		when(solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(username)).thenReturn(solicitudBD);
 		Person persona = new Person();
-		persona.setEntryDate(java.sql.Date.valueOf(java.time.LocalDate.of(2017, 07, 26)));
+		persona.setEntryDate(UtilDate.getDateFromString("26/07/2019"));
 		when(personRepository.findByUserIdUsername(username)).thenReturn(persona);
 
-		int respuesta = business.getDiasDisponibles(fechaInicio, username);
+		int respuesta = solicitudVacacionesService.getDiasDisponibles(fechaInicio, username);
 
 		Assert.assertEquals("se espera 15 dias disponibles", 15, respuesta);
 	}

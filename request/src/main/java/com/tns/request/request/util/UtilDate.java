@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import com.tns.request.request.exception.BusinessException;
+
 public final class UtilDate {
 
 	private static final double CONS_CALCULO_VACIONES = 0.0416666666666667;
@@ -18,7 +20,7 @@ public final class UtilDate {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		return simpleDateFormat.parse(fecha);
 	}
-	
+
 	public static long diferenciaDias(Date fecha1, Date fecha2) {
 		return TimeUnit.MILLISECONDS.toDays(dateToMilli(fecha2) - dateToMilli(fecha1));
 	}
@@ -29,9 +31,18 @@ public final class UtilDate {
 		return c.getTimeInMillis();
 	}
 
-	public static int calcularDiasDisponibles(Date fechaInicio, Date fechaIngreso,int diasDisfrutados) {
-		double diasdisponibles = ((diferenciaDias(fechaInicio, fechaIngreso) * CONS_CALCULO_VACIONES)-diasDisfrutados);
+	public static int calcularDiasDisponibles(Date fechaInicio, Date fechaIngreso, int diasDisfrutados) {
+		if (!checkCurrentDate(fechaInicio)) {
+			throw new BusinessException("Fecha incorrecta");
+		}
+		double diasdisponibles = ((diferenciaDias(fechaInicio, fechaIngreso) * CONS_CALCULO_VACIONES)
+				- diasDisfrutados);
 		return aproximacionDecimal(diasdisponibles);
+	}
+
+	public static boolean checkCurrentDate(Date fechaInicio) {
+		Date currentDate = new Date();
+		return (fechaInicio.after(currentDate));
 	}
 
 	private static int aproximacionDecimal(double decimal) {
@@ -45,7 +56,7 @@ public final class UtilDate {
 
 	public static int calcularDiasDisfrutados(Date fechaI, Date fechaF) {
 		Calendar calendar = Calendar.getInstance();
-
+		System.out.println("in calcularDiasDisfrutados");
 		calendar.setTime(fechaI);
 		int day = calendar.get(Calendar.DAY_OF_WEEK);
 		calendar.setTime(fechaF);
@@ -59,7 +70,7 @@ public final class UtilDate {
 			diasHabiles++;
 			day++;
 		}
-		return diasHabiles - diasFinde + 1 ;
+		return diasHabiles - diasFinde + 1;
 	}
 
 }

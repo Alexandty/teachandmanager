@@ -48,10 +48,10 @@ public class SolicitudVacacionesService {
 		return solicitudBD.stream().map(s -> s.getRequestedDays()).reduce(0, (a, b) -> a + b).intValue();
 	}
 
-	public int getDiasDisponiblesALaFecha(String username) {
-		Date fechaActual = new Date();
-		return getDiasDisponibles(fechaActual, username);
-	}
+//	public int getDiasDisponiblesALaFecha(String username) {
+//		Date fechaActual = new Date();
+//		return getDiasDisponibles(fechaActual, username);
+//	}
 
 	public int getDiasDisponibles(Date fechaInicio, String username) {
 		int diasDisfrutados = obtenerTotalDiasDisfrutados(username);
@@ -59,7 +59,8 @@ public class SolicitudVacacionesService {
 		Date fechaIngreso = persona.getEntryDate();
 		return UtilDate.calcularDiasDisponibles(fechaIngreso, fechaInicio, diasDisfrutados);
 	}
-
+	
+	
 	
 	
 }
