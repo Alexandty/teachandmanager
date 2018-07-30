@@ -39,26 +39,22 @@ const SolicitudForm = props => {
                 values.user = user.user;
                 return guardar(values)
             })} >
-
-
-
                 <Grid >
                     <Row className="show-grid">
-                        <Col xs={12} md={8}>
-                            Dias disponibles <Label bsStyle="primary"> {avalableDaysData} </Label>
-                            <FormGroup controlId="formInlineDate">
-                                <Label>Fecha de Inicio</Label>
-                                <Field type="Date" name="startDate" component={renderField} />
-                            </FormGroup>
-                        </Col>
-                        <Col xs={12} md={8}>
-                        <FormGroup controlId="formInlineDate">
-                            <Label>Fecha de Fin</Label>
-                            <Field type="Date" name="endDate" component={renderField} />
-                        </FormGroup>
-                        </Col>
-                        <Button bsStyle="success" type="submit" disabled={pristine || submitting}>Solicitar</Button>
-
+                        <div>
+                            <Col xs={6} md={12}>
+                                Dias disponibles <Label bsStyle="primary"> {avalableDaysData} </Label>
+                                <FormGroup controlId="formInlineDate">
+                                    <Label>Fecha de Inicio</Label>
+                                    <Field type="Date" name="startDate" component={renderField} />
+                                </FormGroup>
+                                <FormGroup controlId="formInlineDate">
+                                    <Label>Fecha de Fin</Label>
+                                    <Field type="Date" name="endDate" component={renderField} />
+                                </FormGroup>
+                                <Button bsStyle="success" type="submit" disabled={pristine || submitting}>Solicitar</Button>
+                            </Col>
+                        </div>             
                     </Row>
                 </Grid>
             </form>
