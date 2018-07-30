@@ -10,12 +10,8 @@ const actions = {
             })
                 .then(response => {
                     console.log(response.data);
-                    dispatch({
-                        type: "LOGIN",
-                        user: response.data,
-                    });
-                },
-                    error => {
+                    dispatch({ type: "LOGIN",user: response.data,});
+                }, error => {
                         alert(error.response.data.message);
                     })
         }

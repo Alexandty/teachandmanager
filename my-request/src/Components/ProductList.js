@@ -8,7 +8,7 @@ const RequestVacationList = ({VacationData, user}) => {
   
   return (
     <div>
-     {user.name} {user.lastName} <Label bsStyle="success">fecha de ingreso a la empresa{user.entryDate}</Label>
+     {user.name} {user.lastName} <Label bsStyle="success">fecha de ingreso a la empresa {user.entryDate}</Label>
       <Table striped bordered condensed hover>
         <thead>
           <tr>

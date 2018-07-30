@@ -1,28 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import action from './action';
+import validate from './validate';
 import { Label, Button, FormGroup, ControlLabel } from 'react-bootstrap';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm , reset} from 'redux-form';
+
+
+
+
+
 
 const renderField = ({
     input,
     label,
     type,
-    meta: { touched, error, warning }
+    meta: { touched, error , warning }
 }) => (
         <div>
-            <label>{label}</label>
+            <label>{label }</label>
             <div>
                 <input {...input} placeholder={label} type={type} />
                 {touched &&
-                    ((error && <span>{error}</span>) ||
+                    ((error && <Label bsStyle="danger"  >{error}</Label>) ||
                         (warning && <span>{warning}</span>))}
             </div>
         </div>
     )
 
 const SolicitudForm = props => {
-    const { guardar, handleSubmit, avalableDaysData, user } = props;
+    const { guardar, handleSubmit, avalableDaysData, user, pristine, submitting, reset } = props;
     console.log(avalableDaysData)
     console.log(user)
     return (
@@ -33,13 +39,13 @@ const SolicitudForm = props => {
                 </h3>
                 <FormGroup controlId="formInlineDate">
                     <ControlLabel>Fecha Inicio</ControlLabel>{' '}{' '}
-                    <Field type="Date" name="startDate" component={renderField} />
+                    <input type="Date" name="startDate" component={renderField} />
                 </FormGroup>{' '}{' '}
                 <FormGroup controlId="formInlineDate">
                     <ControlLabel>Fecha Fin</ControlLabel>{' '}
-                    <Field type="Date" name="endDate" component={renderField} />
+                    <input type="Date" name="endDate" component={renderField} disabled={submitting} />
                 </FormGroup>{' '}
-                <Button bsStyle="success" type="submit">Success</Button>
+                <Button bsStyle="success" type="submit"  disabled={pristine || submitting}>Solicitar</Button>
             </form>
         </div >
     )
@@ -47,6 +53,7 @@ const SolicitudForm = props => {
 
 const Solicitud = reduxForm({
     form: 'SolicitudForm',
+    validate
 })(SolicitudForm)
 
 const mapStateToProps = state => {
