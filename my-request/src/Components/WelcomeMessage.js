@@ -32,7 +32,6 @@ const mapDispatchToProps = dispatch => {
             dispatch(loadAvailableDays(userName));
         }
     }
-
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(WelcomeMessage);

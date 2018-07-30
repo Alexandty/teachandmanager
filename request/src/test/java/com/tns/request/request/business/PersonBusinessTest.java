@@ -31,7 +31,6 @@ public class PersonBusinessTest {
 		person.getUserId().setUsername("user");
 		PersonDTO personDTO = business.buildPersonDTO(person);
 		Assert.assertTrue(person.getName().equals(personDTO.getName()));
-//		Assert.assertEquals("Se esperaba id 1", person.getIdPerson(), personDTO.getIdPerson());
 	}
 
 }

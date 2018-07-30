@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import action from './action';
 import validate from './validate';
 import { Label, Button, FormGroup, ControlLabel } from 'react-bootstrap';
-import { Field, reduxForm , reset} from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 
 
 
@@ -28,12 +28,17 @@ const renderField = ({
     )
 
 const SolicitudForm = props => {
-    const { guardar, handleSubmit, avalableDaysData, user, pristine, submitting, reset } = props;
+    const { guardar, handleSubmit, avalableDaysData, user, pristine, submitting } = props;
     console.log(avalableDaysData)
     console.log(user)
+
     return (
+        //onBlur={user}
         <div>
-            <form onSubmit={handleSubmit(guardar)} >
+            <form onSubmit={handleSubmit((values) => {
+                values.user = user.user;
+                return guardar(values)
+            })} >
                 <h3>
                     Dias disponibles <Label bsStyle="primary"> {avalableDaysData} </Label>
                 </h3>
@@ -46,6 +51,7 @@ const SolicitudForm = props => {
                     <input type="Date" name="endDate" component={renderField} disabled={submitting} />
                 </FormGroup>{' '}
                 <Button bsStyle="success" type="submit"  disabled={pristine || submitting}>Solicitar</Button>
+
             </form>
         </div >
     )
