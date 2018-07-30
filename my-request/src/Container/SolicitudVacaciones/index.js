@@ -9,6 +9,10 @@ import { Field, reduxForm } from 'redux-form';
 
 
 
+( function() {
+  ( "#datepicker" ).datepicker({ minDate: -20, maxDate: "+1M +10D" });
+} );
+
 
 const renderField = ({
     input,
@@ -34,6 +38,7 @@ const SolicitudForm = props => {
 
     return (
         //onBlur={user}
+
         <div>
             <form onSubmit={handleSubmit((values) => {
                 values.user = user.user;
@@ -50,11 +55,11 @@ const SolicitudForm = props => {
                                 </FormGroup>
                                 <FormGroup controlId="formInlineDate">
                                     <Label>Fecha de Fin</Label>
-                                    <Field type="Date" name="endDate" component={renderField} />
+                                    <Field type="text" name="endDate" component={renderField}  id="datepicker" />
                                 </FormGroup>
                                 <Button bsStyle="success" type="submit" disabled={pristine || submitting}>Solicitar</Button>
                             </Col>
-                        </div>             
+                        </div>
                     </Row>
                 </Grid>
             </form>
