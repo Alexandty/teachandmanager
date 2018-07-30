@@ -4,7 +4,7 @@ import { Table, Label, Alert } from 'react-bootstrap';
 
 
 const RequestVacationList = ({ VacationData, user, idRequest }) => {
-
+ 
   const dato = VacationData.map(product =>
     product.idRequest)
 
