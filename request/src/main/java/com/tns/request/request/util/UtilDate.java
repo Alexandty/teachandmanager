@@ -21,6 +21,11 @@ public final class UtilDate {
 		return simpleDateFormat.parse(fecha);
 	}
 
+	public static String getStringFromDate(Date fecha) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		return simpleDateFormat.format(fecha);
+	}
+
 	public static long diferenciaDias(Date fecha1, Date fecha2) {
 		return TimeUnit.MILLISECONDS.toDays(dateToMilli(fecha2) - dateToMilli(fecha1));
 	}
@@ -31,18 +36,22 @@ public final class UtilDate {
 		return c.getTimeInMillis();
 	}
 
-	public static int calcularDiasDisponibles(Date fechaInicio, Date fechaIngreso, int diasDisfrutados) {
+	public static int calcularDiasDisponibles(Date fechaIngreso, Date fechaInicio, int diasDisfrutados) {
 		if (!checkCurrentDate(fechaInicio)) {
 			throw new BusinessException("Fecha incorrecta");
 		}
-		double diasdisponibles = ((diferenciaDias(fechaInicio, fechaIngreso) * CONS_CALCULO_VACIONES)
+
+		double diasdisponibles = ((diferenciaDias(fechaIngreso, fechaInicio) * CONS_CALCULO_VACIONES)
 				- diasDisfrutados);
 		return aproximacionDecimal(diasdisponibles);
 	}
 
 	public static boolean checkCurrentDate(Date fechaInicio) {
-		Date currentDate = new Date();
-		return (fechaInicio.after(currentDate));
+		Date currentDate = new Date();		
+		if (getStringFromDate(currentDate).equals(getStringFromDate(fechaInicio)) || fechaInicio.after(currentDate)) {
+			return true;
+		}
+		return false;
 	}
 
 	private static int aproximacionDecimal(double decimal) {

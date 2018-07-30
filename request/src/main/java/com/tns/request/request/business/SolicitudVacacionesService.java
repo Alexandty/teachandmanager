@@ -29,10 +29,8 @@ public class SolicitudVacacionesService {
 	}
 
 	public List<SolicitudVacaciones> getSolicitudesByPersonId(String username) {
-
 		List<SolicitudVacaciones> solicitudBD = solicitudVacacionesRepository
 				.findByPersonIdIdPersonOrderByPersonId(username);
-
 		if (solicitudBD.isEmpty()) {
 			throw new BusinessException("Usted no tiene solicitudes");
 		}
@@ -48,19 +46,11 @@ public class SolicitudVacacionesService {
 		return solicitudBD.stream().map(s -> s.getRequestedDays()).reduce(0, (a, b) -> a + b).intValue();
 	}
 
-//	public int getDiasDisponiblesALaFecha(String username) {
-//		Date fechaActual = new Date();
-//		return getDiasDisponibles(fechaActual, username);
-//	}
-
 	public int getDiasDisponibles(Date fechaInicio, String username) {
 		int diasDisfrutados = obtenerTotalDiasDisfrutados(username);
 		Person persona = personRepository.findByUserIdUsername(username);
 		Date fechaIngreso = persona.getEntryDate();
 		return UtilDate.calcularDiasDisponibles(fechaIngreso, fechaInicio, diasDisfrutados);
 	}
-	
-	
-	
-	
+
 }
