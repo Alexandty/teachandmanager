@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import action from './action';
 import validate from './validate';
 
-import 'react-datepicker/dist/react-datepicker.css';
 import { Label, Button, FormGroup, Row, Col, Grid } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 

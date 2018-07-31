@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Jumbotron } from 'react-bootstrap';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm , clearSubmitErrors, reset} from 'redux-form';
 import validate from './validate';
 import actions from './action';
 import Button from '../../Components/Button';
@@ -42,7 +42,7 @@ export const LoginForm = props => {
                             <Field name='password' component={renderField} label='Password' type='password'></Field>
                         </div>
                         <br />
-                        <Button type="submit" disabled={pristine}>LOGIN</Button>
+                        <Button type="submit" disabled={pristine} >LOGIN</Button>
                     </form>
                 </Jumbotron>
             </Col>
