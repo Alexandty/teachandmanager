@@ -57,9 +57,8 @@ public class SolicitudVacacionesService {
 	public int getDiasDisponiblesVacaUserDTO(SolicitudVacacionesUsernameDTO solicitudVacaUserDTO) {
 		Date fechaInicio = solicitudVacaUserDTO.getStartDate();
 		Date fechaFin = solicitudVacaUserDTO.getEndDate();
-		if (!UtilDate.checkVacationDates(fechaInicio, fechaFin)
-				|| !UtilDate.checkAvailableDays(fechaInicio, fechaFin, solicitudVacaUserDTO.getAvailableDays())) {
-			throw new BusinessException("Fechas Incorrectas");
+		if (!UtilDate.checkVacationDates(fechaInicio, fechaFin)) {
+			throw new BusinessException("No es posible agendar vacaciones");
 		}
 		return getDiasDisponibles(fechaInicio, solicitudVacaUserDTO.getUser());
 	}
