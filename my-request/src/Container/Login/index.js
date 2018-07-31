@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Jumbotron } from 'react-bootstrap';
-import { Field, reduxForm , clearSubmitErrors, reset} from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import validate from './validate';
 import actions from './action';
 import Button from '../../Components/Button';

@@ -11,13 +11,12 @@ const action = {
                 startDate: values.startDate,
                 endDate: values.endDate,
                 user: values.user,
-                availableDays: values.availableDays
             };
+            console.log(solicitudVacaciones)
             return axios.post('http://localhost:8081/solicitud/vacaciones/disponibles', solicitudVacaciones)
                 .then(result => {
                     dispatch(_addSolicitudVacaciones(result.data));
                     const retorno = result.data;
-
                     if (retorno >= 1) {
                         alert("Usted tiene " + retorno + "dias disponibles de vacaion")
                     } else {

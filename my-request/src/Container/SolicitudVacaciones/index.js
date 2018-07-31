@@ -6,9 +6,6 @@ import validate from './validate';
 import { Label, Button, FormGroup, Row, Col, Grid } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 
-
-
-
 const renderField = ({
     input,
     label,
@@ -28,12 +25,12 @@ const renderField = ({
 
 const SolicitudForm = props => {
     const { guardar, handleSubmit, avalableDaysData, user, pristine, submitting } = props;
-    return (    
+    return (
         <div>
             <form onSubmit={handleSubmit((values) => {
                 values.user = user.user;
                 return guardar(values)
-            })} >
+            })}>
                 <Grid >
                     <Row className="show-grid">
                         <div>
@@ -45,7 +42,10 @@ const SolicitudForm = props => {
                                 </FormGroup>
                                 <FormGroup controlId="formInlineDate">
                                     <Label>Fecha de Inicio</Label>
-                                    <Field type="Date" name="endDate" component={renderField} />
+                                    <Field type="Date" name="endDate" component={renderField} onBlur={handleSubmit((values) => {
+                                        values.user = user.user;
+                                        return guardar(values)
+                                    })} />
                                 </FormGroup>
                                 <Button bsStyle="success" type="submit" disabled={pristine || submitting}>Solicitar</Button>
                             </Col>
