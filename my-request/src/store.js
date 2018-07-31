@@ -8,6 +8,7 @@ const initialState = {
     vacationSolicitudData: [],
     logged: false,
     avalableDaysData: 0,
+    availableDaysVacation: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,8 +28,8 @@ const reducer = (state = initialState, action) => {
     else if (action.type === "ADD_SOLICITUD_VACACIONES") {
         return {
             ...state,
-            vacationSolicitudData: action.vacationSolicitudData
-
+            vacationSolicitudData: action.vacationSolicitudData,
+            availableDaysVacation: false
         };
     }
     else if (action.type === "GET_AVAILABLE_DAYS") {

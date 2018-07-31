@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import action from './action';
 import validate from './validate';
-
 import { Label, Button, FormGroup, Row, Col, Grid } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 
@@ -17,14 +16,14 @@ const renderField = ({
             <div>
                 <input {...input} placeholder={label} type={type} />
                 {touched &&
-                    ((error && <Label bsStyle="danger"  >{error}</Label>) ||
+                    ((error && <Label bsStyle="danger">{error}</Label>) ||
                         (warning && <span>{warning}</span>))}
             </div>
         </div>
     )
 
 const SolicitudForm = props => {
-    const { guardar, handleSubmit, avalableDaysData, user, pristine, submitting } = props;
+    const { guardar, handleSubmit, avalableDaysData, user, pristine , availableDaysVacation} = props;
     return (
         <div>
             <form onSubmit={handleSubmit((values) => {
@@ -42,12 +41,14 @@ const SolicitudForm = props => {
                                 </FormGroup>
                                 <FormGroup controlId="formInlineDate">
                                     <Label>Fecha de Inicio</Label>
-                                    <Field type="Date" name="endDate" component={renderField} onBlur={handleSubmit((values) => {
-                                        values.user = user.user;
-                                        return guardar(values)
-                                    })} />
+
+                                    <Field type="Date" name="endDate" component={renderField}
+                                        onBlur={handleSubmit((values) => {
+                                            values.user = user.user;
+                                            return guardar(values)
+                                        })} />
                                 </FormGroup>
-                                <Button bsStyle="success" type="submit" disabled={pristine || submitting}>Solicitar</Button>
+                                <Button bsStyle="success" type="submit" disabled={availableDaysVacation}>Solicitar</Button>
                             </Col>
                         </div>
                     </Row>

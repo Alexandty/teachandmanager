@@ -6,6 +6,7 @@ const _addSolicitudVacaciones = (sVacaciones) => ({
 
 const action = {
     guardar: (values) => {
+        
         return (dispatch) => {
             const solicitudVacaciones = {
                 startDate: values.startDate,
@@ -18,7 +19,7 @@ const action = {
                     dispatch(_addSolicitudVacaciones(result.data));
                     const retorno = result.data;
                     if (retorno >= 1) {
-                        alert("Usted tiene " + retorno + "dias disponibles de vacaion")
+                        alert("Usted tiene " + retorno + "dias disponibles de vacaciones")
                     } else {
                         if (retorno <= 0) {
                             alert("usted no tiene dias disponibles de vacaciones")
