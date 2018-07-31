@@ -2,16 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import action from './action';
 import validate from './validate';
-import { Label, Button, FormGroup, ControlLabel, Row, Col, Grid } from 'react-bootstrap';
+
+import 'react-datepicker/dist/react-datepicker.css';
+import { Label, Button, FormGroup, Row, Col, Grid } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 
 
-
-
-
-( function() {
-  ( "#datepicker" ).datepicker({ minDate: -20, maxDate: "+1M +10D" });
-} );
 
 
 const renderField = ({
@@ -33,12 +29,7 @@ const renderField = ({
 
 const SolicitudForm = props => {
     const { guardar, handleSubmit, avalableDaysData, user, pristine, submitting } = props;
-    console.log(avalableDaysData)
-    console.log(user)
-
-    return (
-        //onBlur={user}
-
+    return (    
         <div>
             <form onSubmit={handleSubmit((values) => {
                 values.user = user.user;
@@ -54,8 +45,8 @@ const SolicitudForm = props => {
                                     <Field type="Date" name="startDate" component={renderField} />
                                 </FormGroup>
                                 <FormGroup controlId="formInlineDate">
-                                    <Label>Fecha de Fin</Label>
-                                    <Field type="text" name="endDate" component={renderField}  id="datepicker" />
+                                    <Label>Fecha de Inicio</Label>
+                                    <Field type="Date" name="endDate" component={renderField} />
                                 </FormGroup>
                                 <Button bsStyle="success" type="submit" disabled={pristine || submitting}>Solicitar</Button>
                             </Col>

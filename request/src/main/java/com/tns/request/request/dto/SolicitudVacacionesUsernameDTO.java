@@ -1,6 +1,6 @@
 package com.tns.request.request.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class SolicitudVacacionesUsernameDTO {
 
@@ -9,6 +9,16 @@ public class SolicitudVacacionesUsernameDTO {
 	private Date startDate;
 
 	private Date endDate;
+	
+	private int availableDays;
+
+	public int getAvailableDays() {
+		return availableDays;
+	}
+
+	public void setAvailableDays(int availableDays) {
+		this.availableDays = availableDays;
+	}
 
 	public Date getStartDate() {
 		return startDate;

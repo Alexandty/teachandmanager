@@ -9,11 +9,10 @@ const actions = {
                 password: values.password
             })
                 .then(response => {
-                    console.log(response.data);
-                    dispatch({ type: "LOGIN",user: response.data,});
+                    dispatch({ type: "LOGIN", user: response.data, });
                 }, error => {
-                        alert(error.response.data.message);
-                    })
+                    alert(error.response.data.message);
+                })
         }
     }
 }

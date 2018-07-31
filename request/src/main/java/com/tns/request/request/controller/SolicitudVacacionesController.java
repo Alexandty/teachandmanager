@@ -37,8 +37,7 @@ public class SolicitudVacacionesController {
 	@ResponseBody
 	@RequestMapping("vacaciones/disponibles")
 	public int getDiasDisponiblesPorFecha(@RequestBody SolicitudVacacionesUsernameDTO solicitudVacaUserDTO) {
-		return solicitudVacacionesService.getDiasDisponibles(solicitudVacaUserDTO.getStartDate(),
-				solicitudVacaUserDTO.getUser());
+		return solicitudVacacionesService.getDiasDisponiblesVacaUserDTO(solicitudVacaUserDTO);
 	}
 
 }
