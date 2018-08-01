@@ -25,7 +25,6 @@ public class SolicitudVacacionesService {
 	private IPersonRepository personRepository;
 
 	public Optional<SolicitudVacaciones> getAllPersonById(Long cedula) {
-
 		return solicitudVacacionesRepository.findById(cedula);
 	}
 
@@ -55,10 +54,17 @@ public class SolicitudVacacionesService {
 	}
 
 	public int getDiasDisponiblesVacaUserDTO(SolicitudVacacionesUsernameDTO solicitudVacaUserDTO) {
+		int diasDisfrutados = obtenerTotalDiasDisfrutados(solicitudVacaUserDTO.getUser());
+		Person persona = personRepository.findByUserIdUsername(solicitudVacaUserDTO.getUser());
+		Date fechaIngreso = persona.getEntryDate();
 		Date fechaInicio = solicitudVacaUserDTO.getStartDate();
 		Date fechaFin = solicitudVacaUserDTO.getEndDate();
 		if (!UtilDate.checkVacationDates(fechaInicio, fechaFin)) {
-			throw new BusinessException("No es posible agendar vacaciones");
+			throw new BusinessException("Fechas incorrectas");
+		}
+		if (UtilDate.diferenciaDias(fechaInicio, fechaFin) > UtilDate.calcularDiasDisponibles(fechaIngreso, fechaInicio,
+				diasDisfrutados)) {
+			throw new BusinessException("No tienes suficientes dias");
 		}
 		return getDiasDisponibles(fechaInicio, solicitudVacaUserDTO.getUser());
 	}

@@ -29,6 +29,12 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             vacationSolicitudData: action.vacationSolicitudData,
+        };
+    }
+    else if (action.type === "CHECK_SOLICITUD_VACACIONES") {
+        return {
+            ...state,
+            vacationSolicitudData: action.vacationSolicitudData,
             availableDaysVacation: false
         };
     }

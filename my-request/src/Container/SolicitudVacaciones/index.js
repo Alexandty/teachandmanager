@@ -23,7 +23,7 @@ const renderField = ({
     )
 
 const SolicitudForm = props => {
-    const { guardar, handleSubmit, avalableDaysData, user, pristine , availableDaysVacation} = props;
+    const { guardar, consultar, handleSubmit, avalableDaysData, user, availableDaysVacation } = props;
     return (
         <div>
             <form onSubmit={handleSubmit((values) => {
@@ -45,7 +45,7 @@ const SolicitudForm = props => {
                                     <Field type="Date" name="endDate" component={renderField}
                                         onBlur={handleSubmit((values) => {
                                             values.user = user.user;
-                                            return guardar(values)
+                                            return consultar(values)
                                         })} />
                                 </FormGroup>
                                 <Button bsStyle="success" type="submit" disabled={availableDaysVacation}>Solicitar</Button>

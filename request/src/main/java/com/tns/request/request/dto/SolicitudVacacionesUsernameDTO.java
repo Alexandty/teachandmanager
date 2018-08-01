@@ -10,16 +10,6 @@ public class SolicitudVacacionesUsernameDTO {
 
 	private Date endDate;
 	
-	private int availableDays;
-
-	public int getAvailableDays() {
-		return availableDays;
-	}
-
-	public void setAvailableDays(int availableDays) {
-		this.availableDays = availableDays;
-	}
-
 	public Date getStartDate() {
 		return startDate;
 	}
