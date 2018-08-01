@@ -36,10 +36,10 @@ public class SolicitudVacacionesController {
 	public int getDiasDisponibles(@PathVariable String username) {
 		return solicitudVacacionesService.getDiasDisponibles(new Date(), username);
 	}
-	
+
 	@PostMapping("vacaciones/create")
-	public ResponseEntity<SolicitudVacaciones> guardarSolicitudVacaciones(SolicitudVacacionesUsernameDTO solicitudVacaciones ){
-		
+	public ResponseEntity<SolicitudVacaciones> guardarSolicitudVacaciones(
+			@RequestBody SolicitudVacacionesUsernameDTO solicitudVacaciones) {
 		solicitudVacacionesService.crearSolicitud(solicitudVacaciones);
 		return new ResponseEntity<SolicitudVacaciones>(HttpStatus.OK);
 	}

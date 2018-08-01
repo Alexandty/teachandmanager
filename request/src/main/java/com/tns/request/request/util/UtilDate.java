@@ -28,7 +28,6 @@ public final class UtilDate {
 	}
 
 	public static long diferenciaDias(Date fecha1, Date fecha2) {
-		System.out.print("fecha uno ----------" + fecha1+ "Fecha dos----------------" + fecha2);
 		return TimeUnit.MILLISECONDS.toDays(dateToMilli(fecha2) - dateToMilli(fecha1));
 		
 	}

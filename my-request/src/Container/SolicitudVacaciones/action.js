@@ -33,7 +33,7 @@ const action = {
                 endDate: values.endDate,
                 user: values.user,
             };
-            console.log(solicitudVacaciones)
+            console.log('guardar',solicitudVacaciones)
             return axios.post('http://localhost:8081/solicitud/vacaciones/create/', solicitudVacaciones)
                 .then(result => {
                     dispatch(_addSolicitudVacaciones(result.data));
