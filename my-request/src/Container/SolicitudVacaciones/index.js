@@ -15,8 +15,9 @@ const renderField = ({
             <label>{label}</label>
             <div>
                 <input {...input} placeholder={label} type={type} />
-                {touched &&
-                    ((error && <Label bsStyle="danger">{error}</Label>) ||
+                <br/>
+                {touched && 
+                    ((error &&  <Label bsStyle="danger">{error}</Label>) ||
                         (warning && <span>{warning}</span>))}
             </div>
         </div>

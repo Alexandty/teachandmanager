@@ -1,9 +1,10 @@
 package com.tns.request.request.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 public class SolicitudVacaciones {
 
 	@Id
+	@GeneratedValue
 	@Column(name = "id_request_vacation")
 	private Long idVacationRequest;
 

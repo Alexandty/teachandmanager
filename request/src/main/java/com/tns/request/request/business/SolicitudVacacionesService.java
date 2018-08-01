@@ -1,5 +1,6 @@
 package com.tns.request.request.business;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +27,21 @@ public class SolicitudVacacionesService {
 
 	public Optional<SolicitudVacaciones> getAllPersonById(Long cedula) {
 		return solicitudVacacionesRepository.findById(cedula);
+	}
+
+	public SolicitudVacaciones crearSolicitud(SolicitudVacacionesUsernameDTO solicitudVacacionesUsernameDTO) {
+		SimpleDateFormat simple = new SimpleDateFormat("dd/MM/yy");
+		
+		SolicitudVacaciones solicitudVacaciones = new SolicitudVacaciones();
+		long diasdsponibles = UtilDate.diferenciaDias(solicitudVacacionesUsernameDTO.getStartDate(),
+				solicitudVacacionesUsernameDTO.getEndDate());
+		Person persona = personRepository.findByUserIdUsername(solicitudVacacionesUsernameDTO.getUser());
+		solicitudVacaciones.setRequestedDays((int) diasdsponibles);
+		Date formato = solicitudVacacionesUsernameDTO.getEndDate();	
+		solicitudVacaciones.setEndDate(solicitudVacacionesUsernameDTO.getEndDate());
+		solicitudVacaciones.setStartDate(solicitudVacacionesUsernameDTO.getStartDate());
+		solicitudVacaciones.setPersonId(persona);
+		return solicitudVacacionesRepository.save(solicitudVacaciones);
 	}
 
 	public List<SolicitudVacaciones> getSolicitudesByPersonId(String username) {

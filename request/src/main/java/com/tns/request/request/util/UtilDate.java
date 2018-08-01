@@ -16,6 +16,7 @@ public final class UtilDate {
 		super();
 	}
 
+
 	public static Date getDateFromString(String fecha) throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		return simpleDateFormat.parse(fecha);
@@ -27,7 +28,9 @@ public final class UtilDate {
 	}
 
 	public static long diferenciaDias(Date fecha1, Date fecha2) {
+		System.out.print("fecha uno ----------" + fecha1+ "Fecha dos----------------" + fecha2);
 		return TimeUnit.MILLISECONDS.toDays(dateToMilli(fecha2) - dateToMilli(fecha1));
+		
 	}
 
 	private static long dateToMilli(Date date) {
@@ -93,6 +96,24 @@ public final class UtilDate {
 			day++;
 		}
 		return diasHabiles - diasFinde + 1;
+	}
+
+	public static String calcularFecharRetornoLabor(Date fechaFin) {
+		Calendar fecha = Calendar.getInstance();
+		fecha.setTime(fechaFin);
+		int diaSemana = fecha.get(Calendar.DAY_OF_WEEK);
+		System.out.print("Dia De la semana es " + diaSemana);
+		if (fecha.get(Calendar.DAY_OF_WEEK) == 7) {
+			fecha.add(Calendar.DATE, 2);
+		} else if (fecha.get(Calendar.DAY_OF_WEEK) == 6) {
+			fecha.add(Calendar.DATE, 3);
+		}
+		else  {
+			fecha.add(Calendar.DATE, 1);
+		}
+		
+		Date fechaR = fecha.getTime();
+		return getStringFromDate(fechaR);
 	}
 
 }
