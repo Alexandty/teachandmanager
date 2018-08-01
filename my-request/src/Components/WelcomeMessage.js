@@ -1,42 +1,36 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loadProducts,loadAvailableDays } from '../actionCreators';
+import { loadRequestVacation, loadAvailableDays } from '../actionCreators';
 
-
-
-const WelcomeMessage = ({name, lastName, idPerson, loadProducts}) => {
-    
-    console.log(idPerson);
-    loadProducts(idPerson)
-  
-    console.log('se despacho');
+const WelcomeMessage = ({ name, lastName, user, loadRequestVacation, loadAvailableDays }) => {
+    loadRequestVacation(user)
+    loadAvailableDays(user);
     if (!name) {
         return <div>...</div>
     }
     return (
         <div>
-        <h1 className="saludo">Bienvenido</h1>
-        <h2>{name} {lastName}</h2>
+            <h2 className="saludo">Bienvenido</h2>
+            <h3>{name} {lastName}</h3>
         </div>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        ...state.reducerLogin.user
+        ...state.reducer.user
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-      loadProducts(idPerson) {
-        dispatch(loadProducts(idPerson));
-      },
-      loadAvailableDays(userName) {
-        dispatch(loadAvailableDays(userName));
-      }
+        loadRequestVacation(user) {
+            dispatch(loadRequestVacation(user));
+        },
+        loadAvailableDays(userName) {
+            dispatch(loadAvailableDays(userName));
+        }
     }
-    
-  };
+};
 
-export default connect(mapStateToProps,mapDispatchToProps)(WelcomeMessage);
+export default connect(mapStateToProps, mapDispatchToProps)(WelcomeMessage);

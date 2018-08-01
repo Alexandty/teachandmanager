@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tns.request.request.dto.SolicitudVacacionesUsernameDTO;
 import com.tns.request.request.exception.BusinessException;
 import com.tns.request.request.model.Person;
 import com.tns.request.request.model.SolicitudVacaciones;
@@ -19,43 +20,65 @@ public class SolicitudVacacionesService {
 
 	@Autowired
 	private SolicitudVacacionesRepository solicitudVacacionesRepository;
-	
+
 	@Autowired
 	private IPersonRepository personRepository;
 
 	public Optional<SolicitudVacaciones> getAllPersonById(Long cedula) {
-
 		return solicitudVacacionesRepository.findById(cedula);
 	}
 
-	public List<SolicitudVacaciones> getSolicitudesByPersonId(Long id) {
+	public SolicitudVacaciones crearSolicitud(SolicitudVacacionesUsernameDTO solicitudVacacionesUsernameDTO) {
+		SolicitudVacaciones solicitudVacaciones = new SolicitudVacaciones();
+		Person persona = personRepository.findByUserIdUsername(solicitudVacacionesUsernameDTO.getUser());
+		solicitudVacaciones
+				.setRequestedDays((int) UtilDate.diferenciaDias(solicitudVacacionesUsernameDTO.getStartDate(),
+						solicitudVacacionesUsernameDTO.getEndDate()));
+		solicitudVacaciones.setEndDate(solicitudVacacionesUsernameDTO.getEndDate());
+		solicitudVacaciones.setStartDate(solicitudVacacionesUsernameDTO.getStartDate());
+		solicitudVacaciones.setPersonId(persona);
+		return solicitudVacacionesRepository.save(solicitudVacaciones);
+	}
 
-		List<SolicitudVacaciones> solicitudBD = solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id);
-
+	public List<SolicitudVacaciones> getSolicitudesByPersonId(String username) {
+		List<SolicitudVacaciones> solicitudBD = solicitudVacacionesRepository
+				.findByPersonIdIdPersonOrderByPersonId(username);
 		if (solicitudBD.isEmpty()) {
 			throw new BusinessException("Usted no tiene solicitudes");
 		}
 		return solicitudBD;
 	}
 
-	public int obtenerTotalDiasDisfrutados(Long id) {
-		List<SolicitudVacaciones> solicitudBD = solicitudVacacionesRepository.findByPersonIdIdPersonOrderByPersonId(id);
+	public int obtenerTotalDiasDisfrutados(String username) {
+		List<SolicitudVacaciones> solicitudBD = solicitudVacacionesRepository
+				.findByPersonIdIdPersonOrderByPersonId(username);
 		if (solicitudBD.isEmpty()) {
 			return 0;
 		}
 		return solicitudBD.stream().map(s -> s.getRequestedDays()).reduce(0, (a, b) -> a + b).intValue();
 	}
 
-	public int getDiasDisponiblesALaFecha(Long id) {
-		Date fechaActual =new Date();
-		return getDiasDisponibles(fechaActual, id);
-	}
-
-	public int getDiasDisponibles(Date fechaInicio, Long id) {
-		int diasDisfrutados = obtenerTotalDiasDisfrutados(id);
-		Person persona = personRepository.findByUserIdIdUser(id);
+	public int getDiasDisponibles(Date fechaInicio, String username) {
+		int diasDisfrutados = obtenerTotalDiasDisfrutados(username);
+		Person persona = personRepository.findByUserIdUsername(username);
 		Date fechaIngreso = persona.getEntryDate();
 		return UtilDate.calcularDiasDisponibles(fechaIngreso, fechaInicio, diasDisfrutados);
+	}
+
+	public int getDiasDisponiblesVacaUserDTO(SolicitudVacacionesUsernameDTO solicitudVacaUserDTO) {
+		int diasDisfrutados = obtenerTotalDiasDisfrutados(solicitudVacaUserDTO.getUser());
+		Person persona = personRepository.findByUserIdUsername(solicitudVacaUserDTO.getUser());
+		Date fechaIngreso = persona.getEntryDate();
+		Date fechaInicio = solicitudVacaUserDTO.getStartDate();
+		Date fechaFin = solicitudVacaUserDTO.getEndDate();
+		if (!UtilDate.checkVacationDates(fechaInicio, fechaFin)) {
+			throw new BusinessException("Fechas incorrectas");
+		}
+		if (UtilDate.diferenciaDias(fechaInicio, fechaFin) > UtilDate.calcularDiasDisponibles(fechaIngreso, fechaInicio,
+				diasDisfrutados)) {
+			throw new BusinessException("No tienes suficientes dias");
+		}
+		return getDiasDisponibles(fechaInicio, solicitudVacaUserDTO.getUser());
 	}
 
 }

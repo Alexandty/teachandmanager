@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers} from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 
@@ -6,10 +6,9 @@ const initialState = {
     user: '',
     VacationData: [],
     vacationSolicitudData: [],
-    startDate: '',
-    endDate: '',
     logged: false,
-    avalableDaysData: 0
+    avalableDaysData: 0,
+    availableDaysVacation: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,13 +25,20 @@ const reducer = (state = initialState, action) => {
             VacationData: action.VacationData
         };
     }
-    else if (action.type === "ADD_SOLICITUD_VACACIONES") {        
+    else if (action.type === "ADD_SOLICITUD_VACACIONES") {
         return {
             ...state,
-            vacationSolicitudData: action.vacationSolicitudData
-            
+            vacationSolicitudData: action.vacationSolicitudData,
         };
-    }else if (action.type === "GET_AVAILABLE_DAYS") {
+    }
+    else if (action.type === "CHECK_SOLICITUD_VACACIONES") {
+        return {
+            ...state,
+            vacationSolicitudData: action.vacationSolicitudData,
+            availableDaysVacation: false
+        };
+    }
+    else if (action.type === "GET_AVAILABLE_DAYS") {
         return {
             ...state,
             avalableDaysData: action.avalableDaysData
@@ -41,7 +47,7 @@ const reducer = (state = initialState, action) => {
     return state;
 }
 const rootReducer = combineReducers({
-    reducerLogin: reducer,
+    reducer: reducer,
     form: formReducer
 })
 

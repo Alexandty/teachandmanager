@@ -1,66 +1,76 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import action from './action';
-import { Label, Button,  FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import validate from './validate';
+import { Label, Button, FormGroup, Row, Col, Grid } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
-
-
 
 const renderField = ({
     input,
     label,
     type,
     meta: { touched, error, warning }
-  }) => (
-    <div>
-      <label>{label}</label>
-      <div>
-        <input {...input} placeholder={label} type={type} />
-        {touched &&
-          ((error && <span>{error}</span>) ||
-            (warning && <span>{warning}</span>))}
-      </div>
-    </div>
-  )
+}) => (
+        <div>
+            <label>{label}</label>
+            <div>
+                <input {...input} placeholder={label} type={type} />
+                <br/>
+                {touched && 
+                    ((error &&  <Label bsStyle="danger">{error}</Label>) ||
+                        (warning && <span>{warning}</span>))}
+            </div>
+        </div>
+    )
 
-const Solicitud = props => {
-
-    const { guardar , handleSubmit, avalableDaysData} = props;
-
+const SolicitudForm = props => {
+    const { guardar, consultar, handleSubmit, avalableDaysData, user, availableDaysVacation } = props;
     return (
         <div>
-            
-            <form onSubmit={handleSubmit(guardar)} >
-                <h3>
-                    Dias disponibles <Label bsStyle="primary">9</Label>
-                </h3>
-                <FormGroup controlId="formInlineDate">
-                    <ControlLabel>Fecha Inicio</ControlLabel>{' '}{' '}
-                    <Field type="Date" name="startDate" component={renderField} />
-                </FormGroup>{' '}{' '}
-                <FormGroup controlId="formInlineDate">
-                    <ControlLabel>Fecha Fin</ControlLabel>{' '}
-                    <Field type="Date" name="endDate" component={renderField} />
-                </FormGroup>{' '}
-                <Button bsStyle="success" type="submit">Success</Button>
-            </form>
+            <form onSubmit={handleSubmit((values) => {
+                values.user = user.user;
+                return guardar(values)
+            })}>
+                <Grid >
+                    <Row className="show-grid">
+                        <div>
+                            <Col xs={6} md={12}>
+                                Dias disponibles <Label bsStyle="primary"> {avalableDaysData} </Label>
+                                <FormGroup controlId="formInlineDate">
+                                    <Label>Fecha de Inicio</Label>
+                                    <Field type="Date" name="startDate" component={renderField} />
+                                </FormGroup>
+                                <FormGroup controlId="formInlineDate">
+                                    <Label>Fecha de Inicio</Label>
 
+                                    <Field type="Date" name="endDate" component={renderField}
+                                        onBlur={handleSubmit((values) => {
+                                            values.user = user.user;
+                                            return consultar(values)
+                                        })} />
+                                </FormGroup>
+                                <Button bsStyle="success" type="submit" disabled={availableDaysVacation}>Solicitar</Button>
+                            </Col>
+                        </div>
+                    </Row>
+                </Grid>
+            </form>
         </div >
     )
 }
 
-const SolicitudForm = reduxForm({
-    form : 'LoginForm'
-})(Solicitud)
+const Solicitud = reduxForm({
+    form: 'SolicitudForm',
+    validate
+})(SolicitudForm)
 
 const mapStateToProps = state => {
     return {
-        ...state.addSolicitudvacaciones,
-        ...state.avalableDaysData
+        ...state.reducer
     };
 };
 
 export default connect(
     mapStateToProps,
     action
-)(SolicitudForm);
+)(Solicitud);
