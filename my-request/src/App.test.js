@@ -1,13 +1,17 @@
 // setup file
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import React from 'react';
+import { shallow, render } from 'enzyme';
+import App from './App';
+import { Provider } from 'react-redux';
+import store from './store';
 
 configure({ adapter: new Adapter() });
-
-import React from 'react';
-import {shallow} from 'enzyme';
-import App from './App';
-
 it('renders without crashing', () => {
-  shallow(<App />);
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
 });

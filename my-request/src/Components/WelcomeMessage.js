@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { loadRequestVacation, loadAvailableDays } from '../actionCreators';
 
-const WelcomeMessage = ({ name, lastName, user, loadRequestVacation, loadAvailableDays }) => {
+export const WelcomeMessage = ({ name, lastName, user, loadRequestVacation, loadAvailableDays }) => {
     loadRequestVacation(user)
     loadAvailableDays(user);
     if (!name) {

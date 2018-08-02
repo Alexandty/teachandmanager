@@ -1,12 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import WelcomeMessage from '../../Components/WelcomeMessage';
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+configure({ adapter: new Adapter() });
 
-const user=[
-    name='juan'
+import { Provider } from 'react-redux'
+import store from '../../store';
+const user = [
+    name = 'juan'
 ]
 
-it('renderize welcome cuando se ha logueado', () =>{
-    const wrapper= shallow(<WelcomeMessage user/>)
-    expect(wrapper.find("saludo").exists)
+it('renderize welcome cuando se ha logueado', () => {
+    shallow(
+        <Provider store={store}>
+            <WelcomeMessage />
+        </Provider>);
 });
