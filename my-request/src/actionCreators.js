@@ -1,42 +1,31 @@
 import axios from 'axios';
 
-
-
-
-
-
 const _loadAvailabreDays = (avalableDaysData) => ({
   type: 'GET_AVAILABLE_DAYS',
   avalableDaysData
 });
 
-
-const loadAvailableDays = (userName) => {
+const loadAvailableDays = (user) => {
   return dispatch => {
-      return axios.get("http://localhost:8081/" + userName)
-          .then(response => {
-              dispatch(_loadAvailabreDays(response.data));
-          });
-
-
+    return axios.get("http://localhost:8081/solicitud/vacaciones/disponibles/" + user)
+      .then(response => {
+        dispatch(_loadAvailabreDays(response.data));
+      });
   };
 };
 
-const _loadProducts = (VacationData) => ({
+const _loadRequestVacation = (VacationData) => ({
   type: 'REPLACE_PRODUCTS',
   VacationData
 });
 
-
-const loadProducts = (id) => {
+const loadRequestVacation = (user) => {
   return dispatch => {
-    return axios.get("http://localhost:8081/solicitud/vacaciones/consultar/"+id )
-      .then(response => {      
-        dispatch( _loadProducts(response.data) );
+    return axios.get("http://localhost:8081/solicitud/vacaciones/consultar/" + user)
+      .then(response => {
+        dispatch(_loadRequestVacation(response.data));
       });
-
-
   };
 };
 
-export { loadProducts, loadAvailableDays};
+export { loadRequestVacation, loadAvailableDays };

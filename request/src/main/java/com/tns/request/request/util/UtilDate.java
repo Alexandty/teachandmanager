@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import com.tns.request.request.exception.BusinessException;
+
 public final class UtilDate {
 
 	private static final double CONS_CALCULO_VACIONES = 0.0416666666666667;
@@ -14,13 +16,20 @@ public final class UtilDate {
 		super();
 	}
 
+
 	public static Date getDateFromString(String fecha) throws ParseException {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		return simpleDateFormat.parse(fecha);
 	}
-	
+
+	public static String getStringFromDate(Date fecha) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		return simpleDateFormat.format(fecha);
+	}
+
 	public static long diferenciaDias(Date fecha1, Date fecha2) {
 		return TimeUnit.MILLISECONDS.toDays(dateToMilli(fecha2) - dateToMilli(fecha1));
+		
 	}
 
 	private static long dateToMilli(Date date) {
@@ -29,9 +38,35 @@ public final class UtilDate {
 		return c.getTimeInMillis();
 	}
 
-	public static int calcularDiasDisponibles(Date fechaInicio, Date fechaIngreso,int diasDisfrutados) {
-		double diasdisponibles = ((diferenciaDias(fechaInicio, fechaIngreso) * CONS_CALCULO_VACIONES)-diasDisfrutados);
+	public static int calcularDiasDisponibles(Date fechaIngreso, Date fechaInicio, int diasDisfrutados) {
+		if (!checkCurrentDate(fechaInicio)) {
+			throw new BusinessException("Fecha incorrecta");
+		}
+		double diasdisponibles = ((diferenciaDias(fechaIngreso, fechaInicio) * CONS_CALCULO_VACIONES)
+				- diasDisfrutados);
 		return aproximacionDecimal(diasdisponibles);
+	}
+
+	public static boolean checkCurrentDate(Date fechaInicio) {
+		Date currentDate = new Date();
+		if (getStringFromDate(currentDate).equals(getStringFromDate(fechaInicio)) || fechaInicio.after(currentDate)) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean checkVacationDates(Date fechaInicio, Date fechaFin) {
+		if (fechaFin.after(fechaInicio)) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean checkAvailableDays(Date fechaInicio, Date fechaFin, int availableDays) {
+		if (diferenciaDias(fechaInicio, fechaFin) > availableDays) {
+			return false;
+		}
+		return true;
 	}
 
 	private static int aproximacionDecimal(double decimal) {
@@ -45,7 +80,7 @@ public final class UtilDate {
 
 	public static int calcularDiasDisfrutados(Date fechaI, Date fechaF) {
 		Calendar calendar = Calendar.getInstance();
-
+		System.out.println("in calcularDiasDisfrutados");
 		calendar.setTime(fechaI);
 		int day = calendar.get(Calendar.DAY_OF_WEEK);
 		calendar.setTime(fechaF);
@@ -59,7 +94,25 @@ public final class UtilDate {
 			diasHabiles++;
 			day++;
 		}
-		return diasHabiles - diasFinde + 1 ;
+		return diasHabiles - diasFinde + 1;
+	}
+
+	public static String calcularFecharRetornoLabor(Date fechaFin) {
+		Calendar fecha = Calendar.getInstance();
+		fecha.setTime(fechaFin);
+		int diaSemana = fecha.get(Calendar.DAY_OF_WEEK);
+		System.out.print("Dia De la semana es " + diaSemana);
+		if (fecha.get(Calendar.DAY_OF_WEEK) == 7) {
+			fecha.add(Calendar.DATE, 2);
+		} else if (fecha.get(Calendar.DAY_OF_WEEK) == 6) {
+			fecha.add(Calendar.DATE, 3);
+		}
+		else  {
+			fecha.add(Calendar.DATE, 1);
+		}
+		
+		Date fechaR = fecha.getTime();
+		return getStringFromDate(fechaR);
 	}
 
 }

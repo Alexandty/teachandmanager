@@ -1,6 +1,6 @@
 package com.tns.request.request.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,9 +24,17 @@ public class Person {
 
 	@Column(name = "lastname")
 	private String lastName;
-	
+
 	@Column(name = "entry_date")
 	private Date entryDate;
+
+	@OneToOne
+	@JoinColumn(name = "fk_user")
+	private User userId;
+
+	public long getIdPerson() {
+		return idPerson;
+	}
 
 	public Date getEntryDate() {
 		return entryDate;
@@ -34,14 +42,6 @@ public class Person {
 
 	public void setEntryDate(Date entryDate) {
 		this.entryDate = entryDate;
-	}
-
-	@OneToOne
-	@JoinColumn(name = "fk_user")
-	private User userId; // userFK
-
-	public long getIdPerson() {
-		return idPerson;
 	}
 
 	public void setIdPerson(long idPerson) {

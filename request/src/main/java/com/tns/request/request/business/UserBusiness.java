@@ -39,9 +39,10 @@ public class UserBusiness {
 
 	public PersonDTO getPerson(User user) {
 		User userBD = getUser(user);
-		if (userBD != null)
-			return personBusiness.getPerson(userBD.getIdUser());
+		if (userBD != null) {
+			return personBusiness.getPerson(userBD.getUsername());
+		}
 		// TODO: Person not found
-		throw new BusinessException("Nombre de usuario o contraseña incorrecto");
+		throw new BusinessException("No existe persona ligada al usuario");
 	}
 }

@@ -6,18 +6,13 @@ const actions = {
 
             return axios.post('http://localhost:8081/login/get/person', {
                 username: values.username,
-                password: values.password 
+                password: values.password
             })
                 .then(response => {
-                    console.log(response.data);
-                    dispatch({
-                        type: "LOGIN",
-                        user: response.data,
-                    });
-                },
-                    error => {
-                        alert(error.response.data.message);
-                    })
+                    dispatch({ type: "LOGIN", user: response.data, });
+                }, error => {
+                    alert(error.response.data.message);
+                })
         }
     }
 }
