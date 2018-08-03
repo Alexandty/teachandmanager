@@ -1,16 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Table, Label, Alert } from 'react-bootstrap';
-
 import Moment from 'moment';
-
-
 
 export const RequestVacationList = ({ VacationData, user }) => {
 
   const dato = VacationData.map(product =>
     product.idRequest)
-
   if (!dato) {
     return (
       <div className = 'ListRequestVacationEmpty'>
