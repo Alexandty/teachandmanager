@@ -1,19 +1,23 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import WelcomeMessage from '../../Components/WelcomeMessage';
+import configureStore from 'redux-mock-store';
+import { WelcomeMessage } from '../../Components/WelcomeMessage';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+
 configure({ adapter: new Adapter() });
 
-import { Provider } from 'react-redux'
-import store from '../../store';
-const user = [
-    name = 'juan'
-]
+// const mockStore = configureStore();
+describe('renderizing WelcomeMessage', () => {
+    it('renderize welcome cuando se ha logueado', () => {
+        const wrapper = shallow(<WelcomeMessage name={'jj'} />);
+        console.log(wrapper.debug());
+        expect(wrapper.find(".saludo").length).toBe(1);
+    });
 
-it('renderize welcome cuando se ha logueado', () => {
-    shallow(
-        <Provider store={store}>
-            <WelcomeMessage />
-        </Provider>);
-});
+    it('No renderize welcome cuando se ha logueado', () => {
+        const wrapper = shallow(<WelcomeMessage name={jj'}/>);
+        console.log(wrapper.debug());
+        expect(wrapper.find(".noname").lenght).toBe('');
+    });
+})
