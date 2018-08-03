@@ -11,13 +11,16 @@ configure({ adapter: new Adapter() });
 describe('renderizing WelcomeMessage', () => {
     it('renderize welcome cuando se ha logueado', () => {
         const wrapper = shallow(<WelcomeMessage name={'jj'} />);
-        console.log(wrapper.debug());
         expect(wrapper.find(".saludo").length).toBe(1);
     });
 
-    it('No renderize welcome cuando se ha logueado', () => {
-        const wrapper = shallow(<WelcomeMessage/>);
-        console.log(wrapper.debug());
-        expect(wrapper.find(".noname").lenght).toBe(1);
+    it('No renderize welcome cuando no se ha logueado', () => {
+        const wrapper = shallow(<WelcomeMessage />);
+        expect(wrapper.find(".noname").length).toBe(1);
+    });
+
+    it('No renderize welcome cuando no se ha logueado', () => {
+        const wrapper = shallow(<WelcomeMessage />);
+        expect(wrapper.find(".noname").exists()).toBe(true)
     });
 })
