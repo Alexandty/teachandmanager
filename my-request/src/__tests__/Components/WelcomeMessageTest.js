@@ -13,7 +13,6 @@ describe('renderizing WelcomeMessage', () => {
         expect(wrapper.find(".saludo").length).toBe(1);
     });
 
-<<<<<<< HEAD
     it('No renderize welcome cuando no se ha logueado', () => {
         const wrapper = shallow(<WelcomeMessage />);
         expect(wrapper.find(".noname").length).toBe(1);
@@ -23,6 +22,4 @@ describe('renderizing WelcomeMessage', () => {
         const wrapper = shallow(<WelcomeMessage />);
         expect(wrapper.find(".noname").exists()).toBe(true)
     });
-=======
->>>>>>> 58514f866a0df42b324766dd42fd521c5412ea02
 })
