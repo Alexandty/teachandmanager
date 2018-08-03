@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando componente LoginForm renders correctly 1`] = `
+<Row
+  bsClass="row"
+  className="show-grid"
+  componentClass="div"
+>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    md={4}
+    xs={6}
+  />
+  <Col
+    bsClass="col"
+    componentClass="div"
+    md={4}
+    xs={6}
+  >
+    <Jumbotron
+      bsClass="jumbotron"
+      componentClass="div"
+    >
+      <h1
+        className="login"
+      >
+        Login
+      </h1>
+      <form>
+        <div>
+          <Field
+            component={[Function]}
+            label="Username"
+            name="username"
+            type="text"
+          />
+        </div>
+        <div>
+          <Field
+            component={[Function]}
+            label="Password"
+            name="password"
+            type="password"
+          />
+        </div>
+        <br />
+        <Button
+          disabled={true}
+          type="submit"
+        >
+          LOGIN
+        </Button>
+      </form>
+    </Jumbotron>
+  </Col>
+  <Col
+    bsClass="col"
+    componentClass="div"
+    md={4}
+    xsHidden={true}
+  />
+</Row>
+`;

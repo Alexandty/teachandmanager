@@ -25,7 +25,10 @@ const renderField = ({
 
 const SolicitudForm = props => {
     const { guardar, consultar, handleSubmit, avalableDaysData, user, availableDaysVacation } = props;
+
+   
     return (
+        
         <div>
             <form onSubmit={handleSubmit((values) => {
                 values.user = user.user;
