@@ -50,9 +50,7 @@ export const RequestVacationList = ({ VacationData, user }) => {
         </Table>
       </div>
     );
-
   }
-
 };
 
 const mapStateToProps = state => {
