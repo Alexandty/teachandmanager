@@ -16,8 +16,8 @@ describe('renderizing WelcomeMessage', () => {
     });
 
     it('No renderize welcome cuando se ha logueado', () => {
-        const wrapper = shallow(<WelcomeMessage/>);
+        const wrapper = shallow(<WelcomeMessage name={jj'}/>);
         console.log(wrapper.debug());
-        expect(wrapper.find(".noname").lenght).toBe(1);
+        expect(wrapper.find(".noname").lenght).toBe('');
     });
 })
