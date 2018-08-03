@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Probando componente LoginForm renders correctly 1`] = `
+exports[`Probando componente LoginForm Validando toMatchSnapshot 1`] = `
 <Row
   bsClass="row"
   className="show-grid"
