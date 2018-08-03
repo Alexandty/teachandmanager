@@ -7,7 +7,6 @@ import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
-// const mockStore = configureStore();
 describe('renderizing WelcomeMessage', () => {
     it('renderize welcome cuando se ha logueado', () => {
         const wrapper = shallow(<WelcomeMessage name={'jj'} />);
