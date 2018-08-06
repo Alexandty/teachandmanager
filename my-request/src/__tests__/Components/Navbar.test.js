@@ -6,7 +6,7 @@ import toJson from 'enzyme-to-json';
 import NavbarApp from './../../Components/Navbar';
 configure({ adapter: new Adapter() });
 
-describe('Test navbar', () => {
+describe('Validando navbar toMatchSnapshot', () => {
     it('renderizar navbar ', () => {
         const wrap = shallow(<NavbarApp />);
         expect(toJson(wrap)).toMatchSnapshot();

@@ -36,7 +36,7 @@ const action = {
             const solicitudVacaciones = {
                 startDate: values.startDate,
                 endDate: values.endDate,
-                user: values.user,
+                user: values.user
             };
             return axios.post('http://localhost:8081/solicitud/vacaciones/create/', solicitudVacaciones)
                 .then(result => {
