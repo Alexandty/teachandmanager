@@ -8,7 +8,7 @@ const _checkSolicitudVacaciones = (sVacaciones) => ({
     sVacaciones
 });
 
-const _loadAvailabreDays = (avalableDaysData) => ({
+const _loadAvailableDays = (avalableDaysData) => ({
     type: 'GET_AVAILABLE_DAYS',
     avalableDaysData
 });
@@ -52,7 +52,7 @@ const action = {
         return dispatch => {
             return axios.get("http://localhost:8081/solicitud/vacaciones/disponibles/" + user)
                 .then(response => {
-                    dispatch(_loadAvailabreDays(response.data));
+                    dispatch(_loadAvailableDays(response.data));
                 });
         }
     }

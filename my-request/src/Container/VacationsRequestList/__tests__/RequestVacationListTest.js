@@ -10,7 +10,7 @@ configure({ adapter: new Adapter() });
 const mockStore = configureStore();
 describe('test produclist', () => {
     it('renders  productos when store is empty', () => {
-        const wrapper = shallow(<RequestVacationList VacationData={[{ idRequest: 1 }]} user={[{ 'name': 's' }]} />);
+        const wrapper = shallow(<RequestVacationList loadRequestVacation={jest.fn()} VacationData={[{ idRequest: 1 }]} user={[{ 'name': 's' }]} />);
         expect(wrapper.find(".Product").length).toBe(1);
     });
 
