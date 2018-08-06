@@ -3,7 +3,6 @@ import axios from 'axios';
 const actions = {
     login: values => {
         return dispatch => {
-
             return axios.post('http://localhost:8081/login/get/person', {
                 username: values.username,
                 password: values.password

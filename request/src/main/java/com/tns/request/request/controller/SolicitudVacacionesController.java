@@ -29,6 +29,7 @@ public class SolicitudVacacionesController {
 
 	@GetMapping("vacaciones/consultar/{username}")
 	public List<SolicitudVacaciones> getSolicitudVacacion(@PathVariable String username) {
+		System.out.println("good back");
 		return solicitudVacacionesService.getSolicitudesByPersonId(username);
 	}
 

@@ -20,6 +20,8 @@ const reducer = (state = initialState, action) => {
         }
     }
     else if (action.type === "REPLACE_PRODUCTS") {
+        console.log('store');
+        
         return {
             ...state,
             VacationData: action.VacationData

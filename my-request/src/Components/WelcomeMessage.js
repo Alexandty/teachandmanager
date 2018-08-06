@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { loadRequestVacation, loadAvailableDays } from '../actionCreators';
 
-export const WelcomeMessage = ({ name, lastName, user }) => {
+export const WelcomeMessage = ({ name, lastName, user, loadRequestVacation, loadAvailableDays }) => {
     loadRequestVacation(user)
     loadAvailableDays(user);
     if (!name) {
         return <div className="noname">...</div>
     }
     return (
-        <div>       
+        <div>
             <h2 className="saludo">Bienvenido</h2>
             <h3>{name} {lastName}</h3>
         </div>
