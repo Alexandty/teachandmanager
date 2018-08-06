@@ -8,13 +8,19 @@ const _checkSolicitudVacaciones = (sVacaciones) => ({
     sVacaciones
 });
 
+const _loadAvailabreDays = (avalableDaysData) => ({
+    type: 'GET_AVAILABLE_DAYS',
+    avalableDaysData
+});
+
+
 const action = {
     consultar: (values) => {
         return (dispatch) => {
             const solicitudVacaciones = {
                 startDate: values.startDate,
                 endDate: values.endDate,
-                user: values.user                
+                user: values.user
             };
             console.log(solicitudVacaciones)
             return axios.post('http://localhost:8081/solicitud/vacaciones/disponibles', solicitudVacaciones)
@@ -33,7 +39,7 @@ const action = {
                 endDate: values.endDate,
                 user: values.user,
             };
-            console.log('guardar',solicitudVacaciones)
+            console.log('guardar', solicitudVacaciones)
             return axios.post('http://localhost:8081/solicitud/vacaciones/create/', solicitudVacaciones)
                 .then(result => {
                     dispatch(_addSolicitudVacaciones(result.data));
@@ -41,7 +47,15 @@ const action = {
                     alert(error.response.data.message);
                 });
         };
+    },
+    loadAvailableDays: (user) => {
+        return dispatch => {
+            return axios.get("http://localhost:8081/solicitud/vacaciones/disponibles/" + user)
+                .then(response => {
+                    dispatch(_loadAvailabreDays(response.data));
+                });
+        }
     }
 };
 
-export default action;
+export default action ;

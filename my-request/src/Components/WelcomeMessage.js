@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loadRequestVacation, loadAvailableDays } from '../actionCreators';
+import { loadRequestVacation } from '../Container/VacationsRequestList/action';
 
-
-export const WelcomeMessage = ({ name, lastName, user, loadRequestVacation, loadAvailableDays }) => {
+export const WelcomeMessage = ({ name, lastName, user, loadRequestVacation }) => {
     loadRequestVacation(user)
-    loadAvailableDays(user);
     if (!name) {
         return <div className="noname">...</div>
     }
@@ -28,9 +26,6 @@ const mapDispatchToProps = dispatch => {
     return {
         loadRequestVacation(user) {
             dispatch(loadRequestVacation(user));
-        },
-        loadAvailableDays(userName) {
-            dispatch(loadAvailableDays(userName));
         }
     }
 };

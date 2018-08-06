@@ -5,7 +5,7 @@ import { Jumbotron } from 'react-bootstrap';
 import NavbarApp from './Components/Navbar';
 import Login from './Container/Login';
 import './App.css';
-import ProductList from './Components/ProductList';
+import RequestVacationList from './Container/VacationsRequestList';
 import Solicitud from './Container/SolicitudVacaciones/'
 
 
@@ -44,7 +44,7 @@ const AppRouter = (props) => {
 const Consulta = () => (
   <Jumbotron>
     <h1>Consulta</h1>
-    <ProductList />
+    <RequestVacationList />
   </Jumbotron>
 );
 const SolicitudApp = () =>(

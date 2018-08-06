@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import action from './action';
+import  action from './action';
 import validate from './validate';
 import { Label, Button, FormGroup, Row, Col, Grid } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
@@ -15,21 +15,22 @@ const renderField = ({
             <label>{label}</label>
             <div>
                 <input {...input} placeholder={label} type={type} />
-                <br/>
-                {touched && 
-                    ((error &&  <Label bsStyle="danger">{error}</Label>) ||
+                <br />
+                {touched &&
+                    ((error && <Label bsStyle="danger">{error}</Label>) ||
                         (warning && <span>{warning}</span>))}
             </div>
         </div>
     )
 
 const SolicitudForm = props => {
-    const { guardar, consultar, handleSubmit, avalableDaysData, user, availableDaysVacation } = props;
+    const { loadAvailableDays, guardar, consultar, handleSubmit, avalableDaysData, user, availableDaysVacation } = props;
 
-   
+    loadAvailableDays(user.user)
     return (
-        
+
         <div>
+            
             <form onSubmit={handleSubmit((values) => {
                 values.user = user.user;
                 return guardar(values)
@@ -69,10 +70,10 @@ const Solicitud = reduxForm({
 
 const mapStateToProps = state => {
     return {
+        ...state.login,
         ...state.reducer
     };
 };
-
 export default connect(
     mapStateToProps,
     action

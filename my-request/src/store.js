@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import login from './Container/Login/reducer';
+import RequestVacationList from './Container/VacationsRequestList/reducer';
 import thunk from 'redux-thunk';
 
 
 const initialState = {
-    VacationData: [],
     vacationSolicitudData: [],
     avalableDaysData: 0,
     availableDaysVacation: true
@@ -19,15 +19,7 @@ const composeEnhancers =
 
 const reducer = (state = initialState, action) => {
 
-    if (action.type === "REPLACE_PRODUCTS") {
-        console.log('store');
-
-        return {
-            ...state,
-            VacationData: action.VacationData
-        };
-    }
-    else if (action.type === "ADD_SOLICITUD_VACACIONES") {
+     if (action.type === "ADD_SOLICITUD_VACACIONES") {
         return {
             ...state,
             vacationSolicitudData: action.vacationSolicitudData,
@@ -51,7 +43,8 @@ const reducer = (state = initialState, action) => {
 const rootReducer = combineReducers({
     reducer: reducer,
     form: formReducer,
-    login: login
+    login: login,
+    VacationList: RequestVacationList
 })
 
 export default createStore(rootReducer, 
