@@ -4,6 +4,7 @@ import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 import { SolicitudForm } from '../index';
+import { Button } from 'react-bootstrap';
 
 configure({ adapter: new Adapter() });
 
@@ -20,5 +21,26 @@ describe('Probando vista SolicitudForm', () => {
         };
         const wrap = shallow(<SolicitudForm {...props} />);
         expect(toJson(wrap)).toMatchSnapshot();
+    });
+
+    it('Probar la accion consulta de vacaciones', () => {
+        const spyGuardar = jest.fn();
+        const props = {
+            avalableDaysData: 0,
+            availableDaysVacation: true,
+            consultar: jest.fn(),
+            loadAvailableDays: jest.fn(),
+            guardar: spyGuardar, //validar el login
+            handleSubmit: (guardar) => {
+                //fake de la respuesta
+                guardar({ username: 'raul', password: 'alzate' });
+            },
+            pristine: true,
+            user: { user: 'a' }
+        };
+        const wrap = shallow(<SolicitudForm {...props} />);
+        wrap.find(Button).simulate('click')
+
+        expect(spyGuardar).toBeCalledWith({ username: 'raul', password: 'alzate', user: 'a' });
     });
 });
