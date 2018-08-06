@@ -33,8 +33,8 @@ const AppRouter = (props) => {
       <div>
         {props.children}
         <Route exact path="/" component={Welcome} />
-        <Route path="/Consulta" component={Consulta} />
-        <Route path="/Solicitud" component={SolicitudApp} />
+        <Route path="/consulta" component={Consulta} />
+        <Route path="/solicitud" component={SolicitudApp} />
 
       </div>
     </Router>

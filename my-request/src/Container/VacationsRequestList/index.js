@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Table, Label, Alert } from 'react-bootstrap';
 import Moment from 'moment';
+import { loadRequestVacation } from './action';
 
-export const RequestVacationList = ({ VacationData, user }) => {
-
+export const RequestVacationList = ({ loadRequestVacation,VacationData, user }) => {
+  loadRequestVacation(user.user)
   const dato = VacationData.map(product =>
     product.idRequest)
   if (!dato) {
@@ -60,4 +61,12 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(RequestVacationList);
+const mapDispatchToProps = dispatch =>{
+  return {
+    loadRequestVacation(user){
+      dispatch(loadRequestVacation(user))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RequestVacationList);

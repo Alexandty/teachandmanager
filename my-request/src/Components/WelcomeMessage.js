@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loadRequestVacation } from '../Container/VacationsRequestList/action';
 
-export const WelcomeMessage = ({ name, lastName, user, loadRequestVacation }) => {
-    loadRequestVacation(user)
+export const WelcomeMessage = ({ name, lastName, user }) => {
     if (!name) {
         return <div className="noname">...</div>
     }
@@ -22,12 +20,4 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        loadRequestVacation(user) {
-            dispatch(loadRequestVacation(user));
-        }
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(WelcomeMessage);
+export default connect(mapStateToProps)(WelcomeMessage);
