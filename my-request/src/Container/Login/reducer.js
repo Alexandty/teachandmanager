@@ -3,6 +3,7 @@ const initialState = {
     logged: false,
 
 };
+
 const login = (state = initialState, action) => {
     if (action.type === "LOGIN") {
         return {
@@ -12,5 +13,6 @@ const login = (state = initialState, action) => {
         }
     }
     return state;
-}
+};
+
 export default login;

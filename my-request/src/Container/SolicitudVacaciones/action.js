@@ -22,7 +22,6 @@ const action = {
                 endDate: values.endDate,
                 user: values.user
             };
-            console.log(solicitudVacaciones)
             return axios.post('http://localhost:8081/solicitud/vacaciones/disponibles', solicitudVacaciones)
                 .then(result => {
                     dispatch(_checkSolicitudVacaciones(result.data));
@@ -39,7 +38,6 @@ const action = {
                 endDate: values.endDate,
                 user: values.user,
             };
-            console.log('guardar', solicitudVacaciones)
             return axios.post('http://localhost:8081/solicitud/vacaciones/create/', solicitudVacaciones)
                 .then(result => {
                     dispatch(_addSolicitudVacaciones(result.data));

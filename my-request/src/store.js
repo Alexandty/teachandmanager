@@ -18,11 +18,10 @@ const composeEnhancers =
         : compose;
 
 const reducer = (state = initialState, action) => {
-
      if (action.type === "ADD_SOLICITUD_VACACIONES") {
         return {
             ...state,
-            vacationSolicitudData: action.vacationSolicitudData,
+            vacationSolicitudData: action.vacationSolicitudData
         };
     }
     else if (action.type === "CHECK_SOLICITUD_VACACIONES") {
@@ -40,12 +39,13 @@ const reducer = (state = initialState, action) => {
     }
     return state;
 }
+
 const rootReducer = combineReducers({
     reducer: reducer,
     form: formReducer,
     login: login,
     VacationList: RequestVacationList
-})
+});
 
 export default createStore(rootReducer, 
     composeEnhancers(applyMiddleware(thunk))

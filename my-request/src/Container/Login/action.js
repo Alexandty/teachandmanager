@@ -8,13 +8,13 @@ const actions = {
                 password: values.password
             })
                 .then(response => {
-                    dispatch({ type: "LOGIN", user: response.data, });
+                    dispatch({ type: "LOGIN", user: response.data });
                 }, error => {
                     alert(error.response.data.message);
-                })
-        }
+                });
+        };
     }
-}
+};
 
 export default actions;
 
