@@ -55,6 +55,7 @@ export const RequestVacationList = ({ VacationData, user }) => {
 
 const mapStateToProps = state => {
   return {
+    ...state.login,
     ...state.reducer
   };
 };

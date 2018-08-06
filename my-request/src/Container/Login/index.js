@@ -59,7 +59,7 @@ const Login = reduxForm({
 
 const mapStateToProps = state => {
     return {
-        ...state.reducer
+        ...state.login
     };
 };
 

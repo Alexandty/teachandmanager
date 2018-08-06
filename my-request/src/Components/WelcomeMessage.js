@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { loadRequestVacation, loadAvailableDays } from '../actionCreators';
 
+
 export const WelcomeMessage = ({ name, lastName, user, loadRequestVacation, loadAvailableDays }) => {
     loadRequestVacation(user)
     loadAvailableDays(user);
@@ -18,7 +19,8 @@ export const WelcomeMessage = ({ name, lastName, user, loadRequestVacation, load
 
 const mapStateToProps = state => {
     return {
-        ...state.reducer.user
+        ...state.login.user
+
     };
 };
 
