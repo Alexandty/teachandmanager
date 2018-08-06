@@ -3,6 +3,7 @@ import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../index.css'
 
+
 const NavbarApp = () => (
     <Navbar inverse collapseOnSelect>
         <Navbar.Header>

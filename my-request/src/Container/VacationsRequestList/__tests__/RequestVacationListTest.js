@@ -1,8 +1,8 @@
 import React from 'react';
 import { configure, shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
-import { RequestVacationList } from '../../Components/ProductList';
-import ConnectedRequestVacationList from '../../Components/ProductList';
+import { RequestVacationList } from '../index';
+import ConnectedRequestVacationList from '../index';
 import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });

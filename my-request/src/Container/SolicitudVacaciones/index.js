@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import  action from './action';
+import action from './action';
 import validate from './validate';
 import { Label, Button, FormGroup, Row, Col, Grid } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
@@ -24,13 +24,11 @@ const renderField = ({
     )
 
 const SolicitudForm = props => {
-    const { loadAvailableDays, guardar, consultar, handleSubmit, avalableDaysData, user, availableDaysVacation } = props;
-
+    const { loadAvailableDays, guardar, consultar, handleSubmit,
+        avalableDaysData, user, availableDaysVacation } = props;
     loadAvailableDays(user.user)
     return (
-
         <div>
-            
             <form onSubmit={handleSubmit((values) => {
                 values.user = user.user;
                 return guardar(values)
@@ -74,6 +72,7 @@ const mapStateToProps = state => {
         ...state.reducer
     };
 };
+
 export default connect(
     mapStateToProps,
     action
