@@ -21,8 +21,7 @@ const AddSolitudVacaciones = (state = initialState, action) => {
         console.log("imprimiendo el dato desde el reducer", action.avalableDaysData);
         return {
             ...state,
-            avalableDaysData: action.avalableDaysData
-            
+            avalableDaysData: action.avalableDaysData            
         };
     }
     return state;
