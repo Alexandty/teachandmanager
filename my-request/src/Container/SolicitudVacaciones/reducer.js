@@ -18,7 +18,6 @@ const AddSolitudVacaciones = (state = initialState, action) => {
         };
     }
     else if (action.type === "GET_AVAILABLE_DAYS") {
-        console.log("imprimiendo el dato desde el reducer", action.avalableDaysData);
         return {
             ...state,
             avalableDaysData: action.avalableDaysData            
