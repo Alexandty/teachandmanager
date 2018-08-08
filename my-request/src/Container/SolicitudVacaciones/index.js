@@ -23,7 +23,7 @@ const renderField = ({
         </div>
     )
 
-const SolicitudForm = props => {
+export const SolicitudForm = props => {
     const { loadAvailableDays, guardar, consultar, handleSubmit,
         avalableDaysData, user, availableDaysVacation } = props;
     loadAvailableDays(user.user)

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test navbar renderizar navbar  1`] = `
+exports[`Validando navbar toMatchSnapshot renderizar navbar  1`] = `
 <Uncontrolled(Navbar)
   bsStyle="default"
   collapseOnSelect={true}

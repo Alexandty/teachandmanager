@@ -6,7 +6,6 @@ import Adapter from 'enzyme-adapter-react-16';
 import { Field } from 'redux-form';
 import toJson from 'enzyme-to-json';
 
-
 import { LoginForm } from '../index';
 import Button from '../../../Components/Button';
 
@@ -75,4 +74,3 @@ describe("Probando componente LoginForm", () => {
         expect(toJson(wrap)).toMatchSnapshot();
     });
 })
-

@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando vista SolicitudForm Validando toMatchSnapshot 1`] = `
+<div>
+  <form>
+    <Grid
+      bsClass="container"
+      componentClass="div"
+      fluid={false}
+    >
+      <Row
+        bsClass="row"
+        className="show-grid"
+        componentClass="div"
+      >
+        <div>
+          <Col
+            bsClass="col"
+            componentClass="div"
+            md={12}
+            xs={6}
+          >
+            Dias disponibles 
+            <Label
+              bsClass="label"
+              bsStyle="primary"
+            >
+               
+              0
+               
+            </Label>
+            <FormGroup
+              bsClass="form-group"
+              controlId="formInlineDate"
+            >
+              <Label
+                bsClass="label"
+                bsStyle="default"
+              >
+                Fecha de Inicio
+              </Label>
+              <Field
+                component={[Function]}
+                name="startDate"
+                type="Date"
+              />
+            </FormGroup>
+            <FormGroup
+              bsClass="form-group"
+              controlId="formInlineDate"
+            >
+              <Label
+                bsClass="label"
+                bsStyle="default"
+              >
+                Fecha de Inicio
+              </Label>
+              <Field
+                component={[Function]}
+                name="endDate"
+                type="Date"
+              />
+            </FormGroup>
+            <Button
+              active={false}
+              block={false}
+              bsClass="btn"
+              bsStyle="success"
+              disabled={true}
+              type="submit"
+            >
+              Solicitar
+            </Button>
+          </Col>
+        </div>
+      </Row>
+    </Grid>
+  </form>
+</div>
+`;
