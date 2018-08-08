@@ -6,7 +6,8 @@ import NavbarApp from './Components/Navbar';
 import Login from './Container/Login';
 import './App.css';
 import RequestVacationList from './Container/VacationsRequestList';
-import Solicitud from './Container/SolicitudVacaciones/'
+import Solicitud from './Container/SolicitudVacaciones/';
+import RequestVacationLider from './Container/RequestVacationLider';
 
 
 import WelcomeMessage from './Components/WelcomeMessage';
@@ -35,6 +36,7 @@ const AppRouter = (props) => {
         <Route exact path="/" component={Welcome} />
         <Route path="/consulta" component={Consulta} />
         <Route path="/solicitud" component={SolicitudApp} />
+        <Route path="/solicitudeslider" component={SolicitudesLider}/>
 
       </div>
     </Router>
@@ -54,6 +56,13 @@ const SolicitudApp = () =>(
   </Jumbotron>
 
 );
+
+const SolicitudesLider = ()=>(
+  <Jumbotron>
+    <h1>Mis Solicitudes</h1>
+    <RequestVacationLider/>
+  </Jumbotron>
+)
 
 const Welcome = () => (
   <div>
