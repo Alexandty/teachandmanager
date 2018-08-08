@@ -50,7 +50,7 @@ const action = {
         return dispatch => {
             return axios.get("http://localhost:8081/solicitud/vacaciones/disponibles/" + user)
                 .then(response => {
-                    dispatch(_loadAvailableDays(response.data));
+                    dispatch(_loadAvailableDays(response.data));            
                 });
         }
     }
