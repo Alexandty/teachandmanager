@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test produclist Validando toMatchSnapshot RequestVacationList 1`] = `
+<div
+  className="ListRequestVacationEmpty"
+>
+   
+   
+  <Label
+    bsClass="label"
+    bsStyle="success"
+  >
+    fecha de ingreso a la empresa 
+    08/08/2018
+  </Label>
+  <Alert
+    bsClass="alert"
+    bsStyle="info"
+    closeLabel="Close alert"
+  >
+    <h4>
+      !Lo sentimos!
+    </h4>
+    <p>
+      Usted no cuenta con informacion de solicitudes.
+    </p>
+  </Alert>
+</div>
+`;

@@ -4,13 +4,11 @@ import { Table, Label, Alert } from 'react-bootstrap';
 import Moment from 'moment';
 import { loadRequestVacation } from './action';
 
-export const RequestVacationList = ({ loadRequestVacation,VacationData, user }) => {
+export const RequestVacationList = ({ loadRequestVacation, VacationData, user }) => {
   loadRequestVacation(user.user)
-  const dato = VacationData.map(product =>
-    product.idRequest)
-  if (!dato) {
+  if (VacationData.length === 0) {
     return (
-      <div className = 'ListRequestVacationEmpty'>
+      <div className='ListRequestVacationEmpty'>
         {user.name} {user.lastName} <Label bsStyle="success">fecha de ingreso a la empresa {Moment(user.entryDate).format('DD/MM/YYYY')}</Label>
         <Alert bsStyle="info">
           <h4>!Lo sentimos!</h4>
@@ -21,9 +19,9 @@ export const RequestVacationList = ({ loadRequestVacation,VacationData, user }) 
       </div>
     )
   } else {
-    
+
     return (
-      <div className ="Product">
+      <div className="Product">
         {user.name} {user.lastName} <Label bsStyle="success">fecha de ingreso a la empresa {Moment(user.entryDate).format('DD/MM/YYYY')}</Label>
         <Table striped bordered condensed hover>
           <thead>
@@ -61,9 +59,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch =>{
+const mapDispatchToProps = dispatch => {
   return {
-    loadRequestVacation(user){
+    loadRequestVacation(user) {
       dispatch(loadRequestVacation(user))
     }
   }
