@@ -19,9 +19,8 @@ export const RequestVacationList = ({ loadRequestVacation, VacationData, user })
       </div>
     )
   } else {
-
     return (
-      <div className="Product">
+      <div className="Vacation">
         {user.name} {user.lastName} <Label bsStyle="success">fecha de ingreso a la empresa {Moment(user.entryDate).format('DD/MM/YYYY')}</Label>
         <Table striped bordered condensed hover>
           <thead>
@@ -33,16 +32,16 @@ export const RequestVacationList = ({ loadRequestVacation, VacationData, user })
           </thead>
           <tbody>
             {VacationData
-              .sort((productA, productB) => {
-                if (productA === productB) return 1
-                else if (productA < productB) return -0
+              .sort((vacationA, vacationB) => {
+                if (vacationA === vacationB) return 1
+                else if (vacationA < vacationB) return -0
                 else return 0
               })
-              .map(product =>
-                <tr key={product.idRequest}>
-                  <td>{Moment(product.startDate).format('DD/MM/YYYY')}</td>
-                  <td>{Moment(product.endDate).format('DD/MM/YYYY')}</td>
-                  <td>{product.requestedDays}</td>
+              .map(Vacation =>
+                <tr key={Vacation.idRequest}>
+                  <td>{Moment(Vacation.startDate).format('DD/MM/YYYY')}</td>
+                  <td>{Moment(Vacation.endDate).format('DD/MM/YYYY')}</td>
+                  <td>{Vacation.requestedDays}</td>
                 </tr>
               )}
           </tbody>

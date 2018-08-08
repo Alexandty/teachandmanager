@@ -4,7 +4,11 @@ import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 import { SolicitudForm } from '../index';
+import ConnectedSolicitudForm from '../index';
 import { Button } from 'react-bootstrap';
+import configureStore from 'redux-mock-store';
+
+const mockStore = configureStore()
 
 configure({ adapter: new Adapter() });
 
@@ -42,5 +46,11 @@ describe('Probando vista SolicitudForm', () => {
         wrap.find(Button).simulate('click')
 
         expect(spyGuardar).toBeCalledWith({ username: 'raul', password: 'alzate', user: 'a' });
+    });
+
+    it('renders the connected component ConnectedSolicitudForm', () => {
+        const initialState = {}
+        const store = mockStore(initialState)
+        const wrapper = shallow(<ConnectedSolicitudForm store={store} />);
     });
 });
