@@ -3,6 +3,7 @@ import { configure, shallow } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { RequestVacationList } from '../index';
 import ConnectedRequestVacationList from '../index';
+import toJson from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
@@ -17,7 +18,17 @@ describe('test produclist', () => {
     it('No debe mostrar productos cuando store este vacio', () => {
         const store = mockStore({ VacationData: [] });
         const wrapper = shallow(<ConnectedRequestVacationList store={store} user={[{ 'name': 's' }]} />);
-        expect(wrapper.find("ListRequestVacationEmpty").length).toBe(0);
+        expect(wrapper.find("ListRequestVacationEmpty").length).toBe(1);
     })
+
+    it('Validando toMatchSnapshot', () => {
+        const props = {
+            loadRequestVacation: jest.fn(),
+            VacationData:[],
+            user: { user: 'a' }
+        };
+        const wrap = shallow(<RequestVacationList {...props} />);
+        expect(toJson(wrap)).toMatchSnapshot();
+    });
 
 })

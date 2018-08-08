@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test produclist Validando toMatchSnapshot 1`] = `
+<div
+  className="Product"
+>
+   
+   
+  <Label
+    bsClass="label"
+    bsStyle="success"
+  >
+    fecha de ingreso a la empresa 
+    07/08/2018
+  </Label>
+  <Table
+    bordered={true}
+    bsClass="table"
+    condensed={true}
+    hover={true}
+    responsive={false}
+    striped={true}
+  >
+    <thead>
+      <tr>
+        <th>
+          Fecha de nicio
+        </th>
+        <th>
+          Fecha de Fin
+        </th>
+        <th>
+          Dias solicitados
+        </th>
+      </tr>
+    </thead>
+    <tbody />
+  </Table>
+</div>
+`;
