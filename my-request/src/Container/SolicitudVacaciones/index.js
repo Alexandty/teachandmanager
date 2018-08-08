@@ -26,7 +26,8 @@ const renderField = ({
 export const SolicitudForm = props => {
     const { loadAvailableDays, guardar, consultar, handleSubmit,
         avalableDaysData, user, availableDaysVacation } = props;
-    loadAvailableDays(user.user)
+   loadAvailableDays(user.user)
+    
     return (
         <div>
             <form onSubmit={handleSubmit((values) => {
@@ -69,7 +70,7 @@ const Solicitud = reduxForm({
 const mapStateToProps = state => {
     return {
         ...state.login,
-        ...state.reducer
+        ...state.SolicitudVacaciones
     };
 };
 
