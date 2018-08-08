@@ -28,6 +28,12 @@ public class SolicitudVacaciones {
 	@Column(name = "requested_days")
 	private int requestedDays;
 
+	@Column(name = "motivo")
+	private String motivo;
+
+	@Column(name = "estado")
+	private String estado;
+
 	@OneToOne
 	@JoinColumn(name = "id_person")
 	private Person personId;

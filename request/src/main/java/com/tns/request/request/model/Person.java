@@ -28,9 +28,20 @@ public class Person {
 	@Column(name = "entry_date")
 	private Date entryDate;
 
+	@Column(name = "rol")
+	private String rol;
+
 	@OneToOne
 	@JoinColumn(name = "fk_user")
 	private User userId;
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
 
 	public long getIdPerson() {
 		return idPerson;
