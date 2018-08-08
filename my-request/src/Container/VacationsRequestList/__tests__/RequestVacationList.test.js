@@ -16,15 +16,15 @@ describe('test produclist', () => {
     });
 
     it('No debe mostrar productos cuando store este vacio', () => {
-        const store = mockStore({ VacationData: [] });
-        const wrapper = shallow(<ConnectedRequestVacationList store={store} user={[{ 'name': 's' }]} />);
+        const store = mockStore({});
+        const wrapper = shallow(<ConnectedRequestVacationList store={store} />);
         expect(wrapper.find("ListRequestVacationEmpty").length).toBe(1);
     })
 
-    it('Validando toMatchSnapshot', () => {
+    it('Validando toMatchSnapshot RequestVacationList', () => {
         const props = {
             loadRequestVacation: jest.fn(),
-            VacationData:[],
+            VacationData: [],
             user: { user: 'a' }
         };
         const wrap = shallow(<RequestVacationList {...props} />);
