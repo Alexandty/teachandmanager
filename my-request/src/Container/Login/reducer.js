@@ -1,18 +1,18 @@
+const initialState = {
+    user: [],
+    logged: false,
 
+};
 
-// const initialState = {
-//     user: [],
-// };
+const login = (state = initialState, action) => {
+    if (action.type === "LOGIN") {
+        return {
+            ...state,
+            user: action.user,
+            logged: true
+        }
+    }
+    return state;
+};
 
-// const reducer = (state = initialState, action) => {
-//     if (action.type === "LOGIN") {
-//         return {
-//             ...state,
-//             user: action.user
-//         }
-//     }
-//     console.log('in reducer')
-//     return state;
-// }
-
-// export default reducer;
+export default login;

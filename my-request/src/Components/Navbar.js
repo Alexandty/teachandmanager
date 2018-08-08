@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../index.css'
 
 const NavbarApp = () => (
@@ -13,15 +13,15 @@ const NavbarApp = () => (
         </Navbar.Header>
         <Navbar.Collapse>
             <Nav>
-                <NavItem eventKey={1} href="#">
-                <Link to={"/"}>Inicio</Link>
-      </NavItem>
+                <NavItem eventKey={1}>
+                    <Link to="/">Inicio</Link>
+                </NavItem>
                 <NavDropdown eventKey={3} title="Vacaciones" id="basic-nav-dropdown">
-                    <MenuItem eventKey={3.1}><Link to={"/Consulta"}>Consulta de solicitudes</Link></MenuItem>
+                    <MenuItem eventKey={3.1}><Link to={"/consulta"}>Consulta de solicitudes</Link></MenuItem>
+                    <MenuItem eventKey={3.2}><Link to={"/solicitud"}>Solicitud Vacaciones</Link></MenuItem>
                 </NavDropdown>
             </Nav>
             <Nav pullRight>
-                
             </Nav>
         </Navbar.Collapse>
     </Navbar>

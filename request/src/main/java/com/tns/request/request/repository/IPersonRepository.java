@@ -4,8 +4,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.tns.request.request.model.Person;
 
-public interface IPersonRepository extends CrudRepository<Person, Long> {
+public interface IPersonRepository extends CrudRepository<Person, String> {
 
-	Person findByUserIdIdUser(Long id);
+	Person findByUserIdUsername(String username);
 
 }

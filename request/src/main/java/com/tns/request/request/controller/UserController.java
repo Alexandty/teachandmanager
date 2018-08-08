@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tns.request.request.business.UserBusiness;
-import com.tns.request.request.model.Person;
+import com.tns.request.request.dto.PersonDTO;
 import com.tns.request.request.model.User;
 
 @RestController
@@ -19,7 +19,7 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping("/get/person")
-	public Person getPerson(@RequestBody User user) {
+	public PersonDTO getPerson(@RequestBody User user) {
 		return userBusiness.getPerson(user);
 	}
 

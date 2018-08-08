@@ -1,33 +1,27 @@
-import { createStore, applyMiddleware, combineReducers , compose} from 'redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import login from './Container/Login/reducer';
+import RequestVacationList from './Container/VacationsRequestList/reducer';
+import AddSolitudVacaciones from './Container/SolicitudVacaciones/reducer';
 import thunk from 'redux-thunk';
 
-const initialState = {
-    user: '',
-    VacationData: [],
-    logged: false
-};
 
-const reducer = (state = initialState, action) => {
-    if (action.type === "LOGIN") {
-        return {
-            ...state,
-            user: action.user,
-            logged: true
-        }
-    }
-    else if (action.type === "REPLACE_PRODUCTS") {
-        console.log("Datos del store", action.VacationData);
-        return {
-            ...state,
-            VacationData: action.VacationData
-        };
-    }
-    return state;
-}
+
+const composeEnhancers =
+    typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+        ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+            // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+        })
+        : compose;
+
+
 const rootReducer = combineReducers({
-    reducerLogin: reducer,
-    form: formReducer
-})
+    form: formReducer,
+    login: login,
+    VacationList: RequestVacationList,
+    SolicitudVacaciones: AddSolitudVacaciones
+});
 
-export default createStore(rootReducer, applyMiddleware(thunk));
+export default createStore(rootReducer,
+    composeEnhancers(applyMiddleware(thunk))
+);

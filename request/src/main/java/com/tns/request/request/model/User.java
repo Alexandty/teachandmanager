@@ -2,10 +2,7 @@ package com.tns.request.request.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,19 +10,11 @@ import javax.persistence.Table;
 public class User {
 
 	@Id
-	@GeneratedValue
-	@Column(name = "id_user")
-	private long idUser;
-	
 	@Column(name = "user_name")
 	private String username;
-	
+
 	@Column(name = "password")
 	private String password;
-	
-	public long getIdUser() {
-		return idUser;
-	}
 
 	public String getUsername() {
 		return username;
@@ -42,7 +31,5 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 
 }

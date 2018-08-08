@@ -1,13 +1,22 @@
 package com.tns.request.request.controller;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tns.request.request.business.SolicitudVacacionesService;
+import com.tns.request.request.dto.SolicitudVacacionesUsernameDTO;
 import com.tns.request.request.model.SolicitudVacaciones;
 
 @CrossOrigin(origins = "http://localhost:3000/")
@@ -16,35 +25,30 @@ import com.tns.request.request.model.SolicitudVacaciones;
 public class SolicitudVacacionesController {
 
 	@Autowired
-	private SolicitudVacacionesService SolicitudVacacionesService;
-	//
-	// @PostMapping("vacaciones/add")
-	// public SolicitudVacaciones add(@RequestBody SolicitudVacaciones
-	// solicitudVacaciones) {
-	// return SolicitudVacacionesService.add(solicitudVacaciones);
-	//
-	// }
+	private SolicitudVacacionesService solicitudVacacionesService;
 
-	@GetMapping("vacaciones/consultar/{cedula}")
-	public SolicitudVacaciones geSolicitudVacacion(@PathVariable Long cedula) {		
-		return SolicitudVacacionesService.getSolicitudesByPersonId(cedula);
+	@GetMapping("vacaciones/consultar/{username}")
+	public List<SolicitudVacaciones> getSolicitudVacacion(@PathVariable String username) {
+		System.out.println("good back");
+		return solicitudVacacionesService.getSolicitudesByPersonId(username);
 	}
 
-	// @GetMapping("/consultar/todo")
-	// public List<SolicitudVacaciones> get() {
-	// return SolicitudVacacionesService.getAll();
-	//
-	// }
-	//
-	// @GetMapping("/consultar/todo")
-	// public List<SolicitudVacaciones> getAllById(long id) {
-	// return SolicitudVacacionesService.getAllById(id);
-	//
-	// }
-	//
-	// @DeleteMapping("/eliminar/{id}")
-	// public void delete(@PathVariable long cedula) {
-	// SolicitudVacacionesService.delete(cedula);
-	// }
+	@GetMapping("vacaciones/disponibles/{username}")
+	public int getDiasDisponibles(@PathVariable String username) {
+		return solicitudVacacionesService.getDiasDisponibles(new Date(), username);
+	}
+
+	@PostMapping("vacaciones/create")
+	public ResponseEntity<SolicitudVacaciones> guardarSolicitudVacaciones(
+			@RequestBody SolicitudVacacionesUsernameDTO solicitudVacaciones) {
+		solicitudVacacionesService.crearSolicitud(solicitudVacaciones);
+		return new ResponseEntity<SolicitudVacaciones>(HttpStatus.OK);
+	}
+
+	@ResponseBody
+	@RequestMapping("vacaciones/disponibles")
+	public int getDiasDisponiblesPorFecha(@RequestBody SolicitudVacacionesUsernameDTO solicitudVacaUserDTO) {
+		return solicitudVacacionesService.getDiasDisponiblesVacaUserDTO(solicitudVacaUserDTO);
+	}
 
 }

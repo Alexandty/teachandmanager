@@ -1,23 +1,15 @@
 package com.tns.request.request.repository;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.tns.request.request.model.SolicitudVacaciones;
 
 public interface SolicitudVacacionesRepository extends CrudRepository<SolicitudVacaciones, Long> {
+		
+	@Query(value = "select * from ta_vacation join ta_person on ta_vacation.id_person = ta_person.id_person join ta_user on ta_user.user_name = ta_person.fk_user where ta_user.user_name = ?1 order by ta_vacation.end_date desc" , nativeQuery = true)
+	List<SolicitudVacaciones> findByPersonIdIdPersonOrderByPersonId(String username);
 
-	SolicitudVacaciones findByPersonIdIdPerson(Long id);
-
-//	List<SolicitudVacaciones> findByCedula(Long cedula);
-
-	
-
-	
-
-//	@Transactional
-//	Stream<SolicitudVacaciones> findAllByRange(final Date startDate, final Date endDate);
 }

@@ -1,21 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const WelcomeMessage = (props) => {
-    if (!props.name) {
-        return <div>...</div>
+export const WelcomeMessage = ({ name, lastName, user }) => {
+    if (!name) {
+        return <div className="noname">...</div>
     }
     return (
         <div>
-        <h1 className="saludo">Bienvenido</h1>
-        <h2>{props.name} {props.lastName}</h2>
+            <h2 className="saludo">Bienvenido</h2>
+            <h3>{name} {lastName}</h3>
         </div>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        ...state.reducerLogin.user
+        ...state.login.user
+
     };
 };
 
