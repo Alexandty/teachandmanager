@@ -1,54 +1,73 @@
 import React from 'react';
-import { Table, Glyphicon, Button, Label } from 'react-bootstrap';
-const requestVacationLider = () => {
-    return (
-        <Table striped bordered condensed hover>
-            <thead>
-                <tr>
-                    <th>Solver</th>
-                    <th>Fecha de Inicio</th>
-                    <th>Fecha de Fin</th>
-                    <th>Fecha de Retorno</th>
-                    <th>Dias Solicitados</th>
-                    <th>Estado</th>
-                    <th>Accion</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Alexander Marquez</td>
-                    <td>5/08/2018</td>
-                    <td>7/08/2018</td>
-                    <td>8/08/2018</td>
-                    <td>2</td>
-                    <td><Label bsStyle='default'>Pendiente</Label></td>
-                    <td>
-                        <Button bsStyle='success' bsSize="xsmall">
-                            <Glyphicon glyph="glyphicon glyphicon-ok" />
-                        </Button>{" "}
-                        <Button bsStyle="danger" bsSize="xsmall" >
-                            <Glyphicon glyph="glyphicon glyphicon-remove" />
-                        </Button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Alexander Marquez</td>
-                    <td>5/08/2018</td>
-                    <td>7/08/2018</td>
-                    <td>8/08/2018</td>
-                    <td>2</td>
-                    <td><Label bsStyle='success'>Aprobado</Label></td>
-                    <td>
-                        <Button bsStyle='success' bsSize="xsmall" disabled="false">
-                            <Glyphicon glyph="glyphicon glyphicon-ok" />
-                        </Button>{" "}
-                        <Button bsStyle="danger" bsSize="xsmall" disabled="false" >
-                            <Glyphicon glyph="glyphicon glyphicon-remove" />
-                        </Button>
-                    </td>
-                </tr>
-            </tbody>
-        </Table>
-    );
+import { connect } from 'react-redux';
+import action from './action';
+import { Table, Glyphicon, Button, Label, Alert } from 'react-bootstrap';
+import Moment from 'moment';
+
+export const RequestVacationLider = ({ listVacationRequestSolvers }) => {
+    if (listVacationRequestSolvers.length === 0) {
+        return (
+            <div className='noSolicitudes'>
+                <Alert bsStyle="info">
+                    <h4>!Lo sentimos!</h4>
+                    <p>
+                        Usted no cuenta con informacion de solicitudes.
+                    </p>
+                </Alert>
+            </div>
+        )
+    } else {
+        return (
+            <div className='Solicitudes'>
+                <h2>Mis Solicitudes</h2>
+                <Table striped bordered condensed hover>
+                    <thead>
+                        <tr>
+                            <th>Solver</th>
+                            <th>Fecha de Inicio</th>
+                            <th>Fecha de Fin</th>
+                            <th>Fecha de Retorno</th>
+                            <th>Dias Solicitados</th>
+                            <th>Estado</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {listVacationRequestSolvers
+                            .sort((solicitudA, solicitudB) => {
+                                if (solicitudA === solicitudB) return 1
+                                else if (solicitudA < solicitudB) return -0
+                                else return 0
+                            })
+                            .map(solicitud =>
+                                <tr key={solicitud.idRequest}>
+                                    <td>{Moment(solicitud.startDate).format('DD/MM/YYYY')}</td>
+                                    <td>{Moment(solicitud.endDate).format('DD/MM/YYYY')}</td>
+                                    <td>{solicitud.requestedDays}</td>
+                                    <td>
+                                        <Label bsStyle='success'>{solicitud.state}</Label>
+                                    </td>
+                                    <td>
+                                        <Button bsStyle='success' bsSize="xsmall">
+                                            <Glyphicon className='glyphicon-ok' glyph="glyphicon glyphicon-ok" disabled={false} />
+                                        </Button>{" "}
+                                        <Button bsStyle="danger" bsSize="xsmall" >
+                                            <Glyphicon className='glyphicon-remove' glyph="glyphicon glyphicon-remove" disabled={false} />
+                                        </Button>
+                                    </td>
+                                </tr>
+                            )}
+                    </tbody>
+                </Table>
+            </div>
+        );
+    }
 }
-export default requestVacationLider;
+
+const mapStateToProps = (state) => {
+    return {
+        ...state.listVacationSolvers
+    };
+};
+
+export default connect(mapStateToProps, action)(RequestVacationLider);

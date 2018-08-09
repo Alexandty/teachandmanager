@@ -53,7 +53,7 @@ exports[`Probando vista SolicitudForm Validando toMatchSnapshot 1`] = `
                 bsClass="label"
                 bsStyle="default"
               >
-                Fecha de Inicio
+                Fecha de Fin
               </Label>
               <Field
                 component={[Function]}

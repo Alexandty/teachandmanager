@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form';
 import login from './Container/Login/reducer';
 import RequestVacationList from './Container/VacationsRequestList/reducer';
 import AddSolitudVacaciones from './Container/SolicitudVacaciones/reducer';
+import requestVacationLider from './Container/RequestVacationLider/reducer';
 import thunk from 'redux-thunk';
 
 
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     form: formReducer,
     login: login,
     VacationList: RequestVacationList,
-    SolicitudVacaciones: AddSolitudVacaciones
+    SolicitudVacaciones: AddSolitudVacaciones,
+    listVacationSolvers: requestVacationLider
 });
 
 export default createStore(rootReducer,
