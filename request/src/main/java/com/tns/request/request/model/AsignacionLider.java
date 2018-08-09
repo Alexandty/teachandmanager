@@ -1,6 +1,5 @@
 package com.tns.request.request.model;
 
-import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,8 +9,7 @@ import javax.persistence.Table;
 @Table(name = "ta_asigancion_lider")
 public class AsignacionLider {
 
-	@Id
-	@Embedded
+	@EmbeddedId
 	private AsignacionLiderPK idAsignacion;
 
 	public AsignacionLiderPK getIdAsignacion() {
