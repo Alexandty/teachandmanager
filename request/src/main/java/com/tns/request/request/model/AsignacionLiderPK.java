@@ -1,10 +1,12 @@
 package com.tns.request.request.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class AsignacionLiderPK {
+public class AsignacionLiderPK implements Serializable {
 	@Column(name = "id_lider")
 	private long idLider;
 	@Column(name = "id_solver")

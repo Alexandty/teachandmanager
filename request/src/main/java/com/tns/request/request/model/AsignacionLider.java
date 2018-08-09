@@ -1,17 +1,17 @@
 package com.tns.request.request.model;
 
-import javax.persistence.Embedded;
+import java.io.Serializable;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "ta_asigancion_lider")
-public class AsignacionLider {
+public class AsignacionLider  {
 
-	@Id
-	@Embedded
+	
+	@EmbeddedId
 	private AsignacionLiderPK idAsignacion;
 
 	public AsignacionLiderPK getIdAsignacion() {
