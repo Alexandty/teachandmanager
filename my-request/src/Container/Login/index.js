@@ -33,7 +33,7 @@ export const LoginForm = props => {
             </Col>
             <Col xs={6} md={4}>
                 <Jumbotron>
-                    <h1 className="login">Login</h1>
+                    <h2 className="login">Login</h2>
                     <form onSubmit={handleSubmit(login)}>
                         <div>
                             <Field name='username' component={renderField} label='Username' type='text'></Field>

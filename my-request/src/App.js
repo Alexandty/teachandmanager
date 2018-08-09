@@ -45,13 +45,13 @@ const AppRouter = (props) => {
 
 const Consulta = () => (
   <Jumbotron>
-    <h1>Consulta</h1>
+    <h2>Consulta</h2>
     <RequestVacationList />
   </Jumbotron>
 );
 const SolicitudApp = () =>(
   <Jumbotron>
-    <h1>Solicitud</h1>
+    <h2>Solicitud</h2>
     <Solicitud/>
   </Jumbotron>
 
@@ -59,7 +59,7 @@ const SolicitudApp = () =>(
 
 const SolicitudesLider = ()=>(
   <Jumbotron>
-    <h1>Mis Solicitudes</h1>
+    <h2>Mis Solicitudes</h2>
     <RequestVacationLider/>
   </Jumbotron>
 )

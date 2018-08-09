@@ -1,6 +1,6 @@
 import React from 'react';
-import{Table} from 'react-bootstrap';
- const requestVacationLider = () => {
+import { Table, Glyphicon, Button, Label } from 'react-bootstrap';
+const requestVacationLider = () => {
     return (
         <Table striped bordered condensed hover>
             <thead>
@@ -16,13 +16,36 @@ import{Table} from 'react-bootstrap';
             </thead>
             <tbody>
                 <tr>
-                    <td>Dato1</td>
-                    <td>Dato2</td>
-                    <td>Dato3</td>
-                    <td>Dato4</td>
-                    <td>Dato5</td>
-                    <td>Dato6</td>
-                    <td>Dato7</td>
+                    <td>Alexander Marquez</td>
+                    <td>5/08/2018</td>
+                    <td>7/08/2018</td>
+                    <td>8/08/2018</td>
+                    <td>2</td>
+                    <td><Label bsStyle='default'>Pendiente</Label></td>
+                    <td>
+                        <Button bsStyle='success' bsSize="xsmall">
+                            <Glyphicon glyph="glyphicon glyphicon-ok" />
+                        </Button>{" "}
+                        <Button bsStyle="danger" bsSize="xsmall" >
+                            <Glyphicon glyph="glyphicon glyphicon-remove" />
+                        </Button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Alexander Marquez</td>
+                    <td>5/08/2018</td>
+                    <td>7/08/2018</td>
+                    <td>8/08/2018</td>
+                    <td>2</td>
+                    <td><Label bsStyle='success'>Aprobado</Label></td>
+                    <td>
+                        <Button bsStyle='success' bsSize="xsmall" disabled="false">
+                            <Glyphicon glyph="glyphicon glyphicon-ok" />
+                        </Button>{" "}
+                        <Button bsStyle="danger" bsSize="xsmall" disabled="false" >
+                            <Glyphicon glyph="glyphicon glyphicon-remove" />
+                        </Button>
+                    </td>
                 </tr>
             </tbody>
         </Table>
