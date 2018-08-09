@@ -27,7 +27,6 @@ export const SolicitudForm = props => {
     const { loadAvailableDays, guardar, consultar, handleSubmit,
         avalableDaysData, user, availableDaysVacation } = props;
    loadAvailableDays(user.user)
-    
     return (
         <div>
             <form onSubmit={handleSubmit((values) => {
@@ -44,7 +43,7 @@ export const SolicitudForm = props => {
                                     <Field type="Date" name="startDate" component={renderField} />
                                 </FormGroup>
                                 <FormGroup controlId="formInlineDate">
-                                    <Label>Fecha de Inicio</Label>
+                                    <Label>Fecha de Fin</Label>
 
                                     <Field type="Date" name="endDate" component={renderField}
                                         onBlur={handleSubmit((values) => {

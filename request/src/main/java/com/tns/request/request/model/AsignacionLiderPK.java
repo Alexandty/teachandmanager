@@ -1,10 +1,8 @@
 package com.tns.request.request.model;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Id;
 
 @Embeddable
 public class AsignacionLiderPK implements Serializable {
