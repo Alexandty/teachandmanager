@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table, Glyphicon, Button, Label } from 'react-bootstrap';
-const requestVacationLider = () => {
+
+export const requestVacationLider = () => {
     return (
         <Table striped bordered condensed hover>
             <thead>
@@ -39,10 +40,10 @@ const requestVacationLider = () => {
                     <td>2</td>
                     <td><Label bsStyle='success'>Aprobado</Label></td>
                     <td>
-                        <Button bsStyle='success' bsSize="xsmall" disabled="false">
+                        <Button bsStyle='success' bsSize="xsmall" disabled={false}>
                             <Glyphicon glyph="glyphicon glyphicon-ok" />
                         </Button>{" "}
-                        <Button bsStyle="danger" bsSize="xsmall" disabled="false" >
+                        <Button bsStyle="danger" bsSize="xsmall" disabled={false} >
                             <Glyphicon glyph="glyphicon glyphicon-remove" />
                         </Button>
                     </td>

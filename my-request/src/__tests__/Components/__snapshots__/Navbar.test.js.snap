@@ -70,6 +70,20 @@ exports[`Validando navbar toMatchSnapshot renderizar navbar  1`] = `
             Solicitud Vacaciones
           </Link>
         </MenuItem>
+        <MenuItem
+          bsClass="dropdown"
+          disabled={false}
+          divider={false}
+          eventKey={3.3}
+          header={false}
+        >
+          <Link
+            replace={false}
+            to="/solicitudeslider"
+          >
+            Mis Solicitudes
+          </Link>
+        </MenuItem>
       </NavDropdown>
     </Nav>
     <Nav

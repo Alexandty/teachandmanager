@@ -11,7 +11,7 @@ exports[`test Vacationlist Validando toMatchSnapshot RequestVacationList 1`] = `
     bsStyle="success"
   >
     fecha de ingreso a la empresa 
-    08/08/2018
+    09/08/2018
   </Label>
   <Alert
     bsClass="alert"
