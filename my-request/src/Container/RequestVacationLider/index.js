@@ -4,6 +4,22 @@ import action from './action';
 import { Table, Glyphicon, Button, Label, Alert } from 'react-bootstrap';
 import Moment from 'moment';
 
+const definirestiloSegunEstado = (estado) => {
+    var estilo = 'warning';
+    switch (estado) {
+        case 'aprobado':
+            estilo = 'success';
+            break;
+        case 'rechazado':
+            estilo = 'danger';
+            break;
+        case 'pendiente':
+            estilo = 'default'
+            break;
+    }
+    return estilo;
+}
+
 export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacationRequestSolvers, user }) => {
     obtenerListaSolicitudesSolvers(user);
     if (listVacationRequestSolvers.length === 0) {
@@ -48,7 +64,7 @@ export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacat
                                     <td>{Moment(solicitud.returnDate)}</td>
                                     <td>{solicitud.requestedDays}</td>
                                     <td>
-                                        <Label bsStyle={solicitud.estado === 'aprobado' ? 'success' : 'default'}>{solicitud.estado}</Label>
+                                        <Label bsStyle={definirestiloSegunEstado(solicitud.estado)}>{solicitud.estado}</Label>
                                     </td>
                                     <td>
                                         <Button bsStyle='success' bsSize="xsmall">

@@ -8,8 +8,9 @@ configure({ adapter: new Adapter() });
 
 describe('Test Para requestVacationLider', () => {
     const list = [
-        { idRequest: 1, startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'aprobado' },
-        { idRequest: 2, startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'pendiente' }
+        { idRequest: 1, name: 'prueba1', startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'aprobado' },
+        { idRequest: 2, name: 'prueba2', startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'pendiente' },
+        { idRequest: 2, name: 'prueba3', startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'rechazado' }
     ];
     const obtenerListaSolicitudesSolvers = jest.fn();
     it('Debe cargar el mensaje lo sentimos cuando no hay list de solicitudes', () => {
@@ -27,8 +28,11 @@ describe('Test Para requestVacationLider', () => {
     })
     it('Debe cargar label con estilo default cuando hay datos en la lista con estado pendiente', () => {
         const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={list} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
-        //console.log(wrapper.debug());
         expect(wrapper.find({ bsStyle: 'default', children: 'pendiente' }).exists()).toBe(true);
+    })
+    it('Debe cargar label con estilo danger cuando hay datos en la lista con estado rechazado', () => {
+        const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={list} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
+        expect(wrapper.find({ bsStyle: 'danger', children: 'rechazado' }).exists()).toBe(true);
     })
     it('Debe cargar glyphicon-ok cuando hay datos en la lista', () => {
         const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={list} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
