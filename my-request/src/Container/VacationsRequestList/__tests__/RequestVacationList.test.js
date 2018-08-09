@@ -25,7 +25,7 @@ describe('test Vacationlist', () => {
         const props = {
             loadRequestVacation: jest.fn(),
             VacationData: [],
-            user: { user: 'a' }
+            user: { user: 'a', entryDate: '2018-08-09' }
         };
         const wrap = shallow(<RequestVacationList {...props} />);
         expect(toJson(wrap)).toMatchSnapshot();
