@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import action from './action';
 import { Table, Glyphicon, Button, Label, Alert } from 'react-bootstrap';
+import Moment from 'moment';
 
 export const RequestVacationLider = ({ listVacationRequestSolvers }) => {
     if (listVacationRequestSolvers.length === 0) {
@@ -32,38 +33,30 @@ export const RequestVacationLider = ({ listVacationRequestSolvers }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Alexander Marquez</td>
-                            <td>5/08/2018</td>
-                            <td>7/08/2018</td>
-                            <td>8/08/2018</td>
-                            <td>2</td>
-                            <td><Label bsStyle='default'>Pendiente</Label></td>
-                            <td>
-                                <Button bsStyle='success' bsSize="xsmall">
-                                    <Glyphicon glyph="glyphicon glyphicon-ok" />
-                                </Button>{" "}
-                                <Button bsStyle="danger" bsSize="xsmall" >
-                                    <Glyphicon glyph="glyphicon glyphicon-remove" />
-                                </Button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Alexander Marquez</td>
-                            <td>5/08/2018</td>
-                            <td>7/08/2018</td>
-                            <td>8/08/2018</td>
-                            <td>2</td>
-                            <td><Label bsStyle='success'>Aprobado</Label></td>
-                            <td>
-                                <Button bsStyle='success' bsSize="xsmall" disabled={false}>
-                                    <Glyphicon glyph="glyphicon glyphicon-ok" />
-                                </Button>{" "}
-                                <Button bsStyle="danger" bsSize="xsmall" disabled={false} >
-                                    <Glyphicon glyph="glyphicon glyphicon-remove" />
-                                </Button>
-                            </td>
-                        </tr>
+                        {listVacationRequestSolvers
+                            .sort((solicitudA, solicitudB) => {
+                                if (solicitudA === solicitudB) return 1
+                                else if (solicitudA < solicitudB) return -0
+                                else return 0
+                            })
+                            .map(solicitud =>
+                                <tr key={solicitud.idRequest}>
+                                    <td>{Moment(solicitud.startDate).format('DD/MM/YYYY')}</td>
+                                    <td>{Moment(solicitud.endDate).format('DD/MM/YYYY')}</td>
+                                    <td>{solicitud.requestedDays}</td>
+                                    <td>
+                                        <Label bsStyle='success'>{solicitud.state}</Label>
+                                    </td>
+                                    <td>
+                                        <Button bsStyle='success' bsSize="xsmall">
+                                            <Glyphicon className='glyphicon-ok' glyph="glyphicon glyphicon-ok" disabled={false} />
+                                        </Button>{" "}
+                                        <Button bsStyle="danger" bsSize="xsmall" >
+                                            <Glyphicon className='glyphicon-remove' glyph="glyphicon glyphicon-remove" disabled={false} />
+                                        </Button>
+                                    </td>
+                                </tr>
+                            )}
                     </tbody>
                 </Table>
             </div>
