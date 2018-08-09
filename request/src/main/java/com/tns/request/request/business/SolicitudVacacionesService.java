@@ -7,6 +7,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.tns.request.request.dto.SolicitudVacacionesUsernameDTO;
@@ -105,5 +106,9 @@ public class SolicitudVacacionesService {
 				.map(p -> solicitudVacacionesRepository.findByPersonIdIdPerson(p)).flatMap(List::stream)
 				.collect(Collectors.toList());
 	}
+
+//	public ResponseEntity<SolicitudVacaciones> putSolicitudVacacion(SolicitudVacaciones solicitud) {
+//		return solicitudVacacionesRepository.save(solicitud);
+//	}
 
 }

@@ -41,7 +41,7 @@ public class SolicitudVacacionesController {
 	public ResponseEntity<SolicitudVacaciones> guardarSolicitudVacaciones(
 			@RequestBody SolicitudVacacionesUsernameDTO solicitudVacaciones) {
 		solicitudVacacionesService.crearSolicitud(solicitudVacaciones);
-		return new ResponseEntity<SolicitudVacaciones>(HttpStatus.OK);
+		return new ResponseEntity<SolicitudVacaciones>(HttpStatus.CREATED);
 	}
 
 	@ResponseBody
