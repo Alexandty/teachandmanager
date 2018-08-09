@@ -37,6 +37,14 @@ public class SolicitudVacaciones {
 	@Column(name = "return_date")
 	private Date returnDate;
 	
+	public Date getReturnDate() {
+		return returnDate;
+	}
+
+	public void setReturnDate(Date returnDate) {
+		this.returnDate = returnDate;
+	}
+
 	@OneToOne
 	@JoinColumn(name = "id_person")
 	private Person personId;
