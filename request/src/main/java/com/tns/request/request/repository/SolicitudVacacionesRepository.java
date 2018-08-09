@@ -11,5 +11,7 @@ public interface SolicitudVacacionesRepository extends CrudRepository<SolicitudV
 		
 	@Query(value = "select * from ta_vacation join ta_person on ta_vacation.id_person = ta_person.id_person join ta_user on ta_user.user_name = ta_person.fk_user where ta_user.user_name = ?1 order by ta_vacation.end_date desc" , nativeQuery = true)
 	List<SolicitudVacaciones> findByPersonIdIdPersonOrderByPersonId(String username);
+	
+	List<SolicitudVacaciones> findByPersonIdIdPerson(Long idPerson);
 
 }

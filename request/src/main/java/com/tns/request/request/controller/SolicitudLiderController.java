@@ -22,7 +22,7 @@ public class SolicitudLiderController {
 
 	@GetMapping("vacaciones/consultar/{username}")
 	public List<SolicitudVacaciones> getSolicitudVacacion(@PathVariable String username) {
-		return null;
+		return solicitudVacacionesService.getAllSolverSolicitudes(username);
 	}
 
 }

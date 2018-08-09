@@ -31,24 +31,21 @@ public class Person {
 	@Column(name = "entry_date")
 	private Date entryDate;
 
-	@Column(name = "rol_lider")
-	@Convert(converter = BooleanToStringConverter.class)
-	private int rolLider;
-
-//	@OneToMany
-//	private List<AsignacionLider> solvers;
+//	@Column(name = "rol_lider")
+//	@Convert(converter = BooleanToStringConverter.class)
+//	private int rolLider;
 
 	@OneToOne
 	@JoinColumn(name = "fk_user")
 	private User userId;
 
-	public int getRol() {
-		return rolLider;
-	}
-
-	public void setRol(int rolLider) {
-		this.rolLider = rolLider;
-	}
+//	public int getRol() {
+//		return rolLider;
+//	}
+//
+//	public void setRol(int rolLider) {
+//		this.rolLider = rolLider;
+//	}
 
 	public long getIdPerson() {
 		return idPerson;

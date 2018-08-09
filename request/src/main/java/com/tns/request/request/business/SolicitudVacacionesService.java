@@ -3,6 +3,7 @@ package com.tns.request.request.business;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class SolicitudVacacionesService {
 
 	@Autowired
 	private IPersonRepository personRepository;
-	
+
 	@Autowired
 	private IAsignacionRepository asignacionRepository;
 
@@ -86,15 +87,23 @@ public class SolicitudVacacionesService {
 		}
 		return getDiasDisponibles(fechaInicio, solicitudVacaUserDTO.getUser());
 	}
-	
-	private List<Person> getSolversDelLider(long idLider){
+
+	private List<Person> getSolversDelLider(long idLider) {
 		List<AsignacionLider> asignaciones = asignacionRepository.findByIdAsignacionIdLider(idLider);
 		return asignaciones.stream().map(this::getSolver).collect(Collectors.toList());
 	}
-	
+
 	private Person getSolver(AsignacionLider asignacion) {
-		return personRepository.findById(asignacion.getIdAsignacion().getIdSolver()).orElseThrow(()->new BusinessException("No se encontro solver...."));
+		return personRepository.findById(asignacion.getIdAsignacion().getIdSolver())
+				.orElseThrow(() -> new BusinessException("No se encontro solver...."));
 	}
-	
+
+	public List<SolicitudVacaciones> getAllSolverSolicitudes(String username) {
+		Person persona = personRepository.findByUserIdUsername(username);
+		List<Person> solversList = getSolversDelLider(persona.getIdPerson());
+		return solversList.stream().map(p -> p.getIdPerson())
+				.map(p -> solicitudVacacionesRepository.findByPersonIdIdPerson(p)).flatMap(List::stream)
+				.collect(Collectors.toList());
+	}
 
 }
