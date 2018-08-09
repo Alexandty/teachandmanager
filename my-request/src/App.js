@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { Jumbotron } from 'react-bootstrap';
-
+import { connect } from 'react-redux';
 import NavbarApp from './Components/Navbar';
 import Login from './Container/Login';
 import './App.css';
@@ -9,7 +9,6 @@ import RequestVacationList from './Container/VacationsRequestList';
 import Solicitud from './Container/SolicitudVacaciones/';
 import RequestVacationLider from './Container/RequestVacationLider';
 import WelcomeMessage from './Components/WelcomeMessage';
-import { connect } from 'react-redux';
 
 const App = ({ logged }) => {
   if (logged) {
@@ -33,7 +32,7 @@ const AppRouter = (props) => {
         <Route exact path="/" component={Welcome} />
         <Route path="/consulta" component={Consulta} />
         <Route path="/solicitud" component={SolicitudApp} />
-        <Route path="/solicitudeslider" component={SolicitudesLider}/>
+        <Route path="/solicitudeslider" component={SolicitudesLider} />
       </div>
     </Router>
   )
@@ -45,18 +44,17 @@ const Consulta = () => (
     <RequestVacationList />
   </Jumbotron>
 );
-const SolicitudApp = () =>(
+const SolicitudApp = () => (
   <Jumbotron>
     <h2>Solicitud</h2>
-    <Solicitud/>
+    <Solicitud />
   </Jumbotron>
 
 );
 
-const SolicitudesLider = ()=>(
+const SolicitudesLider = () => (
   <Jumbotron>
-    <h2>Mis Solicitudes</h2>
-    <RequestVacationLider/>
+    <RequestVacationLider />
   </Jumbotron>
 )
 
