@@ -4,7 +4,8 @@ import action from './action';
 import { Table, Glyphicon, Button, Label, Alert } from 'react-bootstrap';
 import Moment from 'moment';
 
-export const RequestVacationLider = ({ listVacationRequestSolvers }) => {
+export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacationRequestSolvers, user }) => {
+    obtenerListaSolicitudesSolvers(user);
     if (listVacationRequestSolvers.length === 0) {
         return (
             <div className='noSolicitudes'>
@@ -66,7 +67,8 @@ export const RequestVacationLider = ({ listVacationRequestSolvers }) => {
 
 const mapStateToProps = (state) => {
     return {
-        ...state.listVacationSolvers
+        ...state.listVacationSolvers,
+        ...state.login.user
     };
 };
 
