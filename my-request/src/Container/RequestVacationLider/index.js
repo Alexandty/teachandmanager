@@ -42,11 +42,13 @@ export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacat
                             })
                             .map(solicitud =>
                                 <tr key={solicitud.idRequest}>
+                                    <td>{solicitud.name}</td>
                                     <td>{Moment(solicitud.startDate).format('DD/MM/YYYY')}</td>
                                     <td>{Moment(solicitud.endDate).format('DD/MM/YYYY')}</td>
+                                    <td>{Moment(solicitud.returnDate)}</td>
                                     <td>{solicitud.requestedDays}</td>
                                     <td>
-                                        <Label bsStyle='success'>{solicitud.state}</Label>
+                                        <Label bsStyle={solicitud.estado === 'aprobado' ? 'success' : 'default'}>{solicitud.estado}</Label>
                                     </td>
                                     <td>
                                         <Button bsStyle='success' bsSize="xsmall">
