@@ -33,10 +33,29 @@ public class SolicitudVacaciones {
 
 	@Column(name = "estado")
 	private String estado;
-
+	
+	@Column(name = "return_date")
+	private Date returnDate;
+	
 	@OneToOne
 	@JoinColumn(name = "id_person")
 	private Person personId;
+
+	public String getMotivo() {
+		return motivo;
+	}
+
+	public void setMotivo(String motivo) {
+		this.motivo = motivo;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 
 	public Person getPersonId() {
 		return personId;

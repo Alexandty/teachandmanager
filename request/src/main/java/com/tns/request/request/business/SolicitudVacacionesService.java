@@ -3,14 +3,17 @@ package com.tns.request.request.business;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tns.request.request.dto.SolicitudVacacionesUsernameDTO;
 import com.tns.request.request.exception.BusinessException;
+import com.tns.request.request.model.AsignacionLider;
 import com.tns.request.request.model.Person;
 import com.tns.request.request.model.SolicitudVacaciones;
+import com.tns.request.request.repository.IAsignacionRepository;
 import com.tns.request.request.repository.IPersonRepository;
 import com.tns.request.request.repository.SolicitudVacacionesRepository;
 import com.tns.request.request.util.UtilDate;
@@ -23,6 +26,9 @@ public class SolicitudVacacionesService {
 
 	@Autowired
 	private IPersonRepository personRepository;
+	
+	@Autowired
+	private IAsignacionRepository asignacionRepository;
 
 	public Optional<SolicitudVacaciones> getAllPersonById(Long cedula) {
 		return solicitudVacacionesRepository.findById(cedula);
@@ -80,5 +86,15 @@ public class SolicitudVacacionesService {
 		}
 		return getDiasDisponibles(fechaInicio, solicitudVacaUserDTO.getUser());
 	}
+	
+	private List<Person> getSolversDelLider(long idLider){
+		List<AsignacionLider> asignaciones = asignacionRepository.findByIdAsignacionIdLider(idLider);
+		return asignaciones.stream().map(this::getSolver).collect(Collectors.toList());
+	}
+	
+	private Person getSolver(AsignacionLider asignacion) {
+		return personRepository.findById(asignacion.getIdAsignacion().getIdSolver()).orElseThrow(()->new BusinessException("No se encontro solver...."));
+	}
+	
 
 }

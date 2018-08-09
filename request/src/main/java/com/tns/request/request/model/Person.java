@@ -3,12 +3,15 @@ package com.tns.request.request.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.tns.request.request.converters.BooleanToStringConverter;
 
 @Entity
 @Table(name = "ta_person")
@@ -17,7 +20,7 @@ public class Person {
 	@Id
 	@GeneratedValue
 	@Column(name = "id_person")
-	private long idPerson;
+	private Long idPerson;
 
 	@Column(name = "name")
 	private String name;
@@ -28,19 +31,23 @@ public class Person {
 	@Column(name = "entry_date")
 	private Date entryDate;
 
-	@Column(name = "rol")
-	private String rol;
+	@Column(name = "rol_lider")
+	@Convert(converter = BooleanToStringConverter.class)
+	private int rolLider;
+
+//	@OneToMany
+//	private List<AsignacionLider> solvers;
 
 	@OneToOne
 	@JoinColumn(name = "fk_user")
 	private User userId;
 
-	public String getRol() {
-		return rol;
+	public int getRol() {
+		return rolLider;
 	}
 
-	public void setRol(String rol) {
-		this.rol = rol;
+	public void setRol(int rolLider) {
+		this.rolLider = rolLider;
 	}
 
 	public long getIdPerson() {
