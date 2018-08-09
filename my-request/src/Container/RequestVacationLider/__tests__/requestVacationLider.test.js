@@ -34,8 +34,14 @@ describe('Test Para requestVacationLider', () => {
         const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={list} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
         expect(wrapper.find({ bsStyle: 'danger', children: 'rechazado' }).exists()).toBe(true);
     })
-    it('Debe cargar glyphicon-ok cuando hay datos en la lista', () => {
+    it('Debe cargar glyphicon-ok y glyphicon-remove cuando hay datos en la lista', () => {
         const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={list} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
         expect(wrapper.find('.glyphicon-ok').exists()).toBe(true);
+        expect(wrapper.find('.glyphicon-remove').exists()).toBe(true);
+    })
+    it('Debe cargar glyphicon-ok y glyphicon-remove habilitado cuando hay datos en la lista con estado pendiente', () => {
+        const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={list} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
+        expect(wrapper.find({ className: 'glyphicon-ok', disabled: true }).exists()).toBe(true);
+        expect(wrapper.find({ className: 'glyphicon-remove', disabled: true }).exists()).toBe(true);
     })
 })

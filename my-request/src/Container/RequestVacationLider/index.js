@@ -68,10 +68,19 @@ export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacat
                                     </td>
                                     <td>
                                         <Button bsStyle='success' bsSize="xsmall">
-                                            <Glyphicon className='glyphicon-ok' glyph="glyphicon glyphicon-ok" disabled={false} />
-                                        </Button>{" "}
+                                            <Glyphicon
+                                                className='glyphicon-ok'
+                                                glyph="glyphicon glyphicon-ok"
+                                                disabled={solicitud.estado === 'pendiente' ? true : false}
+                                            />
+                                        </Button>
+                                        {" "}
                                         <Button bsStyle="danger" bsSize="xsmall" >
-                                            <Glyphicon className='glyphicon-remove' glyph="glyphicon glyphicon-remove" disabled={false} />
+                                            <Glyphicon
+                                                className='glyphicon-remove'
+                                                glyph="glyphicon glyphicon-remove"
+                                                disabled={solicitud.estado === 'pendiente' ? true : false}
+                                            />
                                         </Button>
                                     </td>
                                 </tr>
