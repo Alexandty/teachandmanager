@@ -6,6 +6,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.tns.request.request.dto.SolicitudVacacionesUsernameDTO;
@@ -29,6 +31,8 @@ public class SolicitudVacacionesService {
 
 	@Autowired
 	private IAsignacionRepository asignacionRepository;
+
+	private SolicitudVacaciones solicitudVacaciones;
 
 	public Optional<SolicitudVacaciones> getAllPersonById(Long cedula) {
 		return solicitudVacacionesRepository.findById(cedula);
@@ -105,10 +109,31 @@ public class SolicitudVacacionesService {
 				.collect(Collectors.toList());
 	}
 
-	public SolicitudVacaciones putSolicitudVacacion(SolicitudVacaciones solicitud) {
-		SolicitudVacaciones solicitudActualiza = solicitudVacacionesRepository.findById(solicitud.getIdRequest())
-				.orElseThrow(() -> new BusinessException("No se pudo actualizar solicitud..."));
-		return solicitudVacacionesRepository.save(solicitud);
+	public ResponseEntity<SolicitudVacaciones> updateSolicitud(Long idRequest,
+			SolicitudVacaciones solicitudVacaciones) {
+		Optional<SolicitudVacaciones> solicitudData = solicitudVacacionesRepository.findById(idRequest);
+
+		if (solicitudData.isPresent()) {
+			SolicitudVacaciones solicitudSave = solicitudData.get();
+			solicitudSave.setEndDate(solicitudVacaciones.getEndDate());
+			solicitudSave.setStartDate(solicitudVacaciones.getStartDate());
+			solicitudSave.setEstado(solicitudVacaciones.getEstado());
+			solicitudSave.setMotivo(solicitudVacaciones.getMotivo());
+			solicitudSave.setRequestedDays(solicitudVacaciones.getRequestedDays());
+			solicitudSave.setReturnDate(solicitudVacaciones.getReturnDate());
+
+			SolicitudVacaciones solicitudUpdate = solicitudVacacionesRepository.save(solicitudSave);
+
+			return new ResponseEntity<>(solicitudUpdate, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
 	}
+
+	// public ResponseEntity<SolicitudVacaciones>
+	// putSolicitudVacacion(SolicitudVacaciones solicitud) {
+	// return solicitudVacacionesRepository.save(solicitud);
+	// }
 
 }
