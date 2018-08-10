@@ -3,11 +3,9 @@ package com.tns.request.request.business;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.tns.request.request.dto.SolicitudVacacionesUsernameDTO;
@@ -107,8 +105,10 @@ public class SolicitudVacacionesService {
 				.collect(Collectors.toList());
 	}
 
-//	public ResponseEntity<SolicitudVacaciones> putSolicitudVacacion(SolicitudVacaciones solicitud) {
-//		return solicitudVacacionesRepository.save(solicitud);
-//	}
+	public SolicitudVacaciones putSolicitudVacacion(SolicitudVacaciones solicitud) {
+		SolicitudVacaciones solicitudActualiza = solicitudVacacionesRepository.findById(solicitud.getIdRequest())
+				.orElseThrow(() -> new BusinessException("No se pudo actualizar solicitud..."));
+		return solicitudVacacionesRepository.save(solicitud);
+	}
 
 }
