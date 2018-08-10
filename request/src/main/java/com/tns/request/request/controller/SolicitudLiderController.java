@@ -3,7 +3,6 @@ package com.tns.request.request.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,9 +28,16 @@ public class SolicitudLiderController {
 		return solicitudVacacionesService.getAllSolverSolicitudes(username);
 	}
 
-	@PutMapping("vacaciones/actualizar")
-	public SolicitudVacaciones putSolicitudVacacion(@RequestBody SolicitudVacaciones solicitud) {
-		return solicitud;
-		//		return solicitudVacacionesService.putSolicitudVacacion(solicitud);
+	@PutMapping("vacaciones/actualizar/{idRequest}")
+	public ResponseEntity<SolicitudVacaciones> putUpdateSolicitud(@PathVariable("idRequest") Long idRequest, @RequestBody SolicitudVacaciones solicitudVacaciones) {
+
+		return solicitudVacacionesService.updateSolicitud(idRequest, solicitudVacaciones);
 	}
+
+	// @PutMapping("vacaciones/actualizar")
+	// public SolicitudVacaciones putSolicitudVacacion(@RequestBody
+	// SolicitudVacaciones solicitud) {
+	// return solicitud;
+	// // return solicitudVacacionesService.putSolicitudVacacion(solicitud);
+	// }
 }
