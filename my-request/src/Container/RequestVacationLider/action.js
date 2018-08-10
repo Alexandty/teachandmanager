@@ -11,7 +11,7 @@ const action = {
     },
     cambiarEstado: (solicitud) => {
         return (dispatch) => {
-            return axios.put('');
+            return axios.put('http://localhost:8081/solicitudlider/vacaciones/actualizar' + solicitud.idRequest);
         }
     }
 }

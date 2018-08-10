@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import action from './action';
-import { Table, Glyphicon, Button, Label, Alert } from 'react-bootstrap';
+import { Table, Glyphicon, Button, Label } from 'react-bootstrap';
 import Moment from 'moment';
 
-import SinSolicitudes from '../../Components/sinSolicitudes';
+import SinSolicitudes from '../../Components/SinSolicitudes';
+import Confirmar from '../../Components/Confirmar';
+
+var mostrarConfirmacion = false;
 
 const definirestiloSegunEstado = (estado) => {
     var estilo = 'warning';
@@ -22,8 +25,20 @@ const definirestiloSegunEstado = (estado) => {
     return estilo;
 }
 
-const confirmarCambio = (event) => {
+const ConfirmarCambio = (event) => {
+    if (event) {
+        return mostrarConfirmacion = true;
+    }
+}
 
+const closeConfirmarCambio = (event) => {
+    if (event) {
+        return mostrarConfirmacion = false;
+    }
+}
+
+const continuar = (event) => {
+    
 }
 
 export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacationRequestSolvers, user }) => {
@@ -38,6 +53,7 @@ export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacat
         return (
             <div className='Solicitudes'>
                 <h2>Mis Solicitudes</h2>
+                <Confirmar mostrar={mostrarConfirmacion} onCancelar={closeConfirmarCambio} onAceptar={continuar} />
                 <Table striped bordered condensed hover>
                     <thead>
                         <tr>
@@ -68,17 +84,24 @@ export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacat
                                         <Label bsStyle={definirestiloSegunEstado(solicitud.estado)}>{solicitud.estado}</Label>
                                     </td>
                                     <td>
-                                        <Button bsStyle='success' bsSize="xsmall" disabled={solicitud.estado === 'pendiente' ? true : false}>
+                                        <Button
+                                            bsStyle='success' bsSize="xsmall"
+                                            disabled={solicitud.estado === 'pendiente' ? false : true}
+                                            onClick={ConfirmarCambio}
+                                        >
                                             <Glyphicon
                                                 glyph="glyphicon glyphicon-ok"
-                                                disabled={solicitud.estado === 'pendiente' ? true : false}
+                                                disabled={solicitud.estado === 'pendiente' ? false : true}
                                             />
                                         </Button>
                                         {" "}
-                                        <Button bsStyle="danger" bsSize="xsmall" disabled={solicitud.estado === 'pendiente' ? true : false}>
+                                        <Button
+                                            bsStyle="danger" bsSize="xsmall"
+                                            disabled={solicitud.estado === 'pendiente' ? false : true}
+                                        >
                                             <Glyphicon
                                                 glyph="glyphicon glyphicon-remove"
-                                                disabled={solicitud.estado === 'pendiente' ? true : false}
+                                                disabled={solicitud.estado === 'pendiente' ? false : true}
                                             />
                                         </Button>
                                     </td>

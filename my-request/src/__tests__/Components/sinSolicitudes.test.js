@@ -2,7 +2,7 @@ import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import { configure, shallow } from 'enzyme';
 
-import SinSolicitudes from '../../Components/sinSolicitudes';
+import SinSolicitudes from '../../Components/SinSolicitudes';
 
 configure({ adapter: new Adapter() });
 

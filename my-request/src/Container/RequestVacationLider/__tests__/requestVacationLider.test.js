@@ -10,7 +10,7 @@ describe('Test Para requestVacationLider', () => {
     const list = [
         { idRequest: 1, personId: { name: 'prueba1' }, startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'aprobado' },
         { idRequest: 2, personId: { name: 'prueba2' }, startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'pendiente' },
-        { idRequest: 2, personId: { name: 'prueba3' }, startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'rechazado' }
+        { idRequest: 3, personId: { name: 'prueba3' }, startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'rechazado' }
     ];
     const obtenerListaSolicitudesSolvers = jest.fn();
     it('Debe cargar el mensaje lo sentimos cuando no hay solicitudes', () => {
@@ -85,7 +85,8 @@ describe('Test Para requestVacationLider', () => {
                 obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers}
             />
         );
-        const btn = wrapper.find({ bsStyle: 'success', bsSize: "xsmall" });
-        console.log(btn.debug());
+        const btn = wrapper.find({ bsStyle: 'success', bsSize: "xsmall", disabled: true }).at(0);
+        expect(wrapper.find({ mostrar: false }).exists()).toBe(true);
+        btn.simulate('click');
     })
 })
