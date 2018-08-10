@@ -58,10 +58,10 @@ export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacat
                             })
                             .map(solicitud =>
                                 <tr key={solicitud.idRequest}>
-                                    <td>{solicitud.name}</td>
+                                    <td>{solicitud.personId.name}</td>
                                     <td>{Moment(solicitud.startDate).format('DD/MM/YYYY')}</td>
                                     <td>{Moment(solicitud.endDate).format('DD/MM/YYYY')}</td>
-                                    <td>{Moment(solicitud.returnDate)}</td>
+                                    <td>{Moment(solicitud.returnDate).format('DD/MM/YYYY')}</td>
                                     <td>{solicitud.requestedDays}</td>
                                     <td>
                                         <Label bsStyle={definirestiloSegunEstado(solicitud.estado)}>{solicitud.estado}</Label>
