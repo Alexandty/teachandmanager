@@ -8,14 +8,14 @@ configure({ adapter: new Adapter() });
 
 describe('Test Para requestVacationLider', () => {
     const list = [
-        { idRequest: 1, name: 'prueba1', startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'aprobado' },
-        { idRequest: 2, name: 'prueba2', startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'pendiente' },
-        { idRequest: 2, name: 'prueba3', startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'rechazado' }
+        { idRequest: 1, personId: { name: 'prueba1' }, startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'aprobado' },
+        { idRequest: 2, personId: { name: 'prueba2' }, startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'pendiente' },
+        { idRequest: 2, personId: { name: 'prueba3' }, startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'rechazado' }
     ];
     const obtenerListaSolicitudesSolvers = jest.fn();
     it('Debe cargar el mensaje lo sentimos cuando no hay list de solicitudes', () => {
         const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={[]} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
-        expect(wrapper.find('.noSolicitudes').exists()).toBe(true);
+        expect(wrapper.find('.sinSolicitudes').exists()).toBe(true);
     })
     it('Debe cargar Solicitudes cuando hay datos en la lista', () => {
         const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={list} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
