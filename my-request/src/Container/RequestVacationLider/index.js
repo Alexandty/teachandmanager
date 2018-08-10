@@ -4,6 +4,8 @@ import action from './action';
 import { Table, Glyphicon, Button, Label, Alert } from 'react-bootstrap';
 import Moment from 'moment';
 
+import SinSolicitudes from '../../Components/sinSolicitudes';
+
 const definirestiloSegunEstado = (estado) => {
     var estilo = 'warning';
     switch (estado) {
@@ -24,14 +26,9 @@ export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacat
     obtenerListaSolicitudesSolvers(user);
     if (listVacationRequestSolvers.length === 0) {
         return (
-            <div className='noSolicitudes'>
-                <Alert bsStyle="info">
-                    <h4>!Lo sentimos!</h4>
-                    <p>
-                        Usted no cuenta con informacion de solicitudes.
-                    </p>
-                </Alert>
-            </div>
+            <SinSolicitudes title={'!Lo sentimos!'}>
+                Usted no cuenta con informacion de solicitudes.
+            </SinSolicitudes>
         )
     } else {
         return (

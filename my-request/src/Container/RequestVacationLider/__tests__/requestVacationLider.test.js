@@ -13,9 +13,10 @@ describe('Test Para requestVacationLider', () => {
         { idRequest: 2, personId: { name: 'prueba3' }, startDate: '2018-10-10', endDate: '2018-10-11', requestedDays: 1, estado: 'rechazado' }
     ];
     const obtenerListaSolicitudesSolvers = jest.fn();
-    it('Debe cargar el mensaje lo sentimos cuando no hay list de solicitudes', () => {
+    it('Debe cargar el mensaje lo sentimos cuando no hay solicitudes', () => {
         const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={[]} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
-        expect(wrapper.find('.sinSolicitudes').exists()).toBe(true);
+        console.log(wrapper.debug());
+        expect(wrapper.find({ title: '!Lo sentimos!' }).exists()).toBe(true);
     })
     it('Debe cargar Solicitudes cuando hay datos en la lista', () => {
         const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={list} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);

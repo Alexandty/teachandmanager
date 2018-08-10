@@ -19,7 +19,6 @@ describe('Test para sinSolicitudes', () => {
         const wrapper = shallow(
             <SinSolicitudes >usted no tiene solicitudes</SinSolicitudes>
         );
-        console.log(wrapper.debug());
         expect(wrapper.find({ children: 'usted no tiene solicitudes' }).exists()).toBe(true);
     })
 })
