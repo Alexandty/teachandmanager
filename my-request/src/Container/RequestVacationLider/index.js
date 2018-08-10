@@ -22,6 +22,10 @@ const definirestiloSegunEstado = (estado) => {
     return estilo;
 }
 
+const confirmarCambio = (event) => {
+
+}
+
 export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacationRequestSolvers, user }) => {
     obtenerListaSolicitudesSolvers(user);
     if (listVacationRequestSolvers.length === 0) {
@@ -64,17 +68,15 @@ export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacat
                                         <Label bsStyle={definirestiloSegunEstado(solicitud.estado)}>{solicitud.estado}</Label>
                                     </td>
                                     <td>
-                                        <Button bsStyle='success' bsSize="xsmall">
+                                        <Button bsStyle='success' bsSize="xsmall" disabled={solicitud.estado === 'pendiente' ? true : false}>
                                             <Glyphicon
-                                                className='glyphicon-ok'
                                                 glyph="glyphicon glyphicon-ok"
                                                 disabled={solicitud.estado === 'pendiente' ? true : false}
                                             />
                                         </Button>
                                         {" "}
-                                        <Button bsStyle="danger" bsSize="xsmall" >
+                                        <Button bsStyle="danger" bsSize="xsmall" disabled={solicitud.estado === 'pendiente' ? true : false}>
                                             <Glyphicon
-                                                className='glyphicon-remove'
                                                 glyph="glyphicon glyphicon-remove"
                                                 disabled={solicitud.estado === 'pendiente' ? true : false}
                                             />

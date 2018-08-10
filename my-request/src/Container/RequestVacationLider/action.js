@@ -8,6 +8,11 @@ const action = {
                     dispatch({ type: 'LOAD_REQUEST_VACATION_SOLVERS', list: response.data })
                 });
         }
+    },
+    cambiarEstado: (solicitud) => {
+        return (dispatch) => {
+            return axios.put('');
+        }
     }
 }
 

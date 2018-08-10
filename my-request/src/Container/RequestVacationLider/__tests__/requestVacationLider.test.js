@@ -14,35 +14,78 @@ describe('Test Para requestVacationLider', () => {
     ];
     const obtenerListaSolicitudesSolvers = jest.fn();
     it('Debe cargar el mensaje lo sentimos cuando no hay solicitudes', () => {
-        const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={[]} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
-        console.log(wrapper.debug());
+        const wrapper = shallow(
+            <RequestVacationLider
+                listVacationRequestSolvers={[]}
+                obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers}
+            />
+        );
         expect(wrapper.find({ title: '!Lo sentimos!' }).exists()).toBe(true);
     })
     it('Debe cargar Solicitudes cuando hay datos en la lista', () => {
-        const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={list} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
+        const wrapper = shallow(
+            <RequestVacationLider
+                listVacationRequestSolvers={list}
+                obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers}
+            />
+        );
         expect(wrapper.find('.Solicitudes').exists()).toBe(true);
 
     })
     it('Debe cargar label con estilo succes cuando hay datos en la lista con estado aprobado', () => {
-        const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={list} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
+        const wrapper = shallow(
+            <RequestVacationLider
+                listVacationRequestSolvers={list}
+                obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers}
+            />
+        );
         expect(wrapper.find({ bsStyle: 'success', children: 'aprobado' }).exists()).toBe(true);
     })
     it('Debe cargar label con estilo default cuando hay datos en la lista con estado pendiente', () => {
-        const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={list} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
+        const wrapper = shallow(
+            <RequestVacationLider
+                listVacationRequestSolvers={list}
+                obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers}
+            />
+        );
         expect(wrapper.find({ bsStyle: 'default', children: 'pendiente' }).exists()).toBe(true);
     })
     it('Debe cargar label con estilo danger cuando hay datos en la lista con estado rechazado', () => {
-        const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={list} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
+        const wrapper = shallow(
+            <RequestVacationLider listVacationRequestSolvers={list}
+                obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers}
+            />
+        );
         expect(wrapper.find({ bsStyle: 'danger', children: 'rechazado' }).exists()).toBe(true);
     })
     it('Debe cargar glyphicon-ok y glyphicon-remove cuando hay datos en la lista', () => {
-        const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={list} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
-        expect(wrapper.find('.glyphicon-ok').exists()).toBe(true);
-        expect(wrapper.find('.glyphicon-remove').exists()).toBe(true);
+        const wrapper = shallow(
+            <RequestVacationLider
+                listVacationRequestSolvers={list}
+                obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers}
+            />
+        );
+        expect(wrapper.find({ glyph: "glyphicon glyphicon-ok" }).exists()).toBe(true);
+        expect(wrapper.find({ glyph: "glyphicon glyphicon-remove" }).exists()).toBe(true);
     })
-    it('Debe cargar glyphicon-ok y glyphicon-remove habilitado cuando hay datos en la lista con estado pendiente', () => {
-        const wrapper = shallow(<RequestVacationLider listVacationRequestSolvers={list} obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers} />);
-        expect(wrapper.find({ className: 'glyphicon-ok', disabled: true }).exists()).toBe(true);
-        expect(wrapper.find({ className: 'glyphicon-remove', disabled: true }).exists()).toBe(true);
+    it('Debe cargar boton ok y remove habilitado cuando hay datos en la lista con estado pendiente', () => {
+        const wrapper = shallow(
+            <RequestVacationLider
+                listVacationRequestSolvers={list}
+                obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers}
+            />
+        );
+        expect(wrapper.find({ bsStyle: 'success', disabled: true }).exists()).toBe(true);
+        expect(wrapper.find({ bsStyle: "danger", disabled: true }).exists()).toBe(true);
+    })
+    it('Debe llamar a la funcion confirmar y motrar el modal con las opciones', () => {
+        const wrapper = shallow(
+            <RequestVacationLider
+                listVacationRequestSolvers={list}
+                obtenerListaSolicitudesSolvers={obtenerListaSolicitudesSolvers}
+            />
+        );
+        const btn = wrapper.find({ bsStyle: 'success', bsSize: "xsmall" });
+        console.log(btn.debug());
     })
 })
