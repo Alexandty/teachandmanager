@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Glyphicon, Label, Alert } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 
 const SinSolicitudes = (props) => {
     return (<div className='sinSolicitudes'>
