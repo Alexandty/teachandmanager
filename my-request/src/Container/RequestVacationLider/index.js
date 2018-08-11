@@ -6,8 +6,15 @@ import Moment from 'moment';
 
 import SinSolicitudes from '../../Components/SinSolicitudes';
 import Confirmar from '../../Components/Confirmar';
+import PedirMotivo from '../PedirMotivo';
 
 var mostrarConfirmacion = false;
+var mostrarPedirMotivo = false;
+
+var idSolicitudACambiar = null;
+var estadoACambiar = 'pendiente';
+var motivo = '';
+var solicitidACambiar = {};
 
 const definirestiloSegunEstado = (estado) => {
     var estilo = 'warning';
@@ -25,24 +32,48 @@ const definirestiloSegunEstado = (estado) => {
     return estilo;
 }
 
-const ConfirmarCambio = (event) => {
-    if (event) {
-        return mostrarConfirmacion = true;
+const ConfirmarCambio = (solicitud, nuevoEstado) => {
+    solicitidACambiar = solicitud;
+    estadoACambiar = nuevoEstado;
+    solicitidACambiar.estado = nuevoEstado;
+    mostrarConfirmacion = true;
+}
+
+const closeConfirmarCambio = () => {
+    mostrarConfirmacion = false;
+}
+
+const continuar = () => {
+    mostrarConfirmacion = false;
+    if (estadoACambiar === 'aprobado') {
+        action.cambiarEstado(solicitidACambiar);
+        finalizar();
+    }
+    if (nuevoEstado === 'rechazado') {
+        obtenerMotivo();
     }
 }
 
-const closeConfirmarCambio = (event) => {
-    if (event) {
-        return mostrarConfirmacion = false;
-    }
+const obtenerMotivo = () => {
+    mostrarPedirMotivo = true;
 }
 
-const continuar = (event) => {
-    
+const recibirMotivo = () => {
+    mostrarPedirMotivo = false;
+    solicitidACambiar.motivo = motivo;
+    action.cambiarEstado(solicitidACambiar);
+    finalizar();
 }
 
-export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacationRequestSolvers, user }) => {
+const finalizar = () => {
+    estadoACambiar = 'pendiente';
+    motivo = '';
+    solicitidACambiar = {};
+}
+
+export const RequestVacationLider = ({ motivoIngresado, obtenerListaSolicitudesSolvers, listVacationRequestSolvers, user }) => {
     obtenerListaSolicitudesSolvers(user);
+    motivo = motivoIngresado;
     if (listVacationRequestSolvers.length === 0) {
         return (
             <SinSolicitudes title={'!Lo sentimos!'}>
@@ -53,7 +84,17 @@ export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacat
         return (
             <div className='Solicitudes'>
                 <h2>Mis Solicitudes</h2>
-                <Confirmar mostrar={mostrarConfirmacion} onCancelar={closeConfirmarCambio} onAceptar={continuar} />
+                <Confirmar
+                    mostrar={mostrarConfirmacion}
+                    onCancelar={closeConfirmarCambio}
+                    onAceptar={continuar()}
+                />
+                <PedirMotivo
+                    mostrar={mostrarPedirMotivo}
+                    titulo={'Ingrese el motivo del rechazo'}
+                    respuesta={''}
+                    enviarMotivo={recibirMotivo(idSolicitudACambiar)}
+                />
                 <Table striped bordered condensed hover>
                     <thead>
                         <tr>
@@ -87,7 +128,7 @@ export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacat
                                         <Button
                                             bsStyle='success' bsSize="xsmall"
                                             disabled={solicitud.estado === 'pendiente' ? false : true}
-                                            onClick={ConfirmarCambio}
+                                            onClick={() => ConfirmarCambio(solicitud, 'aprobado')}
                                         >
                                             <Glyphicon
                                                 glyph="glyphicon glyphicon-ok"
@@ -98,6 +139,7 @@ export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacat
                                         <Button
                                             bsStyle="danger" bsSize="xsmall"
                                             disabled={solicitud.estado === 'pendiente' ? false : true}
+                                            onClick={() => ConfirmarCambio(solicitud.idRequest, 'rechazado')}
                                         >
                                             <Glyphicon
                                                 glyph="glyphicon glyphicon-remove"
@@ -117,7 +159,8 @@ export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacat
 const mapStateToProps = (state) => {
     return {
         ...state.listVacationSolvers,
-        ...state.login.user
+        ...state.login.user,
+        ...state.form.motivo
     };
 };
 
