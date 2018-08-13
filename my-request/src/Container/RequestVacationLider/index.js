@@ -17,10 +17,7 @@ var motivo = '';
 var solicitidACambiar = {};
 
 const obtenerSolicitudes = (obtenerListaSolicitudesSolvers, user) => {
-    if (cargarSolicitudes) {
         obtenerListaSolicitudesSolvers(user);
-        cargarSolicitudes = false;
-    }
 }
 
 const definirestiloSegunEstado = (estado) => {
