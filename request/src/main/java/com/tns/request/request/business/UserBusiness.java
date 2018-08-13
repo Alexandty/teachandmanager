@@ -27,14 +27,13 @@ public class UserBusiness {
 				User userBD = userRepository.findByUsername(user.getUsername());
 				if (null == userBD) {
 					throw new BusinessException("No existe el usuario");
-				} else {
-					if (user.getPassword().equals(userBD.getPassword())) {
-						return userBD;
-					}
+				} else if (user.getPassword().equals(userBD.getPassword())) {
+					return userBD;
 				}
 			}
 		}
 		throw new BusinessException("Nombre de usuario o contraseña incorrecto");
+
 	}
 
 	public PersonDTO getPerson(User user) {
@@ -42,7 +41,6 @@ public class UserBusiness {
 		if (userBD != null) {
 			return personBusiness.getPerson(userBD.getUsername());
 		}
-		// TODO: Person not found
 		throw new BusinessException("No existe persona ligada al usuario");
 	}
 }

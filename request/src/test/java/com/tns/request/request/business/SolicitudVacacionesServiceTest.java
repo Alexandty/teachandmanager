@@ -2,6 +2,8 @@ package com.tns.request.request.business;
 
 import static org.mockito.Mockito.when;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,11 +14,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.tns.request.request.dto.SolicitudVacacionesUsernameDTO;
 import com.tns.request.request.exception.BusinessException;
+import com.tns.request.request.model.AsignacionLider;
 import com.tns.request.request.model.Person;
 import com.tns.request.request.model.SolicitudVacaciones;
+import com.tns.request.request.repository.IAsignacionRepository;
 import com.tns.request.request.repository.IPersonRepository;
 import com.tns.request.request.repository.SolicitudVacacionesRepository;
 import com.tns.request.request.util.UtilDate;
@@ -32,6 +38,9 @@ public class SolicitudVacacionesServiceTest {
 
 	@Mock
 	private IPersonRepository personRepository;
+
+	@Mock
+	private IAsignacionRepository asignacionRepository;
 
 	@Test
 	public void debeBuscarDiasHabilesdisfurtadosYDevolverLaSuma() {
@@ -103,8 +112,64 @@ public class SolicitudVacacionesServiceTest {
 
 		Assert.assertEquals("se espera 15 dias disponibles", 15, respuesta);
 	}
-	
-	
-	
-	
+
+	@Test
+	public void debeCrearSolicitudExistosamente() {
+		SolicitudVacaciones res = new SolicitudVacaciones();
+		SolicitudVacacionesUsernameDTO solDTO = new SolicitudVacacionesUsernameDTO();
+		solDTO.setEndDate(new Date());
+		solDTO.setStartDate(new Date());
+		Person p = new Person();
+		p.setIdPerson(1);
+		when(personRepository.findByUserIdUsername(null)).thenReturn(p);
+
+		res = solicitudVacacionesService.crearSolicitud(solDTO);
+
+		// Assert.assertEquals("se espera", solDTO.getStartDate(), res.getStartDate());
+	}
+
+	@Test
+	public void debeRetornarUnaListaDePersonas() throws NoSuchMethodException, SecurityException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		Method method = SolicitudVacacionesService.class.getDeclaredMethod("getSolversDelLider", long.class);
+		method.setAccessible(true);
+		when(asignacionRepository.findByIdAsignacionIdLider(Mockito.anyLong()))
+				.thenReturn(new ArrayList<AsignacionLider>());
+		List<Person> result = (List<Person>) method.invoke(solicitudVacacionesService, 0);
+		Assert.assertNotNull(result);
+
+	}
+
+	@Test
+	public void debeRetornarElSolverAsociadoAlLider() throws NoSuchMethodException, SecurityException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		Method method = SolicitudVacacionesService.class.getDeclaredMethod("getSolver", AsignacionLider.class);
+		method.setAccessible(true);
+		Person p = (Person) method.invoke(solicitudVacacionesService, null);
+		Assert.assertNotNull(p);
+	}
+
+	// @Test
+	// public void debeRetornarListaSolversPorLider() {
+	// SolicitudVacacionesService mock = spy(new SolicitudVacacionesService());
+	// String username= null;
+	// Person persona = new Person();
+	// when(personRepository.findByUserIdUsername(username)).thenReturn(persona);
+	// List<Person> p = new ArrayList<Person>();
+	// doReturn(p).when(mock, "getSolversDelLider", ArgumentMatchers.anyList());
+	// List<Person> personas = Mockito.mock(List.class);
+	// List<SolicitudVacaciones> res =
+	// solicitudVacacionesService.getAllSolverSolicitudes(username);
+	//
+	// Assert.assertEquals("se esperaba una lista", , res);
+	// }
+	//
+	// @Test
+	// public void asd() {
+	// SolicitudVacacionesService mock = spy(new SolicitudVacacionesService());
+	// List<SolicitudVacaciones> s = mock.getAllSolverSolicitudes(null);
+	//
+	// verify(mock).invoke("getSolversDelLider", ArgumentMatchers.anyList());
+	// }
+
 }

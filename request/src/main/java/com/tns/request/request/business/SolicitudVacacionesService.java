@@ -34,9 +34,9 @@ public class SolicitudVacacionesService {
 
 	private SolicitudVacaciones solicitudVacaciones;
 
-	public Optional<SolicitudVacaciones> getAllPersonById(Long cedula) {
-		return solicitudVacacionesRepository.findById(cedula);
-	}
+	// public Optional<SolicitudVacaciones> getAllPersonById(Long cedula) {
+	// return solicitudVacacionesRepository.findById(cedula);
+	// }
 
 	public SolicitudVacaciones crearSolicitud(SolicitudVacacionesUsernameDTO solicitudVacacionesUsernameDTO) {
 		SolicitudVacaciones solicitudVacaciones = new SolicitudVacaciones();
@@ -112,7 +112,6 @@ public class SolicitudVacacionesService {
 	public ResponseEntity<SolicitudVacaciones> updateSolicitud(Long idRequest,
 			SolicitudVacaciones solicitudVacaciones) {
 		Optional<SolicitudVacaciones> solicitudData = solicitudVacacionesRepository.findById(idRequest);
-
 		if (solicitudData.isPresent()) {
 			SolicitudVacaciones solicitudSave = solicitudData.get();
 			solicitudSave.setEndDate(solicitudVacaciones.getEndDate());
@@ -121,19 +120,11 @@ public class SolicitudVacacionesService {
 			solicitudSave.setMotivo(solicitudVacaciones.getMotivo());
 			solicitudSave.setRequestedDays(solicitudVacaciones.getRequestedDays());
 			solicitudSave.setReturnDate(solicitudVacaciones.getReturnDate());
-
 			SolicitudVacaciones solicitudUpdate = solicitudVacacionesRepository.save(solicitudSave);
-
 			return new ResponseEntity<>(solicitudUpdate, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-
 	}
-
-	// public ResponseEntity<SolicitudVacaciones>
-	// putSolicitudVacacion(SolicitudVacaciones solicitud) {
-	// return solicitudVacacionesRepository.save(solicitud);
-	// }
 
 }
