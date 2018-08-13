@@ -1,5 +1,6 @@
 package com.tns.request.request.controller;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class SolicitudVacacionesController {
 
 	@PostMapping("vacaciones/create")
 	public ResponseEntity<SolicitudVacaciones> guardarSolicitudVacaciones(
-			@RequestBody SolicitudVacacionesUsernameDTO solicitudVacaciones) {
+			@RequestBody SolicitudVacacionesUsernameDTO solicitudVacaciones) throws ParseException {
 		solicitudVacacionesService.crearSolicitud(solicitudVacaciones);
 		return new ResponseEntity<SolicitudVacaciones>(HttpStatus.CREATED);
 	}

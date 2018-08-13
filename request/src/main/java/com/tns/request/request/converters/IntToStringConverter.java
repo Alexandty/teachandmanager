@@ -6,7 +6,6 @@ public  class IntToStringConverter implements AttributeConverter<String, Integer
 
 	@Override
 	public Integer convertToDatabaseColumn(String values) {
-
 		int estado = 0;
 		switch (values) {
 		case "aprobado":

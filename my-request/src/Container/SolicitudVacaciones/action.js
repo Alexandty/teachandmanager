@@ -16,28 +16,37 @@ const _loadAvailableDays = (avalableDaysData) => ({
 
 const action = {
     consultar: (values) => {
-        return (dispatch) => {
-            const solicitudVacaciones = {
-                startDate: values.startDate,
-                endDate: values.endDate,
-                user: values.user
+        if (values.startDate != undefined && values.endDate ) {
+            return (dispatch) => {
+
+                const solicitudVacaciones = {
+                    startDate: values.startDate,
+                    endDate: values.endDate,
+                    user: values.user
+                };
+                return axios.post('http://localhost:8081/solicitud/vacaciones/disponibles', solicitudVacaciones)
+                    .then(result => {
+                        dispatch(_checkSolicitudVacaciones(result.data));
+                        alert(result.data + ' Dias disponibles para fecha seleccionada')
+                    }, error => {
+                        alert(error.response.data.message);
+                    });
             };
-            return axios.post('http://localhost:8081/solicitud/vacaciones/disponibles', solicitudVacaciones)
-                .then(result => {
-                    dispatch(_checkSolicitudVacaciones(result.data));
-                    alert(result.data + ' Dias disponibles para fecha seleccionada')
-                }, error => {
-                    alert(error.response.data.message);
-                });
         };
+
     },
     guardar: (values) => {
+
+        console.log(values);
         return (dispatch) => {
             const solicitudVacaciones = {
                 startDate: values.startDate,
                 endDate: values.endDate,
-                user: values.user
+                user: values.user,
+                motivo: "",
+                estado: "pendiente"
             };
+
             return axios.post('http://localhost:8081/solicitud/vacaciones/create/', solicitudVacaciones)
                 .then(result => {
                     dispatch(_addSolicitudVacaciones(result.data));
@@ -50,10 +59,10 @@ const action = {
         return dispatch => {
             return axios.get("http://localhost:8081/solicitud/vacaciones/disponibles/" + user)
                 .then(response => {
-                    dispatch(_loadAvailableDays(response.data));            
+                    dispatch(_loadAvailableDays(response.data));
                 });
         }
     }
 };
 
-export default action ;
+export default action;

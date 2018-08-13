@@ -10,15 +10,37 @@ public class SolicitudVacacionesDTO {
 
 	private int requestedDays;
 
-	public SolicitudVacacionesDTO(Date startDate, Date endDate, int requestedDays) {
+	private String motivo;
+
+	private String estado;
+
+	public SolicitudVacacionesDTO(Date startDate, Date endDate, int requestedDays, String motivo, String estado) {
 		super();
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.requestedDays = requestedDays;
+		this.motivo = motivo;
+		this.estado = estado;
 	}
 
 	public SolicitudVacacionesDTO() {
 		super();
+	}
+
+	public String getMotivo() {
+		return motivo;
+	}
+
+	public void setMotivo(String motivo) {
+		this.motivo = motivo;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public Date getStartDate() {

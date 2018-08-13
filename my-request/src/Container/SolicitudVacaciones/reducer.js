@@ -1,7 +1,9 @@
 const initialState = {
     vacationSolicitudData: [],
     avalableDaysData: 0,
-    availableDaysVacation: true
+    availableDaysVacation: true,
+    field1: false,
+    field2: false
 };
 
 const AddSolitudVacaciones = (state = initialState, action) => {

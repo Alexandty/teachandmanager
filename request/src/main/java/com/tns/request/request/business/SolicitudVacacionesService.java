@@ -1,5 +1,6 @@
-     package com.tns.request.request.business;
+package com.tns.request.request.business;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -39,14 +40,18 @@ public class SolicitudVacacionesService {
 		return solicitudVacacionesRepository.findById(cedula);
 	}
 
-	public SolicitudVacaciones crearSolicitud(SolicitudVacacionesUsernameDTO solicitudVacacionesUsernameDTO) {
+	public SolicitudVacaciones crearSolicitud(SolicitudVacacionesUsernameDTO solicitudVacacionesUsernameDTO) throws ParseException {
 		SolicitudVacaciones solicitudVacaciones = new SolicitudVacaciones();
+		String dateRetorn = UtilDate.calcularFecharRetornoLabor(solicitudVacacionesUsernameDTO.getEndDate());
 		Person persona = personRepository.findByUserIdUsername(solicitudVacacionesUsernameDTO.getUser());
 		solicitudVacaciones
 				.setRequestedDays((int) UtilDate.diferenciaDias(solicitudVacacionesUsernameDTO.getStartDate(),
 						solicitudVacacionesUsernameDTO.getEndDate()));
 		solicitudVacaciones.setEndDate(solicitudVacacionesUsernameDTO.getEndDate());
 		solicitudVacaciones.setStartDate(solicitudVacacionesUsernameDTO.getStartDate());
+		solicitudVacaciones.setReturnDate(UtilDate.getDateFromString(dateRetorn));
+		solicitudVacaciones.setEstado(solicitudVacacionesUsernameDTO.getEstado());
+		solicitudVacaciones.setMotivo(solicitudVacacionesUsernameDTO.getMotivo());
 		solicitudVacaciones.setPersonId(persona);
 		return solicitudVacacionesRepository.save(solicitudVacaciones);
 	}
@@ -113,9 +118,9 @@ public class SolicitudVacacionesService {
 	public ResponseEntity<SolicitudVacaciones> updateSolicitud(Long idRequest,
 			SolicitudVacaciones solicitudVacaciones) {
 		Optional<SolicitudVacaciones> solicitudData = solicitudVacacionesRepository.findById(idRequest);
-		
+
 		if (solicitudData.isPresent()) {
-			SolicitudVacaciones solicitudSave = solicitudData.get();			
+			SolicitudVacaciones solicitudSave = solicitudData.get();
 			solicitudSave.setEstado(solicitudVacaciones.getEstado());
 			solicitudSave.setMotivo(solicitudVacaciones.getMotivo());
 			SolicitudVacaciones solicitudUpdate = solicitudVacacionesRepository.save(solicitudSave);

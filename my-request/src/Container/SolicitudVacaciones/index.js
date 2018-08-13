@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import action from './action';
 import validate from './validate';
 import { Label, Button, FormGroup, Row, Col, Grid } from 'react-bootstrap';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm , isPristine} from 'redux-form';
+
 
 const renderField = ({
     input,
@@ -25,8 +26,8 @@ const renderField = ({
 
 export const SolicitudForm = props => {
     const { loadAvailableDays, guardar, consultar, handleSubmit,
-        avalableDaysData, user, availableDaysVacation } = props;
-   loadAvailableDays(user.user)
+        avalableDaysData, user, availableDaysVacation, pristine } = props;
+    loadAvailableDays(user.user)
     return (
         <div>
             <form onSubmit={handleSubmit((values) => {
@@ -40,18 +41,24 @@ export const SolicitudForm = props => {
                                 Dias disponibles <Label bsStyle="primary"> {avalableDaysData} </Label>
                                 <FormGroup controlId="formInlineDate">
                                     <Label>Fecha de Inicio</Label>
-                                    <Field type="Date" id='idStartDate' name="startDate" component={renderField} />
+                                    <Field type="Date" id='idStartDate' name="startDate" component={renderField}
+                                        onBlur={handleSubmit((values) => {
+                                            values.user = user.user;
+                                            return consultar(values)
+                                        })}
+                                    />
                                 </FormGroup>
                                 <FormGroup controlId="formInlineDate">
                                     <Label>Fecha de Fin</Label>
 
-                                    <Field type="Date" id='idStartDate' name="endDate" component={renderField}
+                                    <Field type="Date" id='idEndtDate' name="endDate" component={renderField}
                                         onBlur={handleSubmit((values) => {
                                             values.user = user.user;
                                             return consultar(values)
-                                        })} />
+                                        })}
+                                    />
                                 </FormGroup>
-                                <Button bsStyle="success" type="submit" disabled={availableDaysVacation}>Solicitar</Button>
+                                <Button bsStyle="success" type="submit"  disabled={availableDaysVacation }>Solicitar</Button>
                             </Col>
                         </div>
                     </Row>
