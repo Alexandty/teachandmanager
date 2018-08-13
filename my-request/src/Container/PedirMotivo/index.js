@@ -3,8 +3,6 @@ import { Modal, Button } from 'react-bootstrap';
 import { Form, Field, reduxForm } from 'redux-form';
 import validate from './validate';
 import RenderField from '../../Components/RenderField';
-import { connect } from 'react-redux';
-import action from './action';
 
 export const Motivo = (props) => {
     const { enviarMotivo, handleSubmit, pristine, mostrar, titulo } = props;
@@ -34,10 +32,4 @@ const PedirMotivo = reduxForm({
     validate
 })(Motivo)
 
-const mapStateToProps = (state) => {
-    return {
-        ...state.listVacationSolvers
-    };
-};
-
-export default connect(mapStateToProps, action)(PedirMotivo);
+export default PedirMotivo;

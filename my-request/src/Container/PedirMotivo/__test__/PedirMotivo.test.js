@@ -10,7 +10,6 @@ describe('Test para PerdirMotivo', () => {
     const handle = jest.fn();
     it('Debe cargar el componente', () => {
         const wrapper = shallow(<Motivo handleSubmit={handle} pristine={true} mostrar={true} titulo={'Test 1'} />);
-        console.log(wrapper.debug());
     })
     it('Debe cargar el boton', () => {
         const wrapper = shallow(<Motivo handleSubmit={handle} pristine={true} mostrar={true} titulo={'Test 2'} />)
