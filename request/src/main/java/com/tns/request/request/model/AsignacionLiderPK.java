@@ -7,9 +7,6 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class AsignacionLiderPK implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "id_lider")
