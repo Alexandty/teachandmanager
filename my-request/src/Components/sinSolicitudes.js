@@ -1,7 +1,7 @@
 import React from 'react';
-import { Table, Glyphicon, Label, Alert } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 
-const sinSolicitudes = (props) => {
+const SinSolicitudes = (props) => {
     return (<div className='sinSolicitudes'>
         <Alert bsStyle="info">
             <h4>
@@ -15,4 +15,4 @@ const sinSolicitudes = (props) => {
     );
 }
 
-export default sinSolicitudes;
+export default SinSolicitudes;

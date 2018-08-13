@@ -33,11 +33,4 @@ public class SolicitudLiderController {
 
 		return solicitudVacacionesService.updateSolicitud(idRequest, solicitudVacaciones);
 	}
-
-	// @PutMapping("vacaciones/actualizar")
-	// public SolicitudVacaciones putSolicitudVacacion(@RequestBody
-	// SolicitudVacaciones solicitud) {
-	// return solicitud;
-	// // return solicitudVacacionesService.putSolicitudVacacion(solicitud);
-	// }
 }

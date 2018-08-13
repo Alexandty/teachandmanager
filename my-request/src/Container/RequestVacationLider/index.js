@@ -1,8 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import action from './action';
-import { Table, Glyphicon, Button, Label, Alert } from 'react-bootstrap';
+import { Table, Glyphicon, Button, Label } from 'react-bootstrap';
 import Moment from 'moment';
+
+import SinSolicitudes from '../../Components/SinSolicitudes';
+import Confirmar from '../../Components/Confirmar';
+import PedirMotivo from '../PedirMotivo';
+
+var mostrarConfirmacion = false;
+var mostrarPedirMotivo = false;
+var cargarSolicitudes = true;
+
+var estadoACambiar = 'pendiente';
+var motivo = '';
+var solicitidACambiar = {};
+
+const obtenerSolicitudes = (obtenerListaSolicitudesSolvers, user) => {
+    if (cargarSolicitudes) {
+        cargarSolicitudes = false;
+        obtenerListaSolicitudesSolvers(user);
+    }
+}
 
 const definirestiloSegunEstado = (estado) => {
     var estilo = 'warning';
@@ -16,27 +35,78 @@ const definirestiloSegunEstado = (estado) => {
         case 'pendiente':
             estilo = 'default'
             break;
+        default:
+            break;
     }
     return estilo;
 }
 
-export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacationRequestSolvers, user }) => {
+const ConfirmarCambio = (solicitud, nuevoEstado) => {
+    solicitidACambiar = solicitud;
+    estadoACambiar = nuevoEstado;
+    solicitidACambiar.estado = nuevoEstado;
+    mostrarConfirmacion = true;
+}
+
+const closeConfirmarCambio = () => {
+    mostrarConfirmacion = false;
+}
+
+const continuar = (cambiarEstado) => {
+    mostrarConfirmacion = false;
+    if (estadoACambiar === 'aprobado') {
+        cambiarEstado(solicitidACambiar);
+        finalizar();
+    }
+    if (estadoACambiar === 'rechazado') {
+        obtenerMotivo();
+    }
+}
+
+const obtenerMotivo = () => {
+    mostrarPedirMotivo = true;
+}
+
+const recibirMotivo = (cambiarEstado) => {
+    mostrarPedirMotivo = false;
+    solicitidACambiar.motivo = motivo;
+    cambiarEstado(solicitidACambiar);
+    finalizar();
+}
+
+const finalizar = () => {
+    estadoACambiar = 'pendiente';
+    motivo = '';
+    solicitidACambiar = {};
+    cargarSolicitudes = true;
+}
+
+export const RequestVacationLider = ({
+    motivoIngresado, obtenerListaSolicitudesSolvers, cambiarEstado, listVacationRequestSolvers, user
+}) => {
+    //obtenerSolicitudes(obtenerListaSolicitudesSolvers, user);
     obtenerListaSolicitudesSolvers(user);
-    if (listVacationRequestSolvers.length === 0) {
-        return (
-            <div className='noSolicitudes'>
-                <Alert bsStyle="info">
-                    <h4>!Lo sentimos!</h4>
-                    <p>
-                        Usted no cuenta con informacion de solicitudes.
-                    </p>
-                </Alert>
-            </div>
-        )
-    } else {
-        return (
+    motivo = motivoIngresado;
+    return (
+        listVacationRequestSolvers.length === 0 ?
+            <SinSolicitudes title={'!Lo sentimos!'}>
+                Usted no cuenta con informacion de solicitudes.
+            </SinSolicitudes>
+            :
             <div className='Solicitudes'>
                 <h2>Mis Solicitudes</h2>
+                <Confirmar
+                    mostrar={mostrarConfirmacion}
+                    onCancelar={closeConfirmarCambio}
+                    onAceptar={() => continuar(cambiarEstado)}
+                    msg={'Usted va a colocar en ' + estadoACambiar + ' la solicitud'}
+                />
+                <PedirMotivo
+                    mostrar={mostrarPedirMotivo}
+                    titulo={'Ingrese el motivo del rechazo'}
+                    respuesta={''}
+                    enviarMotivo={() => recibirMotivo(cambiarEstado)}
+                />
                 <Table striped bordered condensed hover>
                     <thead>
                         <tr>
@@ -67,19 +137,25 @@ export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacat
                                         <Label bsStyle={definirestiloSegunEstado(solicitud.estado)}>{solicitud.estado}</Label>
                                     </td>
                                     <td>
-                                        <Button bsStyle='success' bsSize="xsmall">
+                                        <Button
+                                            bsStyle='success' bsSize="xsmall"
+                                            disabled={solicitud.estado === 'pendiente' ? false : true}
+                                            onClick={() => ConfirmarCambio(solicitud, 'aprobado')}
+                                        >
                                             <Glyphicon
-                                                className='glyphicon-ok'
                                                 glyph="glyphicon glyphicon-ok"
-                                                disabled={solicitud.estado === 'pendiente' ? true : false}
+                                                disabled={solicitud.estado === 'pendiente' ? false : true}
                                             />
                                         </Button>
                                         {" "}
-                                        <Button bsStyle="danger" bsSize="xsmall" >
+                                        <Button
+                                            bsStyle="danger" bsSize="xsmall"
+                                            disabled={solicitud.estado === 'pendiente' ? false : true}
+                                            onClick={() => ConfirmarCambio(solicitud, 'rechazado')}
+                                        >
                                             <Glyphicon
-                                                className='glyphicon-remove'
                                                 glyph="glyphicon glyphicon-remove"
-                                                disabled={solicitud.estado === 'pendiente' ? true : false}
+                                                disabled={solicitud.estado === 'pendiente' ? false : true}
                                             />
                                         </Button>
                                     </td>
@@ -88,14 +164,14 @@ export const RequestVacationLider = ({ obtenerListaSolicitudesSolvers, listVacat
                     </tbody>
                 </Table>
             </div>
-        );
-    }
+    )
 }
 
 const mapStateToProps = (state) => {
     return {
         ...state.listVacationSolvers,
-        ...state.login.user
+        ...state.login.user,
+        ...state.form.motivo
     };
 };
 

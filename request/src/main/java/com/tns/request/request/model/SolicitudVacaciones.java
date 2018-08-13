@@ -3,12 +3,15 @@ package com.tns.request.request.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.tns.request.request.converters.IntToStringConverter;
 
 @Entity
 @Table(name = "ta_vacation")
@@ -32,6 +35,7 @@ public class SolicitudVacaciones {
 	private String motivo;
 
 	@Column(name = "estado")
+	@Convert(converter = IntToStringConverter.class)
 	private String estado;
 	
 	@Column(name = "return_date")
