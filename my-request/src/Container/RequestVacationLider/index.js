@@ -10,10 +10,18 @@ import PedirMotivo from '../PedirMotivo';
 
 var mostrarConfirmacion = false;
 var mostrarPedirMotivo = false;
+var cargarSolicitudes = true;
 
 var estadoACambiar = 'pendiente';
 var motivo = '';
 var solicitidACambiar = {};
+
+const obtenerSolicitudes = (obtenerListaSolicitudesSolvers, user) => {
+    if (cargarSolicitudes) {
+        obtenerListaSolicitudesSolvers(user);
+        cargarSolicitudes = false;
+    }
+}
 
 const definirestiloSegunEstado = (estado) => {
     var estilo = 'warning';
@@ -70,12 +78,13 @@ const finalizar = () => {
     estadoACambiar = 'pendiente';
     motivo = '';
     solicitidACambiar = {};
+    cargarSolicitudes = true;
 }
 
 export const RequestVacationLider = ({
     motivoIngresado, obtenerListaSolicitudesSolvers, listVacationRequestSolvers, user
 }) => {
-    obtenerListaSolicitudesSolvers(user);
+    obtenerSolicitudes(obtenerListaSolicitudesSolvers, user);
     motivo = motivoIngresado;
     if (listVacationRequestSolvers.length === 0) {
         return (
