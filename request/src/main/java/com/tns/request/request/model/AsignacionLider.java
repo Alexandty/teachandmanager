@@ -21,13 +21,5 @@ public class AsignacionLider {
 	public void setIdAsignacion(AsignacionLiderPK idAsignacion) {
 		this.idAsignacion = idAsignacion;
 	}
-	
-//	@ManyToMany
-//	@JoinColumn(name = "id_lider")
-//	private Person idLider;
-//
-//	@ManyToMany
-//	@JoinColumn(name = "id_solver")
-//	private Person idSolver;
 
 }

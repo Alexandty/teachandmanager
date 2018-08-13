@@ -1,4 +1,4 @@
-     package com.tns.request.request.business;
+package com.tns.request.request.business;
 
 import java.util.Date;
 import java.util.List;
@@ -19,7 +19,6 @@ import com.tns.request.request.repository.IAsignacionRepository;
 import com.tns.request.request.repository.IPersonRepository;
 import com.tns.request.request.repository.SolicitudVacacionesRepository;
 import com.tns.request.request.util.UtilDate;
-import com.tns.request.request.util.UtilEstado;
 
 @Service
 public class SolicitudVacacionesService {
@@ -113,9 +112,8 @@ public class SolicitudVacacionesService {
 	public ResponseEntity<SolicitudVacaciones> updateSolicitud(Long idRequest,
 			SolicitudVacaciones solicitudVacaciones) {
 		Optional<SolicitudVacaciones> solicitudData = solicitudVacacionesRepository.findById(idRequest);
-		
 		if (solicitudData.isPresent()) {
-			SolicitudVacaciones solicitudSave = solicitudData.get();			
+			SolicitudVacaciones solicitudSave = solicitudData.get();
 			solicitudSave.setEstado(solicitudVacaciones.getEstado());
 			solicitudSave.setMotivo(solicitudVacaciones.getMotivo());
 			SolicitudVacaciones solicitudUpdate = solicitudVacacionesRepository.save(solicitudSave);

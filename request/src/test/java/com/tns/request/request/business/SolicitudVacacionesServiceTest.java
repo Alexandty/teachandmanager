@@ -1,5 +1,9 @@
 package com.tns.request.request.business;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Matchers.anyObject;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 
 import java.lang.reflect.InvocationTargetException;
@@ -8,6 +12,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -140,13 +145,38 @@ public class SolicitudVacacionesServiceTest {
 
 	}
 
+	// @Test(expected = BusinessException.class)
+	// public void debeRetornarElSolverAsociadoAlLider() throws
+	// NoSuchMethodException, SecurityException,
+	// IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	// AsignacionLider as = new AsignacionLider();
+	// AsignacionLiderPK aPk = new AsignacionLiderPK();
+	// aPk.setIdLider(1);
+	// as.setIdAsignacion(aPk);
+	// Method method =
+	// SolicitudVacacionesService.class.getDeclaredMethod("getSolver",
+	// AsignacionLider.class);
+	// method.setAccessible(true);
+	// when(personRepository.find)
+	// Person p = (Person) method.invoke(solicitudVacacionesService, as);
+	// Assert.assertNotNull(p);
+	// }
+
+	// @Test
+	// public void test() {
+	// when(solicitudVacacionesService.obtenerTotalDiasDisfrutados(null)).thenReturn().thenReturn();
+	// Person p = new Person();
+	// when(personRepository.findByUserIdUsername(null)).thenReturn(p);
+	//
+	// }
 	@Test
-	public void debeRetornarElSolverAsociadoAlLider() throws NoSuchMethodException, SecurityException,
-			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		Method method = SolicitudVacacionesService.class.getDeclaredMethod("getSolver", AsignacionLider.class);
-		method.setAccessible(true);
-		Person p = (Person) method.invoke(solicitudVacacionesService, null);
-		Assert.assertNotNull(p);
+	public void debeRetornarOkCuandoActualiceSolicitud() {
+		Optional<SolicitudVacaciones> solicitudData = null;
+		SolicitudVacaciones sv = new SolicitudVacaciones();
+		when(solicitudVacacionesRepository.findById(null)).thenReturn(solicitudData);
+		when(solicitudData.isPresent()).thenReturn(true);
+		solicitudVacacionesService.updateSolicitud(1L, sv);
+
 	}
 
 	// @Test
