@@ -1,98 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Validando navbar toMatchSnapshot renderizar navbar  1`] = `
-<Uncontrolled(Navbar)
-  bsStyle="default"
-  collapseOnSelect={true}
-  inverse={true}
->
-  <NavbarHeader>
-    <NavbarBrand>
-      <img
-        alt="logo"
-        height="80"
-        src="http://www.techandsolve.com/wp-content/themes/techandsolve/images/logo-tech-and-solve-footer.png"
-        width="100"
-      />
-    </NavbarBrand>
-    <NavbarToggle />
-  </NavbarHeader>
-  <NavbarCollapse>
-    <Nav
-      bsClass="nav"
-      justified={false}
-      pullLeft={false}
-      pullRight={false}
-      stacked={false}
-    >
-      <NavItem
-        active={false}
-        disabled={false}
-        eventKey={1}
-      >
-        <Link
-          replace={false}
-          to="/"
-        >
-          Inicio
-        </Link>
-      </NavItem>
-      <NavDropdown
-        eventKey={3}
-        id="basic-nav-dropdown"
-        title="Vacaciones"
-      >
-        <MenuItem
-          bsClass="dropdown"
-          disabled={false}
-          divider={false}
-          eventKey={3.1}
-          header={false}
-        >
-          <Link
-            replace={false}
-            to="/consulta"
-          >
-            Consulta de solicitudes
-          </Link>
-        </MenuItem>
-        <MenuItem
-          bsClass="dropdown"
-          disabled={false}
-          divider={false}
-          eventKey={3.2}
-          header={false}
-        >
-          <Link
-            replace={false}
-            to="/solicitud"
-          >
-            Solicitud Vacaciones
-          </Link>
-        </MenuItem>
-        <MenuItem
-          bsClass="dropdown"
-          disabled={false}
-          divider={false}
-          eventKey={3.3}
-          header={false}
-        >
-          <Link
-            replace={false}
-            to="/solicitudeslider"
-          >
-            Mis Solicitudes
-          </Link>
-        </MenuItem>
-      </NavDropdown>
-    </Nav>
-    <Nav
-      bsClass="nav"
-      justified={false}
-      pullLeft={false}
-      pullRight={true}
-      stacked={false}
-    />
-  </NavbarCollapse>
-</Uncontrolled(Navbar)>
+exports[`Validando navbar toMatchSnapshot renderizar navbar con Mis solicitudes 1`] = `
+<NavbarApp
+  dispatch={[Function]}
+  lider={true}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "get": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+/>
+`;
+
+exports[`Validando navbar toMatchSnapshot renderizar navbar sin Mis solicitudes 1`] = `
+<NavbarApp
+  dispatch={[Function]}
+  lider={false}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  storeSubscription={
+    Subscription {
+      "listeners": Object {
+        "clear": [Function],
+        "get": [Function],
+        "notify": [Function],
+        "subscribe": [Function],
+      },
+      "onStateChange": [Function],
+      "parentSub": undefined,
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "unsubscribe": [Function],
+    }
+  }
+/>
 `;

@@ -18,8 +18,8 @@ var solicitidACambiar = {};
 
 const obtenerSolicitudes = (obtenerListaSolicitudesSolvers, user) => {
     if (cargarSolicitudes) {
-        obtenerListaSolicitudesSolvers(user);
         cargarSolicitudes = false;
+        obtenerListaSolicitudesSolvers(user);
     }
 }
 
@@ -52,10 +52,10 @@ const closeConfirmarCambio = () => {
     mostrarConfirmacion = false;
 }
 
-const continuar = () => {
+const continuar = (cambiarEstado) => {
     mostrarConfirmacion = false;
     if (estadoACambiar === 'aprobado') {
-        action.cambiarEstado(solicitidACambiar);
+        cambiarEstado(solicitidACambiar);
         finalizar();
     }
     if (estadoACambiar === 'rechazado') {
@@ -67,10 +67,10 @@ const obtenerMotivo = () => {
     mostrarPedirMotivo = true;
 }
 
-const recibirMotivo = () => {
+const recibirMotivo = (cambiarEstado) => {
     mostrarPedirMotivo = false;
     solicitidACambiar.motivo = motivo;
-    action.cambiarEstado(solicitidACambiar);
+    cambiarEstado(solicitidACambiar);
     finalizar();
 }
 
@@ -82,31 +82,30 @@ const finalizar = () => {
 }
 
 export const RequestVacationLider = ({
-    motivoIngresado, obtenerListaSolicitudesSolvers, listVacationRequestSolvers, user
+    motivoIngresado, obtenerListaSolicitudesSolvers, cambiarEstado, listVacationRequestSolvers, user
 }) => {
-    obtenerSolicitudes(obtenerListaSolicitudesSolvers, user);
+    //obtenerSolicitudes(obtenerListaSolicitudesSolvers, user);
+    obtenerListaSolicitudesSolvers(user);
     motivo = motivoIngresado;
-    if (listVacationRequestSolvers.length === 0) {
-        return (
+    return (
+        listVacationRequestSolvers.length === 0 ?
             <SinSolicitudes title={'!Lo sentimos!'}>
                 Usted no cuenta con informacion de solicitudes.
             </SinSolicitudes>
-        )
-    } else {
-        return (
+            :
             <div className='Solicitudes'>
                 <h2>Mis Solicitudes</h2>
                 <Confirmar
                     mostrar={mostrarConfirmacion}
                     onCancelar={closeConfirmarCambio}
-                    onAceptar={continuar}
+                    onAceptar={() => continuar(cambiarEstado)}
                     msg={'Usted va a colocar en ' + estadoACambiar + ' la solicitud'}
                 />
                 <PedirMotivo
                     mostrar={mostrarPedirMotivo}
                     titulo={'Ingrese el motivo del rechazo'}
                     respuesta={''}
-                    enviarMotivo={recibirMotivo}
+                    enviarMotivo={() => recibirMotivo(cambiarEstado)}
                 />
                 <Table striped bordered condensed hover>
                     <thead>
@@ -165,8 +164,7 @@ export const RequestVacationLider = ({
                     </tbody>
                 </Table>
             </div>
-        );
-    }
+    )
 }
 
 const mapStateToProps = (state) => {

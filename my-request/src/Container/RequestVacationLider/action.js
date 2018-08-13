@@ -12,9 +12,9 @@ const action = {
     cambiarEstado: (solicitud) => {
         return (dispatch) => {
             return axios
-                .put('http://localhost:8081/solicitudlider/vacaciones/actualizar' + solicitud.idRequest, solicitud)
+                .put('http://localhost:8081/solicitudlider/vacaciones/actualizar/' + solicitud.idRequest, solicitud)
                 .then(response => {
-                    alert(response);
+                    
                 })
                 .catch(error => {
                     alert(error);

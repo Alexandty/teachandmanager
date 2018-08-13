@@ -1,7 +1,7 @@
 package com.tns.request.request.business;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service; 
 
 import com.tns.request.request.dto.PersonDTO;
 import com.tns.request.request.model.Person;
@@ -18,8 +18,7 @@ public class PersonBusiness {
 	}
 
 	public PersonDTO buildPersonDTO(Person person) {
-		PersonDTO personDTO = new PersonDTO(person.getName(), person.getLastName(), person.getEntryDate(),
-				person.getRol());
+		PersonDTO personDTO = new PersonDTO(person.getName(), person.getLastName(), person.getEntryDate(),person.getRol());
 		personDTO.setUser(person.getUserId().getUsername());
 		return personDTO;
 	}
