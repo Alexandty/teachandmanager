@@ -10,11 +10,12 @@ const action = {
         }
     },
     cambiarEstado: (solicitud) => {
+        console.log('se envia', solicitud);
         return (dispatch) => {
             return axios
                 .put('http://localhost:8081/solicitudlider/vacaciones/actualizar/' + solicitud.idRequest, solicitud)
                 .then(response => {
-                    
+                    console.log('se recibe', response);
                 })
                 .catch(error => {
                     alert(error);
