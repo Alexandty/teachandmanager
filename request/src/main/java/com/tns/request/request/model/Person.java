@@ -33,17 +33,17 @@ public class Person {
 
 	@Column(name = "rol_lider")
 	@Convert(converter = BooleanToStringConverter.class)
-	private int rolLider;
+	private boolean rolLider;
 
 	@OneToOne
 	@JoinColumn(name = "fk_user")
 	private User userId;
 
-	public int getRol() {
+	public boolean getRol() {
 		return rolLider;
 	}
 
-	public void setRol(int rolLider) {
+	public void setRol(boolean rolLider) {
 		this.rolLider = rolLider;
 	}
 

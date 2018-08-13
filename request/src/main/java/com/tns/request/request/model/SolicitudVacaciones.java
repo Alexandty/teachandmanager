@@ -61,7 +61,7 @@ public class SolicitudVacaciones {
 		this.motivo = motivo;
 	}
 
-	public String getEstado() {
+	public String  getEstado() {
 		return estado;
 	}
 

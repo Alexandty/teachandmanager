@@ -16,12 +16,11 @@ public class PersonDTO {
 
 	
 
-	public PersonDTO(String name, String lastName, Date entryDate, String user, boolean isLider) {
+	public PersonDTO(String name, String lastName, Date entryDate, boolean isLider) {
 		super();
 		this.name = name;
 		this.lastName = lastName;
 		this.entryDate = entryDate;
-		this.user = user;
 		this.isLider = isLider;
 	}
 

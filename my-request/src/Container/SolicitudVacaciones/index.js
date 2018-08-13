@@ -40,12 +40,12 @@ export const SolicitudForm = props => {
                                 Dias disponibles <Label bsStyle="primary"> {avalableDaysData} </Label>
                                 <FormGroup controlId="formInlineDate">
                                     <Label>Fecha de Inicio</Label>
-                                    <Field type="Date" name="startDate" component={renderField} />
+                                    <Field type="Date" id='idStartDate' name="startDate" component={renderField} />
                                 </FormGroup>
                                 <FormGroup controlId="formInlineDate">
                                     <Label>Fecha de Fin</Label>
 
-                                    <Field type="Date" name="endDate" component={renderField}
+                                    <Field type="Date" id='idStartDate' name="endDate" component={renderField}
                                         onBlur={handleSubmit((values) => {
                                             values.user = user.user;
                                             return consultar(values)
