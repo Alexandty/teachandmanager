@@ -49,7 +49,7 @@ const continuar = () => {
         action.cambiarEstado(solicitidACambiar);
         finalizar();
     }
-    if (nuevoEstado === 'rechazado') {
+    if (estadoACambiar === 'rechazado') {
         obtenerMotivo();
     }
 }
@@ -71,7 +71,9 @@ const finalizar = () => {
     solicitidACambiar = {};
 }
 
-export const RequestVacationLider = ({ motivoIngresado, obtenerListaSolicitudesSolvers, listVacationRequestSolvers, user }) => {
+export const RequestVacationLider = ({
+    motivoIngresado, obtenerListaSolicitudesSolvers, listVacationRequestSolvers, user
+}) => {
     obtenerListaSolicitudesSolvers(user);
     motivo = motivoIngresado;
     if (listVacationRequestSolvers.length === 0) {
@@ -139,7 +141,7 @@ export const RequestVacationLider = ({ motivoIngresado, obtenerListaSolicitudesS
                                         <Button
                                             bsStyle="danger" bsSize="xsmall"
                                             disabled={solicitud.estado === 'pendiente' ? false : true}
-                                            onClick={() => ConfirmarCambio(solicitud.idRequest, 'rechazado')}
+                                            onClick={() => ConfirmarCambio(solicitud, 'rechazado')}
                                         >
                                             <Glyphicon
                                                 glyph="glyphicon glyphicon-remove"
