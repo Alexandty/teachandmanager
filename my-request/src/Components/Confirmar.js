@@ -4,10 +4,13 @@ import { Modal, Alert, Button } from 'react-bootstrap';
 const Confirmar = (props) => {
     return (
         <Modal show={props.mostrar}>
-            <Modal.Body>
+            <Modal.Header>
                 <Alert bsStyle="danger">
-                    <h3>¿Esta seguro de continuar?</h3>
+                    ¿Esta seguro de continuar?
                 </Alert>
+            </Modal.Header>
+            <Modal.Body>
+                {props.msg}
             </Modal.Body>
             <Modal.Footer>
                 <Button bsStyle='success' onClick={props.onAceptar}>Aceptar</Button>
