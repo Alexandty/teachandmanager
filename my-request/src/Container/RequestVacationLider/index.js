@@ -11,7 +11,6 @@ import PedirMotivo from '../PedirMotivo';
 var mostrarConfirmacion = false;
 var mostrarPedirMotivo = false;
 
-var idSolicitudACambiar = null;
 var estadoACambiar = 'pendiente';
 var motivo = '';
 var solicitidACambiar = {};
@@ -27,6 +26,8 @@ const definirestiloSegunEstado = (estado) => {
             break;
         case 'pendiente':
             estilo = 'default'
+            break;
+        default:
             break;
     }
     return estilo;
@@ -89,13 +90,14 @@ export const RequestVacationLider = ({
                 <Confirmar
                     mostrar={mostrarConfirmacion}
                     onCancelar={closeConfirmarCambio}
-                    onAceptar={continuar()}
+                    onAceptar={continuar}
+                    msg={'Usted va a colocar en ' + estadoACambiar + ' la solicitud'}
                 />
                 <PedirMotivo
                     mostrar={mostrarPedirMotivo}
                     titulo={'Ingrese el motivo del rechazo'}
                     respuesta={''}
-                    enviarMotivo={recibirMotivo(idSolicitudACambiar)}
+                    enviarMotivo={recibirMotivo}
                 />
                 <Table striped bordered condensed hover>
                     <thead>
