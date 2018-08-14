@@ -18,7 +18,6 @@ const action = {
     consultar: (values) => {
         if (values.startDate !== undefined && values.endDate ) {
             return (dispatch) => {
-
                 const solicitudVacaciones = {
                     startDate: values.startDate,
                     endDate: values.endDate,
@@ -36,8 +35,6 @@ const action = {
 
     },
     guardar: (values) => {
-
-        console.log(values);
         return (dispatch) => {
             const solicitudVacaciones = {
                 startDate: values.startDate,
@@ -46,6 +43,7 @@ const action = {
                 motivo: "",
                 estado: "pendiente"
             };
+            console.log(solicitudVacaciones);
 
             return axios.post('http://localhost:8081/solicitud/vacaciones/create/', solicitudVacaciones)
                 .then(result => {
