@@ -41,6 +41,7 @@ exports[`Probando vista SolicitudForm Validando toMatchSnapshot 1`] = `
               </Label>
               <Field
                 component={[Function]}
+                id="idStartDate"
                 name="startDate"
                 type="Date"
               />
@@ -57,6 +58,7 @@ exports[`Probando vista SolicitudForm Validando toMatchSnapshot 1`] = `
               </Label>
               <Field
                 component={[Function]}
+                id="idEndtDate"
                 name="endDate"
                 type="Date"
               />
