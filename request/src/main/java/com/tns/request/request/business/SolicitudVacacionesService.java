@@ -35,10 +35,6 @@ public class SolicitudVacacionesService {
 
 	private SolicitudVacaciones solicitudVacaciones;
 
-	// public Optional<SolicitudVacaciones> getAllPersonById(Long cedula) {
-	// return solicitudVacacionesRepository.findById(cedula);
-	// }
-
 	public SolicitudVacaciones crearSolicitud(SolicitudVacacionesUsernameDTO solicitudVacacionesUsernameDTO) throws ParseException {
 		SolicitudVacaciones solicitudVacaciones = new SolicitudVacaciones();
 		String dateRetorn = UtilDate.calcularFecharRetornoLabor(solicitudVacacionesUsernameDTO.getEndDate());
