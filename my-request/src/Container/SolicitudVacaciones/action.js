@@ -43,8 +43,6 @@ const action = {
                 motivo: "",
                 estado: "pendiente"
             };
-            console.log(solicitudVacaciones);
-
             return axios.post('http://localhost:8081/solicitud/vacaciones/create/', solicitudVacaciones)
                 .then(result => {
                     dispatch(_addSolicitudVacaciones(result.data));
