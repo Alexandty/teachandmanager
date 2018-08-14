@@ -16,7 +16,7 @@ const _loadAvailableDays = (avalableDaysData) => ({
 
 const action = {
     consultar: (values) => {
-        if (values.startDate != undefined && values.endDate ) {
+        if (values.startDate !== undefined && values.endDate ) {
             return (dispatch) => {
 
                 const solicitudVacaciones = {

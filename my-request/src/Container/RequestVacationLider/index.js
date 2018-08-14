@@ -4,7 +4,7 @@ import action from './action';
 import { Table, Glyphicon, Button, Label } from 'react-bootstrap';
 import Moment from 'moment';
 
-import SinSolicitudes from '../../Components/sinSolicitudes';
+import SinSolicitudes from '../../Components/SinSolicitudes';
 import Confirmar from '../../Components/Confirmar';
 import PedirMotivo from '../PedirMotivo';
 

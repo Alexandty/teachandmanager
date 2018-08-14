@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import action from './action';
 import validate from './validate';
 import { Label, Button, FormGroup, Row, Col, Grid } from 'react-bootstrap';
-import { Field, reduxForm , isPristine} from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 
 
 const renderField = ({
@@ -26,7 +26,7 @@ const renderField = ({
 
 export const SolicitudForm = props => {
     const { loadAvailableDays, guardar, consultar, handleSubmit,
-        avalableDaysData, user, availableDaysVacation, pristine } = props;
+        avalableDaysData, user, availableDaysVacation } = props;
     loadAvailableDays(user.user)
     return (
         <div>
