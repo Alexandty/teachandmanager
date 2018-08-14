@@ -13,7 +13,7 @@ export const Motivo = (props) => {
                     {titulo}
                 </Modal.Title>
             </Modal.Header>
-            <Form onSubmit={handleSubmit((values) => { return enviarMotivo(values.motivo) })}>
+            <Form onSubmit={handleSubmit((values) => { return enviarMotivo(values.motivoIngresado) })}>
                 <Modal.Body>
                     <Field name={'motivoIngresado'} component={RenderField} type='textarea' style={{ width: '506px' }}></Field>
                 </Modal.Body>

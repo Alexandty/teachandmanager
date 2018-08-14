@@ -25,7 +25,6 @@ maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 	mavenCentral()
 }
 
-
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
@@ -40,10 +39,14 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.11'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.0.4.RELEASE'
     
-    
+   	// https://mvnrepository.com/artifact/org.powermock/powermock-module-junit4
+	//testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: '1.7.4'
+	//testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: '1.7.4'
+	//testCompile 'org.powermock:powermock-mockito-release-full:1.6.1'
 	
 	
-	
+   	
+   
 jacoco {
     toolVersion = "0.7.6.201602180812"
     reportsDir = file("$buildDir/customJacocoReportDir")

@@ -10,18 +10,9 @@ import PedirMotivo from '../PedirMotivo';
 
 var mostrarConfirmacion = false;
 var mostrarPedirMotivo = false;
-var cargarSolicitudes = true;
 
 var estadoACambiar = 'pendiente';
-var motivo = '';
 var solicitidACambiar = {};
-
-const obtenerSolicitudes = (obtenerListaSolicitudesSolvers, user) => {
-    if (cargarSolicitudes) {
-        cargarSolicitudes = false;
-        obtenerListaSolicitudesSolvers(user);
-    }
-}
 
 const definirestiloSegunEstado = (estado) => {
     var estilo = 'warning';
@@ -56,37 +47,22 @@ const continuar = (cambiarEstado) => {
     mostrarConfirmacion = false;
     if (estadoACambiar === 'aprobado') {
         cambiarEstado(solicitidACambiar);
-        finalizar();
     }
     if (estadoACambiar === 'rechazado') {
-        obtenerMotivo();
+        mostrarPedirMotivo = true;
     }
 }
 
-const obtenerMotivo = () => {
-    mostrarPedirMotivo = true;
-}
-
-const recibirMotivo = (cambiarEstado) => {
+const recibirMotivo = (motivo) => {
     mostrarPedirMotivo = false;
     solicitidACambiar.motivo = motivo;
-    cambiarEstado(solicitidACambiar);
-    finalizar();
-}
-
-const finalizar = () => {
-    estadoACambiar = 'pendiente';
-    motivo = '';
-    solicitidACambiar = {};
-    cargarSolicitudes = true;
+    return solicitidACambiar;
 }
 
 export const RequestVacationLider = ({
-    motivoIngresado, obtenerListaSolicitudesSolvers, cambiarEstado, listVacationRequestSolvers, user
+    obtenerListaSolicitudesSolvers, cambiarEstado, listVacationRequestSolvers, user
 }) => {
-    //obtenerSolicitudes(obtenerListaSolicitudesSolvers, user);
     obtenerListaSolicitudesSolvers(user);
-    motivo = motivoIngresado;
     return (
         listVacationRequestSolvers.length === 0 ?
             <SinSolicitudes title={'!Lo sentimos!'}>
@@ -105,7 +81,7 @@ export const RequestVacationLider = ({
                     mostrar={mostrarPedirMotivo}
                     titulo={'Ingrese el motivo del rechazo'}
                     respuesta={''}
-                    enviarMotivo={() => recibirMotivo(cambiarEstado)}
+                    enviarMotivo={(motivo) => cambiarEstado(recibirMotivo(motivo))}
                 />
                 <Table striped bordered condensed hover>
                     <thead>
@@ -171,7 +147,6 @@ const mapStateToProps = (state) => {
     return {
         ...state.listVacationSolvers,
         ...state.login.user,
-        ...state.form.motivo
     };
 };
 

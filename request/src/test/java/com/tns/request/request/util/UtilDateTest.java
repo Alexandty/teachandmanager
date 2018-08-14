@@ -111,31 +111,66 @@ public class UtilDateTest {
 
 		Assert.assertEquals("se espera false", false, res);
 	}
-	
-	
-	
+
+	@Test
+	public void debeRetornarTruePorFechasCorrectas() throws ParseException {
+		Date fechaI = UtilDate.getDateFromString("01/01/2020");
+		Date fechaF = UtilDate.getDateFromString("02/01/2020");
+
+		boolean res = UtilDate.checkVacationDates(fechaI, fechaF);
+
+		Assert.assertEquals("se espera true", true, res);
+	}
+
+	@Test
+	public void debeRetornarFalsePorFechasIncorrectas() throws ParseException {
+		Date fechaI = UtilDate.getDateFromString("03/01/2020");
+		Date fechaF = UtilDate.getDateFromString("02/01/2020");
+
+		boolean res = UtilDate.checkVacationDates(fechaI, fechaF);
+
+		Assert.assertEquals("se espera false", false, res);
+	}
+
 	@Test
 	public void debeRetornarLaFechaDeRegresoALabores() throws ParseException {
-		
+
 		Date fechaFin = UtilDate.getDateFromString("20/07/2020");
-		
-		String fechaRetornoLabor = UtilDate.calcularFecharRetornoLabor( fechaFin);
-		
-		Assert.assertEquals("se espera la fecha 21/07/2020", "21/07/2020", fechaRetornoLabor);		
-		
+
+		String fechaRetornoLabor = UtilDate.calcularFecharRetornoLabor(fechaFin);
+
+		Assert.assertEquals("se espera la fecha 21/07/2020", "21/07/2020", fechaRetornoLabor);
+
 	}
-	
-	
+
 	@Test
 	public void debeRetornarLaFechaDeRegresoALaboresSiEsaFechaEsViernes() throws ParseException {
-		
-		Date fechaFin = UtilDate.getDateFromString("24/07/2020");
-		
-		String fechaRetornoLabor = UtilDate.calcularFecharRetornoLabor( fechaFin);
-		
-		Assert.assertEquals("se espera la fecha 27/07/2020", "27/07/2020", fechaRetornoLabor);		
-		
-	}
-	
 
+		Date fechaFin = UtilDate.getDateFromString("24/07/2020");
+
+		String fechaRetornoLabor = UtilDate.calcularFecharRetornoLabor(fechaFin);
+
+		Assert.assertEquals("se espera la fecha 27/07/2020", "27/07/2020", fechaRetornoLabor);
+
+	}
+
+	@Test
+	public void debeRetornarTruePorDiasDisponibles() throws ParseException {
+		Date fechaI = UtilDate.getDateFromString("01/01/2020");
+		Date fechaF = UtilDate.getDateFromString("02/01/2020");
+
+		boolean res = UtilDate.checkAvailableDays(fechaI, fechaF, 1);
+
+		Assert.assertEquals("se espera true", true, res);
+	}
+
+	@Test
+	public void debeRetornarFalsePorDiasDisponibles() throws ParseException {
+		Date fechaI = UtilDate.getDateFromString("01/01/2020");
+		Date fechaF = UtilDate.getDateFromString("016/01/2020");
+
+		boolean res = UtilDate.checkAvailableDays(fechaI, fechaF, 1);
+
+		Assert.assertEquals("se espera false", false, res);
+	}
 }

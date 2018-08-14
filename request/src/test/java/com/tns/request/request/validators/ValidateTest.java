@@ -1,8 +1,5 @@
 package com.tns.request.request.validators;
 
-import javax.validation.constraints.AssertFalse;
-import javax.validation.constraints.AssertTrue;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
