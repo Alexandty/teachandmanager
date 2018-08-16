@@ -9,6 +9,8 @@ import java.util.Date;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.tns.request.request.exception.BusinessException;
+
 public class UtilDateTest {
 
 	@Test
@@ -61,7 +63,15 @@ public class UtilDateTest {
 
 		assertFalse(resultado != -15);
 	}
-
+	
+	@Test(expected = BusinessException.class)
+	public void debeFallarAlCalcularYRetornarExcepcion() throws ParseException {
+		Date fechaI = UtilDate.getDateFromString("01/01/2010");
+		Date fechaF = UtilDate.getDateFromString("01/01/2010");
+		int diasDisfrutados = 0;
+		UtilDate.calcularDiasDisponibles(fechaI, fechaF, diasDisfrutados);
+	}
+	
 	@Test
 	public void debeCalcularDiasDisfrutadosEntreFechasDadas() throws ParseException {
 		Date fechaI = UtilDate.getDateFromString("01/01/2018");
