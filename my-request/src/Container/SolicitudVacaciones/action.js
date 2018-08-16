@@ -1,14 +1,14 @@
 import axios from 'axios';
-const _addSolicitudVacaciones = (sVacaciones) => ({
+const addSV = (sVacaciones) => ({
     type: 'ADD_SOLICITUD_VACACIONES',
     sVacaciones
 });
-const _checkSolicitudVacaciones = (sVacaciones) => ({
+const checkSV = (sVacaciones) => ({
     type: 'CHECK_SOLICITUD_VACACIONES',
     sVacaciones
 });
 
-const _loadAvailableDays = (avalableDaysData) => ({
+const loadAD = (avalableDaysData) => ({
     type: 'GET_AVAILABLE_DAYS',
     avalableDaysData
 });
@@ -25,8 +25,8 @@ const action = {
                 };
                 return axios.post('http://localhost:8081/solicitud/vacaciones/disponibles', solicitudVacaciones)
                     .then(result => {
-                        dispatch(_checkSolicitudVacaciones(result.data));
-                        alert(result.data + ' Dias disponibles para fecha seleccionada')
+                        dispatch(checkSV(result.data));
+                        alert(result.data + ' Dias disponibles para fecha seleccionada');
                     }, error => {
                         alert(error.response.data.message);
                     });
@@ -45,7 +45,7 @@ const action = {
             };
             return axios.post('http://localhost:8081/solicitud/vacaciones/create/', solicitudVacaciones)
                 .then(result => {
-                    dispatch(_addSolicitudVacaciones(result.data));
+                    dispatch(addSV(result.data));
                 }, error => {
                     alert(error.response.data.message);
                 });
@@ -55,9 +55,9 @@ const action = {
         return dispatch => {
             return axios.get("http://localhost:8081/solicitud/vacaciones/disponibles/" + user)
                 .then(response => {
-                    dispatch(_loadAvailableDays(response.data));
+                    dispatch(loadAD(response.data));
                 });
-        }
+        };
     }
 };
 

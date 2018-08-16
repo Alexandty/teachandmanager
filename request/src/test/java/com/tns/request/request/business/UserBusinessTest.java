@@ -42,6 +42,18 @@ public class UserBusinessTest {
 		Assert.assertNotNull(userBusiness.getUser(user));
 	}
 
+	@Test(expected = BusinessException.class)
+	public void noDebeHallarUsuario() {
+		User user = new User();
+		user.setUsername("juan");
+		user.setPassword("123");
+		when(validate.user(user)).thenReturn(true);
+		when(validate.specialCharacters(user.getPassword())).thenReturn(true);
+		when(validate.specialCharacters(user.getUsername())).thenReturn(true);
+		when(userRepository.findByUsername(user.getUsername())).thenReturn(null);
+		userBusiness.getUser(user);
+	}
+
 	@Test
 	public void noDebeSerKeySensitiveParaNombreUsuario() {
 		User user = new User();
