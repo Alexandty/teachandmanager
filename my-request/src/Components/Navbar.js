@@ -19,7 +19,7 @@ const NavbarApp = ({ lider }) => (
                     <Link to="/">Inicio</Link>
                 </NavItem>
                 <NavDropdown eventKey={3} title="Vacaciones" id="basic-nav-dropdown">
-                    <MenuItem eventKey={3.1}><Link to={"/consulta"}>Consulta de solicitudes</Link></MenuItem>
+                    <MenuItem eventKey={3.1}><Link to={"/consulta"}>Consulta de Solicitudes</Link></MenuItem>
                     <MenuItem eventKey={3.2}><Link to={"/solicitud"}>Solicitud Vacaciones</Link></MenuItem>
                     {lider ? <MenuItem eventKey={3.3}><Link to={"/solicitudeslider"}>Mis Solicitudes</Link></MenuItem> : <div />}
                 </NavDropdown>

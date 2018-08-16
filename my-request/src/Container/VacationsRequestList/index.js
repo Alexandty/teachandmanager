@@ -34,8 +34,8 @@ export const RequestVacationList = ({ loadRequestVacation, VacationData, user })
             {VacationData
               .sort((vacationA, vacationB) => {
                 if (vacationA === vacationB) return 1
-                else if (vacationA < vacationB) return -0
-                else return 0
+                else if (vacationA < vacationB) return -1
+                else return 1
               })
               .map(Vacation =>
                 <tr key={Vacation.idRequest}>

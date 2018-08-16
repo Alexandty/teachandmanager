@@ -153,6 +153,17 @@ public class UtilDateTest {
 		Assert.assertEquals("se espera la fecha 27/07/2020", "27/07/2020", fechaRetornoLabor);
 
 	}
+	
+	@Test
+	public void debeRetornarLaFechaDeRegresoALaboresSiEsaFechaEsSabado() throws ParseException {
+
+		Date fechaFin = UtilDate.getDateFromString("22/08/2020");
+
+		String fechaRetornoLabor = UtilDate.calcularFecharRetornoLabor(fechaFin);
+
+		Assert.assertEquals("se espera la fecha 24/08/2020", "24/08/2020", fechaRetornoLabor);
+
+	}
 
 	@Test
 	public void debeRetornarTruePorDiasDisponibles() throws ParseException {

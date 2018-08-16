@@ -41,8 +41,8 @@ public final class UtilDate {
 		if (!checkCurrentDate(fechaInicio)) {
 			throw new BusinessException("Fecha incorrecta");
 		}
-		double diasdisponibles = ((diferenciaDias(fechaIngreso, fechaInicio) * CONS_CALCULO_VACIONES)
-				- diasDisfrutados);
+		double diasdisponibles = (diferenciaDias(fechaIngreso, fechaInicio) * CONS_CALCULO_VACIONES)
+				- diasDisfrutados;
 		return aproximacionDecimal(diasdisponibles);
 	}
 

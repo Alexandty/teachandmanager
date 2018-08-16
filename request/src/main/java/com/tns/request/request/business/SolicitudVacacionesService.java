@@ -33,22 +33,19 @@ public class SolicitudVacacionesService {
 	@Autowired
 	private IAsignacionRepository asignacionRepository;
 
-	private SolicitudVacaciones solicitudVacaciones;
-
-	public SolicitudVacaciones crearSolicitud(SolicitudVacacionesUsernameDTO solicitudVacacionesUsernameDTO) throws ParseException {
-		SolicitudVacaciones solicitudVacaciones = new SolicitudVacaciones();
-		String dateRetorn = UtilDate.calcularFecharRetornoLabor(solicitudVacacionesUsernameDTO.getEndDate());
-		Person persona = personRepository.findByUserIdUsername(solicitudVacacionesUsernameDTO.getUser());
-		solicitudVacaciones
-				.setRequestedDays((int) UtilDate.diferenciaDias(solicitudVacacionesUsernameDTO.getStartDate(),
-						solicitudVacacionesUsernameDTO.getEndDate()));
-		solicitudVacaciones.setEndDate(solicitudVacacionesUsernameDTO.getEndDate());
-		solicitudVacaciones.setStartDate(solicitudVacacionesUsernameDTO.getStartDate());
-		solicitudVacaciones.setReturnDate(UtilDate.getDateFromString(dateRetorn));
-		solicitudVacaciones.setEstado(solicitudVacacionesUsernameDTO.getEstado());
-		solicitudVacaciones.setMotivo(solicitudVacacionesUsernameDTO.getMotivo());
-		solicitudVacaciones.setPersonId(persona);
-		return solicitudVacacionesRepository.save(solicitudVacaciones);
+	public SolicitudVacaciones crearSolicitud(SolicitudVacacionesUsernameDTO solVUDTO) throws ParseException {
+		getDiasDisponiblesVacaUserDTO(solVUDTO);
+		SolicitudVacaciones solVac = new SolicitudVacaciones();
+		String dateReturn = UtilDate.calcularFecharRetornoLabor(solVUDTO.getEndDate());
+		Person persona = personRepository.findByUserIdUsername(solVUDTO.getUser());
+		solVac.setRequestedDays((int) UtilDate.diferenciaDias(solVUDTO.getStartDate(), solVUDTO.getEndDate()));
+		solVac.setEndDate(solVUDTO.getEndDate());
+		solVac.setStartDate(solVUDTO.getStartDate());
+		solVac.setReturnDate(UtilDate.getDateFromString(dateReturn));
+		solVac.setEstado(solVUDTO.getEstado());
+		solVac.setMotivo(solVUDTO.getMotivo());
+		solVac.setPersonId(persona);
+		return solicitudVacacionesRepository.save(solVac);
 	}
 
 	public List<SolicitudVacaciones> getSolicitudesByPersonId(String username) {

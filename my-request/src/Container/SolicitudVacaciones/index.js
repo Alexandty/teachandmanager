@@ -5,7 +5,6 @@ import validate from './validate';
 import { Label, Button, FormGroup, Row, Col, Grid } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 
-
 const renderField = ({
     input,
     label,

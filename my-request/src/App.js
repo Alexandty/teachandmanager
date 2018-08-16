@@ -32,7 +32,7 @@ const AppRouter = (props) => {
         <Route exact path="/" component={Welcome} />
         <Route path="/consulta" component={Consulta} />
         <Route path="/solicitud" component={SolicitudApp} />
-        <Route path="/solicitudes/lider" component={SolicitudesLider} />
+        <Route path="/solicitudeslider" component={SolicitudesLider} />
       </div>
     </Router>
   )

@@ -32,8 +32,9 @@ public class Validate {
 	public boolean specialCharacters(String string) {
 		Pattern pattern = Pattern.compile("[^&%$#@!~áéíóúñ+-]+");
 		Matcher matcher = pattern.matcher(string);
-		if (!matcher.matches()) 
+		if (!matcher.matches()) {
 			return false;
+		}
 		return true;
 	}
 

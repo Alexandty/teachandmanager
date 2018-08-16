@@ -1,9 +1,10 @@
 package com.tns.request.request.business;
 
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Matchers.eq;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.lang.reflect.InvocationTargetException;
@@ -18,10 +19,14 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Any;
 import com.tns.request.request.dto.SolicitudVacacionesUsernameDTO;
 import com.tns.request.request.exception.BusinessException;
 import com.tns.request.request.model.AsignacionLider;
@@ -118,9 +123,8 @@ public class SolicitudVacacionesServiceTest {
 		Assert.assertEquals("se espera 15 dias disponibles", 15, respuesta);
 	}
 
-	@Test
-	public void debeCrearSolicitudExistosamente() {
-		SolicitudVacaciones res = new SolicitudVacaciones();
+	@Test(expected = BusinessException.class)
+	public void debeRetornarExceptionPorFechasIncorrectas() throws ParseException {
 		SolicitudVacacionesUsernameDTO solDTO = new SolicitudVacacionesUsernameDTO();
 		solDTO.setEndDate(new Date());
 		solDTO.setStartDate(new Date());
@@ -128,9 +132,26 @@ public class SolicitudVacacionesServiceTest {
 		p.setIdPerson(1);
 		when(personRepository.findByUserIdUsername(null)).thenReturn(p);
 
-		//res = solicitudVacacionesService.crearSolicitud(solDTO);
+		SolicitudVacaciones res = solicitudVacacionesService.crearSolicitud(solDTO);
+	}
 
-		// Assert.assertEquals("se espera", solDTO.getStartDate(), res.getStartDate());
+	@Test
+	public void debeCrearSolicitud() throws ParseException {
+		SolicitudVacacionesUsernameDTO solDTO = new SolicitudVacacionesUsernameDTO();
+		Date sDate = UtilDate.getDateFromString("1/1/2020");
+		Date eDate = UtilDate.getDateFromString("1/2/2020");
+		solDTO.setStartDate(sDate);
+		solDTO.setEndDate(eDate);
+		Person p = new Person();
+		p.setEntryDate(new Date(1));
+		when(personRepository.findByUserIdUsername(anyString())).thenReturn(p);
+
+		SolicitudVacaciones res = new SolicitudVacaciones();
+		res.setStartDate(sDate);
+		solicitudVacacionesService.crearSolicitud(solDTO);
+		when(solicitudVacacionesRepository.save(any())).thenReturn(res);
+
+		Assert.assertEquals(res.getStartDate(), solDTO.getStartDate());
 	}
 
 	@Test
@@ -141,7 +162,33 @@ public class SolicitudVacacionesServiceTest {
 		when(asignacionRepository.findByIdAsignacionIdLider(Mockito.anyLong()))
 				.thenReturn(new ArrayList<AsignacionLider>());
 		List<Person> result = (List<Person>) method.invoke(solicitudVacacionesService, 0);
+
 		Assert.assertNotNull(result);
+	}
+
+	@Test
+	public void debeRetornarNotFoundExceptionCuandoActualiceSolicitud() {
+		Optional<SolicitudVacaciones> sv = Optional.empty();
+		when(solicitudVacacionesRepository.findById(anyLong())).thenReturn(sv);
+		ResponseEntity<SolicitudVacaciones> updateSolicitud = solicitudVacacionesService.updateSolicitud(anyLong(),
+				null);
+
+		assertTrue(HttpStatus.NOT_FOUND.equals(updateSolicitud.getStatusCode()));
+		verify(solicitudVacacionesRepository, Mockito.never()).save(Matchers.anyObject());
+	}
+
+	@Test
+	public void debeRetornarOkCuandoActualiceSolicitud() {
+		SolicitudVacaciones solVa = new SolicitudVacaciones();
+		solVa.setEstado("estado");
+		solVa.setMotivo("motivo");
+		Optional<SolicitudVacaciones> sv = Optional.ofNullable(solVa);
+		when(solicitudVacacionesRepository.findById(anyLong())).thenReturn(sv);
+		ResponseEntity<SolicitudVacaciones> updateSolicitud = solicitudVacacionesService.updateSolicitud(anyLong(),
+				solVa);
+
+		verify(solicitudVacacionesRepository).save(Matchers.anyObject());
+		assertTrue(HttpStatus.OK.equals(updateSolicitud.getStatusCode()));
 
 	}
 
@@ -169,17 +216,6 @@ public class SolicitudVacacionesServiceTest {
 	// when(personRepository.findByUserIdUsername(null)).thenReturn(p);
 	//
 	// }
-	
-	
-//	@Test
-//	public void debeRetornarOkCuandoActualiceSolicitud() {
-//		Optional<SolicitudVacaciones> solicitudData = a;
-//		SolicitudVacaciones sv = new SolicitudVacaciones();
-//		when(solicitudVacacionesRepository.findById(null)).thenReturn(solicitudData);
-//		when(solicitudData.isPresent()).thenReturn(true);
-//		solicitudVacacionesService.updateSolicitud(1L, sv);
-//
-//	}
 
 	// @Test
 	// public void debeRetornarListaSolversPorLider() {
