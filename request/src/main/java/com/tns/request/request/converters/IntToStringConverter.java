@@ -18,7 +18,6 @@ public  class IntToStringConverter implements AttributeConverter<String, Integer
 			break;
 		}
 		return estado;
-
 	}
 
 	@Override
@@ -35,7 +34,6 @@ public  class IntToStringConverter implements AttributeConverter<String, Integer
 			break;
 		}
 		return estado;
-
 	}
 
 }

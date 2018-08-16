@@ -134,20 +134,6 @@ public class SolicitudVacacionesServiceTest {
 
 		SolicitudVacaciones res = solicitudVacacionesService.crearSolicitud(solDTO);
 	}
-	
-//	@Test(expected = BusinessException.class)
-//	public void debeRetornarExceptionPorDiasInsuficientes() throws ParseException {
-//		SolicitudVacacionesUsernameDTO solDTO = new SolicitudVacacionesUsernameDTO();
-//		solDTO.setEndDate(new Date());
-//		solDTO.setStartDate(new Date());
-//		Person p = new Person();
-//		p.setIdPerson(1);
-//		when(personRepository.findByUserIdUsername(null)).thenReturn(p);
-//		when(UtilDate.diferenciaDias(new Date(), new Date()) > UtilDate.calcularDiasDisponibles(fechaIngreso, fechaInicio,
-//				diasDisfrutados))
-//
-//		SolicitudVacaciones res = solicitudVacacionesService.crearSolicitud(solDTO);
-//	}
 
 	@Test
 	public void debeCrearSolicitud() throws ParseException {
@@ -205,6 +191,22 @@ public class SolicitudVacacionesServiceTest {
 		assertTrue(HttpStatus.OK.equals(updateSolicitud.getStatusCode()));
 
 	}
+	// @Test(expected = BusinessException.class)
+	// public void debeRetornarExceptionPorDiasInsuficientes() throws ParseException
+	// {
+	// SolicitudVacacionesUsernameDTO solDTO = new SolicitudVacacionesUsernameDTO();
+	// solDTO.setEndDate(new Date());
+	// solDTO.setStartDate(new Date());
+	// Person p = new Person();
+	// p.setIdPerson(1);
+	// when(personRepository.findByUserIdUsername(null)).thenReturn(p);
+	// when(UtilDate.diferenciaDias(new Date(), new Date()) >
+	// UtilDate.calcularDiasDisponibles(fechaIngreso, fechaInicio,
+	// diasDisfrutados))
+	//
+	// SolicitudVacaciones res = solicitudVacacionesService.crearSolicitud(solDTO);
+	// }
+
 	// @Test(expected = BusinessException.class)
 	// public void debeRetornarElSolverAsociadoAlLider() throws
 	// NoSuchMethodException, SecurityException,
