@@ -11,18 +11,19 @@ import com.tns.request.request.exception.BusinessException;
 public final class UtilDate {
 
 	private static final double CONS_CALCULO_VACIONES = 0.0416666666666667;
+	private static final String DATE_FORMAT = "dd/MM/yyyy";
 
 	private UtilDate() {
 		super();
 	}
 
 	public static Date getDateFromString(String fecha) throws ParseException {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
 		return simpleDateFormat.parse(fecha);
 	}
 
 	public static String getStringFromDate(Date fecha) {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
 		return simpleDateFormat.format(fecha);
 	}
 

@@ -18,14 +18,14 @@ import com.tns.request.request.model.Person;
 import com.tns.request.request.model.SolicitudVacaciones;
 import com.tns.request.request.repository.IAsignacionRepository;
 import com.tns.request.request.repository.IPersonRepository;
-import com.tns.request.request.repository.SolicitudVacacionesRepository;
+import com.tns.request.request.repository.ISolicitudVacacionesRepository;
 import com.tns.request.request.util.UtilDate;
 
 @Service
 public class SolicitudVacacionesService {
 
 	@Autowired
-	private SolicitudVacacionesRepository solicitudVacacionesRepository;
+	private ISolicitudVacacionesRepository solicitudVacacionesRepository;
 
 	@Autowired
 	private IPersonRepository personRepository;

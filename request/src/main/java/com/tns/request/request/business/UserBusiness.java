@@ -22,18 +22,16 @@ public class UserBusiness {
 	private PersonBusiness personBusiness;
 
 	public User getUser(User user) {
-		if (validate.user(user)) {
-			if (validate.specialCharacters(user.getPassword()) && validate.specialCharacters(user.getUsername())) {
-				User userBD = userRepository.findByUsername(user.getUsername());
-				if (null == userBD) {
-					throw new BusinessException("No existe el usuario");
-				} else if (user.getPassword().equals(userBD.getPassword())) {
-					return userBD;
-				}
+		if (validate.user(user) && validate.specialCharacters(user.getPassword())
+				&& validate.specialCharacters(user.getUsername())) {
+			User userBD = userRepository.findByUsername(user.getUsername());
+			if (null == userBD) {
+				throw new BusinessException("No existe el usuario");
+			} else if (user.getPassword().equals(userBD.getPassword())) {
+				return userBD;
 			}
 		}
 		throw new BusinessException("Nombre de usuario o contraseña incorrecto");
-
 	}
 
 	public PersonDTO getPerson(User user) {

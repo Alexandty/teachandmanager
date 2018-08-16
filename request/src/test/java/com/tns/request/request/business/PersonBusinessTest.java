@@ -1,5 +1,12 @@
 package com.tns.request.request.business;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyBoolean;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.notNull;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +23,7 @@ import com.tns.request.request.repository.IPersonRepository;
 public class PersonBusinessTest {
 
 	@InjectMocks
-	private PersonBusiness business;
+	private PersonBusiness personBusiness;
 
 	@Mock
 	private IPersonRepository personRepository;
@@ -29,8 +36,7 @@ public class PersonBusinessTest {
 		person.setIdPerson(1);
 		person.setUserId(new User());
 		person.getUserId().setUsername("user");
-		PersonDTO personDTO = business.buildPersonDTO(person);
+		PersonDTO personDTO = personBusiness.buildPersonDTO(person);
 		Assert.assertTrue(person.getName().equals(personDTO.getName()));
 	}
-
 }

@@ -1,5 +1,6 @@
 package com.tns.request.request.business;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import org.junit.Assert;
@@ -39,7 +40,6 @@ public class UserBusinessTest {
 		when(validate.specialCharacters(user.getUsername())).thenReturn(true);
 		when(userRepository.findByUsername(user.getUsername())).thenReturn(userBD);
 		Assert.assertNotNull(userBusiness.getUser(user));
-
 	}
 
 	@Test
@@ -56,7 +56,6 @@ public class UserBusinessTest {
 		when(userRepository.findByUsername(user.getUsername())).thenReturn(userBD);
 		userBusiness.getUser(user);
 		Assert.assertNotNull(userBusiness.getUser(user));
-
 	}
 
 	@Test(expected = BusinessException.class)
@@ -64,7 +63,6 @@ public class UserBusinessTest {
 		User user = new User();
 		when(validate.user(user)).thenReturn(false);
 		userBusiness.getUser(user);
-
 	}
 
 	@Test(expected = BusinessException.class)
@@ -79,7 +77,6 @@ public class UserBusinessTest {
 		when(validate.user(user)).thenReturn(true);
 		when(userRepository.findByUsername(user.getUsername())).thenReturn(userBD);
 		userBusiness.getUser(user);
-
 	}
 
 }

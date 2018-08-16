@@ -34,7 +34,7 @@ import com.tns.request.request.model.Person;
 import com.tns.request.request.model.SolicitudVacaciones;
 import com.tns.request.request.repository.IAsignacionRepository;
 import com.tns.request.request.repository.IPersonRepository;
-import com.tns.request.request.repository.SolicitudVacacionesRepository;
+import com.tns.request.request.repository.ISolicitudVacacionesRepository;
 import com.tns.request.request.util.UtilDate;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -44,7 +44,7 @@ public class SolicitudVacacionesServiceTest {
 	private SolicitudVacacionesService solicitudVacacionesService;
 
 	@Mock
-	private SolicitudVacacionesRepository solicitudVacacionesRepository;
+	private ISolicitudVacacionesRepository solicitudVacacionesRepository;
 
 	@Mock
 	private IPersonRepository personRepository;
@@ -134,6 +134,20 @@ public class SolicitudVacacionesServiceTest {
 
 		SolicitudVacaciones res = solicitudVacacionesService.crearSolicitud(solDTO);
 	}
+	
+//	@Test(expected = BusinessException.class)
+//	public void debeRetornarExceptionPorDiasInsuficientes() throws ParseException {
+//		SolicitudVacacionesUsernameDTO solDTO = new SolicitudVacacionesUsernameDTO();
+//		solDTO.setEndDate(new Date());
+//		solDTO.setStartDate(new Date());
+//		Person p = new Person();
+//		p.setIdPerson(1);
+//		when(personRepository.findByUserIdUsername(null)).thenReturn(p);
+//		when(UtilDate.diferenciaDias(new Date(), new Date()) > UtilDate.calcularDiasDisponibles(fechaIngreso, fechaInicio,
+//				diasDisfrutados))
+//
+//		SolicitudVacaciones res = solicitudVacacionesService.crearSolicitud(solDTO);
+//	}
 
 	@Test
 	public void debeCrearSolicitud() throws ParseException {
@@ -191,7 +205,6 @@ public class SolicitudVacacionesServiceTest {
 		assertTrue(HttpStatus.OK.equals(updateSolicitud.getStatusCode()));
 
 	}
-
 	// @Test(expected = BusinessException.class)
 	// public void debeRetornarElSolverAsociadoAlLider() throws
 	// NoSuchMethodException, SecurityException,

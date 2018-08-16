@@ -1,13 +1,12 @@
 package com.tns.request.request.util;
 
 public class UtilEstado {
-	private static String ESTADO_SOLCIITUD_STRING = "";
 
 	public static int convertirEstdoSolicitudAInt(String estado) {
-		if (estado == "aprobado") {
+		if (estado.equals("aprobado")) {
 			return 1;
 		}
-		if (estado == "rechazado") {
+		if (estado.equals("rechazado")) {
 			return 2;
 		}
 		return 0;
@@ -15,11 +14,11 @@ public class UtilEstado {
 
 	public static String convertirEstadoSolicitudAString(int string) {
 		if (string == 1) {
-			return ESTADO_SOLCIITUD_STRING = "aprobado";
+			return "aprobado";
 		}
 		if (string == 2) {
-			return ESTADO_SOLCIITUD_STRING = "rechazado";
+			return "rechazado";
 		}
-		return ESTADO_SOLCIITUD_STRING = "pendiente";
+		return "pendiente";
 	}
 }
