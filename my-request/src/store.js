@@ -6,15 +6,12 @@ import AddSolitudVacaciones from './Container/SolicitudVacaciones/reducer';
 import requestVacationLider from './Container/RequestVacationLider/reducer';
 import thunk from 'redux-thunk';
 
-
-
 const composeEnhancers =
     typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
         ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
             // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
         })
         : compose;
-
 
 const rootReducer = combineReducers({
     form: formReducer,

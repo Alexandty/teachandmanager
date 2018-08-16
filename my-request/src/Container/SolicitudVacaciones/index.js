@@ -49,7 +49,6 @@ export const SolicitudForm = props => {
                                 </FormGroup>
                                 <FormGroup controlId="formInlineDate">
                                     <Label>Fecha de Fin</Label>
-
                                     <Field type="Date" id='idEndtDate' name="endDate" component={renderField}
                                         onBlur={handleSubmit((values) => {
                                             values.user = user.user;
@@ -57,7 +56,7 @@ export const SolicitudForm = props => {
                                         })}
                                     />
                                 </FormGroup>
-                                <Button bsStyle="success" type="submit"  disabled={availableDaysVacation }>Solicitar</Button>
+                                <Button bsStyle="success" type="submit" disabled={availableDaysVacation}>Solicitar</Button>
                             </Col>
                         </div>
                     </Row>

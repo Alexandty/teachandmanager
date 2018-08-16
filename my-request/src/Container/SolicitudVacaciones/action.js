@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { reset } from 'redux-form';
+
 const addSV = (sVacaciones) => ({
     type: 'ADD_SOLICITUD_VACACIONES',
     sVacaciones
@@ -13,10 +15,9 @@ const loadAD = (avalableDaysData) => ({
     avalableDaysData
 });
 
-
 const action = {
     consultar: (values) => {
-        if (values.startDate !== undefined && values.endDate !== undefined ) {
+        if (values.startDate !== undefined && values.endDate !== undefined) {
             return (dispatch) => {
                 const solicitudVacaciones = {
                     startDate: values.startDate,
@@ -29,10 +30,9 @@ const action = {
                         alert(result.data + ' Dias disponibles para fecha seleccionada');
                     }, error => {
                         alert(error.response.data.message);
-                    });
+                    })
             };
         };
-
     },
     guardar: (values) => {
         return (dispatch) => {
@@ -46,6 +46,7 @@ const action = {
             return axios.post('http://localhost:8081/solicitud/vacaciones/create/', solicitudVacaciones)
                 .then(result => {
                     dispatch(addSV(result.data));
+                    dispatch(reset('SolicitudForm'));
                 }, error => {
                     alert(error.response.data.message);
                 });

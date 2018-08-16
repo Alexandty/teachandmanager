@@ -22,7 +22,7 @@ const AddSolitudVacaciones = (state = initialState, action) => {
     else if (action.type === "GET_AVAILABLE_DAYS") {
         return {
             ...state,
-            avalableDaysData: action.avalableDaysData            
+            avalableDaysData: action.avalableDaysData
         };
     }
     return state;
