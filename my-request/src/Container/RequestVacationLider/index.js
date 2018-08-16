@@ -87,6 +87,7 @@ export const RequestVacationLider = ({
                     <thead>
                         <tr>
                             <th>Solver</th>
+                            <th>Solver</th>
                             <th>Fecha de Inicio</th>
                             <th>Fecha de Fin</th>
                             <th>Fecha de Retorno</th>
@@ -104,7 +105,7 @@ export const RequestVacationLider = ({
                             })
                             .map(solicitud =>
                                 <tr key={solicitud.idRequest}>
-                                    <td>{solicitud.personId.name}</td>
+                                    <td>{solicitud.personId.name}{" "}{solicitud.personId.lastName}</td>
                                     <td>{Moment(solicitud.startDate).format('DD/MM/YYYY')}</td>
                                     <td>{Moment(solicitud.endDate).format('DD/MM/YYYY')}</td>
                                     <td>{Moment(solicitud.returnDate).format('DD/MM/YYYY')}</td>

@@ -155,18 +155,6 @@ public class SolicitudVacacionesServiceTest {
 	}
 
 	@Test
-	public void debeRetornarUnaListaDePersonas() throws NoSuchMethodException, SecurityException,
-			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		Method method = SolicitudVacacionesService.class.getDeclaredMethod("getSolversDelLider", long.class);
-		method.setAccessible(true);
-		when(asignacionRepository.findByIdAsignacionIdLider(Mockito.anyLong()))
-				.thenReturn(new ArrayList<AsignacionLider>());
-		List<Person> result = (List<Person>) method.invoke(solicitudVacacionesService, 0);
-
-		Assert.assertNotNull(result);
-	}
-
-	@Test
 	public void debeRetornarNotFoundExceptionCuandoActualiceSolicitud() {
 		Optional<SolicitudVacaciones> sv = Optional.empty();
 		when(solicitudVacacionesRepository.findById(anyLong())).thenReturn(sv);
@@ -191,6 +179,29 @@ public class SolicitudVacacionesServiceTest {
 		assertTrue(HttpStatus.OK.equals(updateSolicitud.getStatusCode()));
 
 	}
+
+	@Test
+	public void debeRetornarUnaListaDePersonas() throws NoSuchMethodException, SecurityException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		Method method = SolicitudVacacionesService.class.getDeclaredMethod("getSolversDelLider", long.class);
+		method.setAccessible(true);
+		when(asignacionRepository.findByIdAsignacionIdLider(Mockito.anyLong()))
+				.thenReturn(new ArrayList<AsignacionLider>());
+		List<Person> result = (List<Person>) method.invoke(solicitudVacacionesService, 0);
+
+		Assert.assertNotNull(result);
+	}
+
+	@Test
+	public void debeRetornarPersonaPorAsignacion() throws NoSuchMethodException, SecurityException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		Method method = SolicitudVacacionesService.class.getDeclaredMethod("getSolver", AsignacionLider.class);
+		method.setAccessible(true);
+		when(personRepository.findById(anyLong())).thenReturn(null);
+		// Person p = (Person) method.invoke(solicitudVacacionesService, null);
+		// Assert.assertNotNull(p);
+	}
+
 	// @Test(expected = BusinessException.class)
 	// public void debeRetornarExceptionPorDiasInsuficientes() throws ParseException
 	// {

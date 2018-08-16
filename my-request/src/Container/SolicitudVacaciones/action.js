@@ -46,6 +46,7 @@ const action = {
             return axios.post('http://localhost:8081/solicitud/vacaciones/create/', solicitudVacaciones)
                 .then(result => {
                     dispatch(addSV(result.data));
+                    alert('Solicitud creada');
                     dispatch(reset('SolicitudForm'));
                 }, error => {
                     alert(error.response.data.message);
