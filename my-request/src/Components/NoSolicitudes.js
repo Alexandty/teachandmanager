@@ -4,9 +4,9 @@ import { Alert } from 'react-bootstrap';
 const SinSolicitudes = (props) => {
     return (<div className='sinSolicitudes'>
         <Alert bsStyle="info">
-            <h4>
+            <h1>
                 {props.title}
-            </h4>
+            </h1>
             <p>
                 {props.children}
             </p>

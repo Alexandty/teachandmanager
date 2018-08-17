@@ -15,10 +15,17 @@ describe('test Vacationlist', () => {
         const wrapper = shallow(<RequestVacationList loadRequestVacation={jest.fn()} VacationData={[{ idRequest: 1 }]} user={[{ 'name': 's' }]} />);
         expect(wrapper.find(".Vacation").length).toBe(1);
     });
-
-    it('No debe mostrar Vacation cuando store este vacio', () => {
-        const wrapper = shallow(<RequestVacationList loadRequestVacation={jest.fn()} VacationData={[]} user={{ name: 'juan' }} />);
-        expect(wrapper.find(".ListRequestVacationEmpty").length).toBe(1);
+    
+    let loadRequestVacation = jest.fn();
+    it('Debe cargar el mensaje lo sentimos cuando no hay solicitudes', () => {
+        const wrapper = shallow(
+            <RequestVacationList
+                loadRequestVacation={loadRequestVacation}
+                VacationData={[]}
+                user={[]}
+            />
+        );        
+        expect(wrapper.find({ title: '!Lo sentimos¡' }).exists()).toBe(true);
     })
 
     it('Validando toMatchSnapshot RequestVacationList', () => {

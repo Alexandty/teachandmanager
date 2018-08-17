@@ -63,6 +63,11 @@ exports[`Probando vista SolicitudForm Validando toMatchSnapshot 1`] = `
                 type="Date"
               />
             </FormGroup>
+            <Alert
+              bsClass="alert"
+              bsStyle="info"
+              closeLabel="Close alert"
+            />
             <Button
               active={false}
               block={false}

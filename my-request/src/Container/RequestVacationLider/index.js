@@ -87,7 +87,6 @@ export const RequestVacationLider = ({
                     <thead>
                         <tr>
                             <th>Solver</th>
-                            <th>Solver</th>
                             <th>Fecha de Inicio</th>
                             <th>Fecha de Fin</th>
                             <th>Fecha de Retorno</th>

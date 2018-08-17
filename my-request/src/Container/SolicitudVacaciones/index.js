@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import action from './action';
 import validate from './validate';
-import { Label, Button, FormGroup, Row, Col, Grid } from 'react-bootstrap';
+import { Label, Button, FormGroup, Row, Col, Grid, Alert } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 
 const renderField = ({
@@ -25,7 +25,7 @@ const renderField = ({
 
 export const SolicitudForm = props => {
     const { loadAvailableDays, guardar, consultar, handleSubmit,
-        avalableDaysData, user, availableDaysVacation } = props;
+        avalableDaysData, user, availableDaysVacation, mensaje } = props;
     loadAvailableDays(user.user)
     return (
         <div>
@@ -56,6 +56,7 @@ export const SolicitudForm = props => {
                                         })}
                                     />
                                 </FormGroup>
+                                <Alert>{mensaje}</Alert>
                                 <Button bsStyle="success" type="submit" disabled={availableDaysVacation}>Solicitar</Button>
                             </Col>
                         </div>

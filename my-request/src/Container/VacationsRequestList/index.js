@@ -1,25 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Label, Alert } from 'react-bootstrap';
+import { Table, Label } from 'react-bootstrap';
 import Moment from 'moment';
 import { loadRequestVacation } from './action';
+import SinSolicitudes from './../../Components/NoSolicitudes';
 
 export const RequestVacationList = ({ loadRequestVacation, VacationData, user }) => {
   loadRequestVacation(user.user)
-  if (VacationData.length === 0) {
-    return (
-      <div className='ListRequestVacationEmpty'>
-        {user.name} {user.lastName} <Label bsStyle="success">fecha de ingreso a la empresa {Moment(user.entryDate).format('DD/MM/YYYY')}</Label>
-        <Alert bsStyle="info">
-          <h4>!Lo sentimos!</h4>
-          <p>
-            Usted no cuenta con informacion de solicitudes.
-          </p>
-        </Alert>
-      </div>
-    )
-  } else {
-    return (
+  return (
+    VacationData.length === 0 ?
+      <SinSolicitudes title={'!Lo sentimos¡'}>
+        Usted no cuenta con informacion de solicitudes.
+      </SinSolicitudes>
+      :
       <div className="Vacation">
         {user.name} {user.lastName}  <Label bsStyle="success">Fecha de ingreso a la empresa {Moment(user.entryDate).format('DD/MM/YYYY')}</Label>
         <Table striped bordered condensed hover>
@@ -47,10 +40,8 @@ export const RequestVacationList = ({ loadRequestVacation, VacationData, user })
           </tbody>
         </Table>
       </div>
-    );
-  }
+  )
 };
-
 const mapStateToProps = state => {
   return {
     ...state.login,

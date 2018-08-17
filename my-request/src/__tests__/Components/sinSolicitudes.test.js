@@ -13,7 +13,7 @@ describe('Test para sinSolicitudes', () => {
     })
     it('Debe cargar el title que se envia por propiedades', () => {
         const wrapper = shallow(<SinSolicitudes title={'Lo Sentimos!'} />);
-        expect(wrapper.find('h4', { children: 'Lo sentimos!' }).exists()).toBe(true);
+        expect(wrapper.find('h1', { children: 'Lo sentimos!' }).exists()).toBe(true);
     })
     it('Debe cargar el children de la etiqueta', () => {
         const wrapper = shallow(

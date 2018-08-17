@@ -11,17 +11,14 @@ import RequestVacationLider from './Container/RequestVacationLider';
 import WelcomeMessage from './Components/WelcomeMessage';
 
 const App = ({ logged }) => {
-  if (logged) {
-    return (
-      <div className="App">
+  return (
+    logged ?
+      <div className="App" >
         <AppRouter user><NavbarApp /></AppRouter>
-      </div>
-    );
-  } else {
-    return (
+      </div >
+      :
       <LoginView />
-    )
-  }
+  );
 }
 
 const AppRouter = (props) => {
