@@ -24,8 +24,8 @@ const action = {
         if (values.startDate !== undefined && values.endDate !== undefined) {
             return (dispatch) => {
                 const solicitudVacaciones = {
-                    startDate: values.startDate,
-                    endDate: values.endDate,
+                    startDate: new Date(values.startDate),
+                    endDate: new Date(values.endDate),
                     user: values.user
                 };
                 return axios.post('http://localhost:8081/solicitud/vacaciones/disponibles', solicitudVacaciones)
@@ -40,12 +40,12 @@ const action = {
     guardar: (values) => {
         return (dispatch) => {
             const solicitudVacaciones = {
-                startDate: values.startDate,
-                endDate: values.endDate,
+                startDate: new Date(values.startDate),
+                endDate: new Date(values.endDate),
                 user: values.user,
                 motivo: "",
                 estado: "pendiente"
-            };
+            };            
             return axios.post('http://localhost:8081/solicitud/vacaciones/create/', solicitudVacaciones)
                 .then(result => {
                     dispatch(addSV(result.data));

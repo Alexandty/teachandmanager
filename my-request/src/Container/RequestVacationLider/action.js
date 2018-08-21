@@ -6,6 +6,8 @@ const action = {
             return axios.get('http://localhost:8081/solicitudlider/vacaciones/consultar/' + username)
                 .then(response => {
                     dispatch({ type: 'LOAD_REQUEST_VACATION_SOLVERS', list: response.data });
+                }).catch(error => {
+                    dispatch({ type: 'ERROR', error });
                 });
         }
     },
@@ -14,9 +16,9 @@ const action = {
             return axios
                 .put('http://localhost:8081/solicitudlider/vacaciones/actualizar/' + solicitud.idRequest, solicitud)
                 .then(response => {
-                })
-                .catch(error => {
-                    alert(error);
+                    dispatch({ type: 'UPTDATE_REQUEST_VACATION_SOLVERS'});
+                }).catch(error => {
+                    dispatch({ type: 'ERROR', error });
                 });
         };
     }
