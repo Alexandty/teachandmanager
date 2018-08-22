@@ -1,7 +1,6 @@
 const initialState = {
     user: [],
-    logged: false,
-
+    logged: false
 };
 
 const login = (state = initialState, action) => {

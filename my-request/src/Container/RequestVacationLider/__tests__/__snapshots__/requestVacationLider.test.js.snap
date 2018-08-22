@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Para requestVacationLider Validando toMatchSnapshot 1`] = `
+<SinSolicitudes
+  title="!Lo sentimos!"
+>
+  Usted no cuenta con informacion de solicitudes.
+</SinSolicitudes>
+`;

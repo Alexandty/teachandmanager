@@ -42,7 +42,6 @@ public class SolicitudVacacionesController {
 	public ResponseEntity<SolicitudVacaciones> guardarSolicitudVacaciones(
 			@RequestBody SolicitudVacacionesUsernameDTO solicitudVacaciones) throws ParseException {
 		solicitudVacacionesService.crearSolicitud(solicitudVacaciones);
-		System.out.println(solicitudVacaciones.getEndDate());
 		return new ResponseEntity<SolicitudVacaciones>(HttpStatus.CREATED);
 	}
 

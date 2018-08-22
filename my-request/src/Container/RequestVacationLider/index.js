@@ -146,7 +146,7 @@ export const RequestVacationLider = ({
 const mapStateToProps = (state) => {
     return {
         ...state.listVacationSolvers,
-        ...state.login.user,
+        ...state.login.user
     };
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { RequestVacationLider } from '../index';
 import Adapter from 'enzyme-adapter-react-16';
 import { configure, shallow } from 'enzyme';
-
+import toJson from 'enzyme-to-json';
 
 configure({ adapter: new Adapter() });
 
@@ -89,4 +89,15 @@ describe('Test Para requestVacationLider', () => {
         expect(wrapper.find({ mostrar: false }).exists()).toBe(true);
         btn.simulate('click');
     })
+
+    it('Validando toMatchSnapshot', () => {
+        const props = {
+            obtenerListaSolicitudesSolvers: jest.fn(),
+            listVacationRequestSolvers: jest.fn(),
+            handleSubmit: jest.fn(),
+            pristine: true
+        };
+        const wrap = shallow(<RequestVacationLider {...props} />);
+        expect(toJson(wrap)).toMatchSnapshot();
+    });
 })
