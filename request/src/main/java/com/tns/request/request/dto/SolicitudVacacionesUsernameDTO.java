@@ -2,37 +2,18 @@ package com.tns.request.request.dto;
 
 import java.util.Date;
 
-public class SolicitudVacacionesUsernameDTO {
+public class SolicitudVacacionesUsernameDTO extends SolicitudVacacionesDTO {
 
 	private String user;
 
-	private Date startDate;
-
-	private Date endDate;
-	
-	private String motivo;
-	
-	private String estado;
-	
-	
-	public String getMotivo() {
-		return motivo;
+	public SolicitudVacacionesUsernameDTO(Date startDate, Date endDate, int requestedDays, String motivo, String estado,
+			String user) {
+		super(startDate, endDate, requestedDays, motivo, estado);
+		this.user = user;
 	}
 
-	public void setMotivo(String motivo) {
-		this.motivo = motivo;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public Date getStartDate() {
-		return startDate;
+	public SolicitudVacacionesUsernameDTO() {
+		super();
 	}
 
 	public String getUser() {
@@ -42,17 +23,4 @@ public class SolicitudVacacionesUsernameDTO {
 	public void setUser(String user) {
 		this.user = user;
 	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public Date getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-
 }

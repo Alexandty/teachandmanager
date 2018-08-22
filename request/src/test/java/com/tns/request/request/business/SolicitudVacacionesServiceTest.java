@@ -26,7 +26,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Any;
 import com.tns.request.request.dto.SolicitudVacacionesUsernameDTO;
 import com.tns.request.request.exception.BusinessException;
 import com.tns.request.request.model.AsignacionLider;
@@ -132,7 +131,7 @@ public class SolicitudVacacionesServiceTest {
 		p.setIdPerson(1);
 		when(personRepository.findByUserIdUsername(null)).thenReturn(p);
 
-		SolicitudVacaciones res = solicitudVacacionesService.crearSolicitud(solDTO);
+		solicitudVacacionesService.crearSolicitud(solDTO);
 	}
 
 	@Test
