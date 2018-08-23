@@ -32,7 +32,7 @@ export const LoginForm = props => {
             <Col xs={6} md={4}>
             </Col>
             <Col xs={6} md={4}>
-                <Jumbotron>
+                <Jumbotron className="Jumbotron">
                     <h2 className="login">Login</h2>
                     <form onSubmit={handleSubmit(login)}>
                         <div>

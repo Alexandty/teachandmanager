@@ -20,6 +20,7 @@ exports[`Probando componente LoginForm Validando toMatchSnapshot 1`] = `
   >
     <Jumbotron
       bsClass="jumbotron"
+      className="Jumbotron"
       componentClass="div"
     >
       <h2
