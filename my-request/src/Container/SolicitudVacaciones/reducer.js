@@ -11,7 +11,8 @@ const AddSolitudVacaciones = (state = initialState, action) => {
     if (action.type === "ADD_SOLICITUD_VACACIONES") {
         return {
             ...state,
-            vacationSolicitudData: action.vacationSolicitudData
+            vacationSolicitudData: action.vacationSolicitudData,
+            mensaje: '',
         };
     }
     else if (action.type === "CHECK_SOLICITUD_VACACIONES") {

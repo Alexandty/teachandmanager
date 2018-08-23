@@ -176,7 +176,6 @@ public class SolicitudVacacionesServiceTest {
 
 		verify(solicitudVacacionesRepository).save(Matchers.anyObject());
 		assertTrue(HttpStatus.OK.equals(updateSolicitud.getStatusCode()));
-
 	}
 
 	@Test
@@ -192,77 +191,60 @@ public class SolicitudVacacionesServiceTest {
 	}
 
 	@Test
-	public void debeRetornarPersonaPorAsignacion() throws NoSuchMethodException, SecurityException,
+	public void debeRetornarSolicitudesSolversAsociados() throws NoSuchMethodException, SecurityException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		Method method = SolicitudVacacionesService.class.getDeclaredMethod("getSolver", AsignacionLider.class);
+		Person person = new Person();
+		person.setIdPerson(1L);
+		when(personRepository.findByUserIdUsername(anyString())).thenReturn(person);
+		Method method = SolicitudVacacionesService.class.getDeclaredMethod("getSolversDelLider", long.class);
 		method.setAccessible(true);
-		when(personRepository.findById(anyLong())).thenReturn(null);
-		// Person p = (Person) method.invoke(solicitudVacacionesService, null);
-		// Assert.assertNotNull(p);
+		List<Person> pList = (List<Person>) method.invoke(solicitudVacacionesService, 0);
+
+		List<SolicitudVacaciones> res = solicitudVacacionesService.getAllSolverSolicitudes(anyString());
+
+		Assert.assertNotNull(res);
 	}
 
-	// @Test(expected = BusinessException.class)
-	// public void debeRetornarExceptionPorDiasInsuficientes() throws ParseException
-	// {
-	// SolicitudVacacionesUsernameDTO solDTO = new SolicitudVacacionesUsernameDTO();
-	// solDTO.setEndDate(new Date());
-	// solDTO.setStartDate(new Date());
-	// Person p = new Person();
-	// p.setIdPerson(1);
-	// when(personRepository.findByUserIdUsername(null)).thenReturn(p);
-	// when(UtilDate.diferenciaDias(new Date(), new Date()) >
-	// UtilDate.calcularDiasDisponibles(fechaIngreso, fechaInicio,
-	// diasDisfrutados))
-	//
-	// SolicitudVacaciones res = solicitudVacacionesService.crearSolicitud(solDTO);
-	// }
+	@Test(expected = BusinessException.class)
+	public void debeRetornarExceptionPorInsuficienciaDeDias() throws ParseException {
+		SolicitudVacacionesUsernameDTO sVU = new SolicitudVacacionesUsernameDTO();
+		Date eDate = UtilDate.getDateFromString("1/1/2019");
+		Date startDate = UtilDate.getDateFromString("2/1/2019");
+		Date endDate = UtilDate.getDateFromString("3/1/2019");
+		sVU.setStartDate(startDate);
+		sVU.setEndDate(endDate);
+		// when(solicitudVacacionesService.obtenerTotalDiasDisfrutados(anyString())).thenReturn(0);
+		Person person = new Person();
+		person.setEntryDate(eDate);
+		when(personRepository.findByUserIdUsername(anyString())).thenReturn(person);
 
+		solicitudVacacionesService.getDiasDisponiblesVacaUserDTO(sVU);
+	}
 	// @Test(expected = BusinessException.class)
-	// public void debeRetornarElSolverAsociadoAlLider() throws
+	// public void debeRetornarExceptionNoEncontrarSolvers() throws
 	// NoSuchMethodException, SecurityException,
 	// IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-	// AsignacionLider as = new AsignacionLider();
-	// AsignacionLiderPK aPk = new AsignacionLiderPK();
-	// aPk.setIdLider(1);
-	// as.setIdAsignacion(aPk);
+	// AsignacionLider params = new AsignacionLider();
 	// Method method =
 	// SolicitudVacacionesService.class.getDeclaredMethod("getSolver",
 	// AsignacionLider.class);
 	// method.setAccessible(true);
-	// when(personRepository.find)
-	// Person p = (Person) method.invoke(solicitudVacacionesService, as);
+	// when(personRepository.findById(anyLong())).thenReturn(null);
+	//
+	// method.invoke(solicitudVacacionesService, params);
+	// }
+
+	// @Test
+	// public void debeRetornarPersonaPorAsignacion() throws NoSuchMethodException,
+	// SecurityException,
+	// IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	// Method method =
+	// SolicitudVacacionesService.class.getDeclaredMethod("getSolver",
+	// AsignacionLider.class);
+	// method.setAccessible(true);
+	// when(personRepository.findById(anyLong())).thenReturn(null);
+	// Person p = (Person) method.invoke(solicitudVacacionesService,0);
 	// Assert.assertNotNull(p);
-	// }
-
-	// @Test
-	// public void test() {
-	// when(solicitudVacacionesService.obtenerTotalDiasDisfrutados(null)).thenReturn().thenReturn();
-	// Person p = new Person();
-	// when(personRepository.findByUserIdUsername(null)).thenReturn(p);
-	//
-	// }
-
-	// @Test
-	// public void debeRetornarListaSolversPorLider() {
-	// SolicitudVacacionesService mock = spy(new SolicitudVacacionesService());
-	// String username= null;
-	// Person persona = new Person();
-	// when(personRepository.findByUserIdUsername(username)).thenReturn(persona);
-	// List<Person> p = new ArrayList<Person>();
-	// doReturn(p).when(mock, "getSolversDelLider", ArgumentMatchers.anyList());
-	// List<Person> personas = Mockito.mock(List.class);
-	// List<SolicitudVacaciones> res =
-	// solicitudVacacionesService.getAllSolverSolicitudes(username);
-	//
-	// Assert.assertEquals("se esperaba una lista", , res);
-	// }
-	//
-	// @Test
-	// public void asd() {
-	// SolicitudVacacionesService mock = spy(new SolicitudVacacionesService());
-	// List<SolicitudVacaciones> s = mock.getAllSolverSolicitudes(null);
-	//
-	// verify(mock).invoke("getSolversDelLider", ArgumentMatchers.anyList());
 	// }
 
 }

@@ -56,7 +56,7 @@ export const SolicitudForm = props => {
                                         })}
                                     />
                                 </FormGroup>
-                                <Alert>{mensaje}</Alert>
+                                {mensaje===''?<div/>:<Alert>{mensaje}</Alert>}
                                 <Button bsStyle="success" type="submit" disabled={availableDaysVacation}>Solicitar</Button>
                             </Col>
                         </div>

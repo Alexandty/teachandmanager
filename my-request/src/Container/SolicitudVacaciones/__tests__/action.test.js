@@ -30,7 +30,7 @@ describe('Testing action SolicitudVacaciones', () => {
 
     it('should call Guardar action', async () => {
         const dispatch = jest.fn();
-        const values = { startDate: new Date(1), endDate: new Date(1), user: 'JJ', estado: 'pendiente', motivo: "" }
+        const values = { startDate: "2002-01-01T00:00:00-05:00", endDate: "2002-01-01T00:00:00-05:00", user: 'JJ', estado: 'pendiente', motivo: "" }
         axios.post.mockReturnValue(new Promise((resolve) => resolve(values)))
 
         await action.guardar(values)(dispatch);
@@ -41,7 +41,7 @@ describe('Testing action SolicitudVacaciones', () => {
 
     it('should call Guardar action reject', async () => {
         const dispatch = jest.fn();
-        const values = { startDate: new Date(1), endDate: new Date(1), user: 'JJ', estado: 'pendiente', motivo: "" }
+        const values = { startDate: "2002-01-01T00:00:00-05:00", endDate: "2002-01-01T00:00:00-05:00", user: 'JJ', estado: 'pendiente', motivo: "" }
         axios.post.mockReturnValue(new Promise((resolve) => resolve(values)))
 
         await action.guardar(values)(dispatch);

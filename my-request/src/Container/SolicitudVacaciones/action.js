@@ -41,8 +41,6 @@ const action = {
     guardar: (values) => {
         return (dispatch) => {
             const solicitudVacaciones = {
-                // startDate: new Date(values.startDate),
-                // endDate: new Date(values.endDate),
                 startDate: Moment(values.startDate).format(),
                 endDate: Moment(values.endDate).format(),
                 user: values.user,
