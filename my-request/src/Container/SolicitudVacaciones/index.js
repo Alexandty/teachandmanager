@@ -29,6 +29,7 @@ export const SolicitudForm = props => {
     loadAvailableDays(user.user)
     return (
         <div>
+            <h2>Solicitud</h2>
             <form onSubmit={handleSubmit((values) => {
                 values.user = user.user;
                 return guardar(values)
@@ -56,7 +57,7 @@ export const SolicitudForm = props => {
                                         })}
                                     />
                                 </FormGroup>
-                                {mensaje===''?<div/>:<Alert>{mensaje}</Alert>}
+                                {mensaje === '' ? <div /> : <Alert>{mensaje}</Alert>}
                                 <Button bsStyle="success" type="submit" disabled={availableDaysVacation}>Solicitar</Button>
                             </Col>
                         </div>

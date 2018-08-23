@@ -37,13 +37,11 @@ const AppRouter = (props) => {
 
 const Consulta = () => (
   <Jumbotron>
-    <h2>Consulta</h2>
     <RequestVacationList />
   </Jumbotron>
 );
 const SolicitudApp = () => (
   <Jumbotron>
-    <h2>Solicitud</h2>
     <Solicitud />
   </Jumbotron>
 

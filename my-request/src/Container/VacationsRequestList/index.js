@@ -14,6 +14,7 @@ export const RequestVacationList = ({ loadRequestVacation, VacationData, user })
       </SinSolicitudes>
       :
       <div className="Vacation">
+        <h2>Consulta</h2>
         {user.name} {user.lastName}  <Label bsStyle="success">Fecha de ingreso a la empresa {Moment(user.entryDate).format('DD/MM/YYYY')}</Label>
         <Table striped bordered condensed hover>
           <thead>
