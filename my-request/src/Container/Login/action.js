@@ -13,6 +13,11 @@ const actions = {
                     alert(error.response.data.message);
                 });
         };
+    },
+    invalidFields: (msj) => {
+        return (dispatch) => {
+            dispatch({ type: "ERROR_FIELD", msj })
+        }
     }
 };
 

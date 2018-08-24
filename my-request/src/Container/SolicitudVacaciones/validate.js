@@ -7,7 +7,7 @@ export default values => {
 
   requiredFields.forEach(field => {
     if (!values[field]) {
-      errors[field] = 'La solicitud Requiere este campo';
+      errors[field] = 'La solicitud requiere este campo';
     }
   });
   return errors;

@@ -1,9 +1,27 @@
 .App {
   text-align: center;
 }
+.border-color{
+  border-color: red;
+}
+.form {
+  text-align: left;
+  margin-left: 39px;
+}
 
-Jumbotron {
-  background-color: black;
+.Jumbotron {
+  background-color: #c3c5c0;
+  margin: 15px;
+  border-style: outset;
+}
+
+.my-field {
+  text-align: left;
+}
+
+.my-button {
+  position: relative;
+  left: 100px;
 }
 
 .show-grid{
@@ -28,8 +46,18 @@ textarea {
   resize: none;
 }
 
-h1 {
+.user-info{
+  margin: 25px;
+  text-align: left;
+  font: 1.3em sans-serif;
+}
+
+h2 {
   color: #551572;
+  margin: 30px;
+  margin-bottom: 25px;
+  text-align: left;
+  margin-left: 80px;
 }
 
 th {
@@ -191,7 +219,6 @@ th {
   width: 90px;
   margin-top: 20px;
 }
-
 
 .sb-main {
   font-size: 18px;

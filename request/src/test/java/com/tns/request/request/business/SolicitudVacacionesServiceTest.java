@@ -205,6 +205,22 @@ public class SolicitudVacacionesServiceTest {
 		Assert.assertNotNull(res);
 	}
 
+	@Test
+	public void nodebeRetornarSolicitudesSolversAsociados() throws NoSuchMethodException, SecurityException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		Person person = new Person();
+		person.setIdPerson(1L);
+		when(personRepository.findByUserIdUsername(anyString())).thenReturn(person);
+		Method method = SolicitudVacacionesService.class.getDeclaredMethod("getSolversDelLider", long.class);
+		method.setAccessible(true);
+		List<Person> pList = new ArrayList<>();
+		pList.add(person);
+		pList = (List<Person>) method.invoke(solicitudVacacionesService, 0);
+		List<SolicitudVacaciones> res = solicitudVacacionesService.getAllSolverSolicitudes(anyString());
+
+		Assert.assertNotNull(res);
+	}
+
 	@Test(expected = BusinessException.class)
 	public void debeRetornarExceptionPorInsuficienciaDeDias() throws ParseException {
 		SolicitudVacacionesUsernameDTO sVU = new SolicitudVacacionesUsernameDTO();

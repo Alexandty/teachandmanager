@@ -7,7 +7,7 @@ export const WelcomeMessage = ({ name, lastName, user }) => {
     }
     return (
         <div>
-            <h2 className="saludo">Bienvenido</h2>
+            <h1 className="saludo">Bienvenido</h1>
             <h3>{name} {lastName}</h3>
         </div>
     )

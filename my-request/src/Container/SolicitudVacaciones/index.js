@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import action from './action';
 import validate from './validate';
-import { Label, Button, FormGroup, Row, Col, Grid, Alert } from 'react-bootstrap';
+import { Label, Button, FormGroup, Alert } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 
 const renderField = ({
@@ -17,8 +17,7 @@ const renderField = ({
                 <input {...input} placeholder={label} type={type} />
                 <br />
                 {touched &&
-                    ((error && <Label bsStyle="danger">{error}</Label>) ||
-                        (warning && <span>{warning}</span>))}
+                    ((error && <Label bsStyle="danger">{error}</Label>))}
             </div>
         </div>
     )
@@ -34,35 +33,29 @@ export const SolicitudForm = props => {
                 values.user = user.user;
                 return guardar(values)
             })}>
-                <Grid >
-                    <Row className="show-grid">
-                        <div>
-                            <Col xs={6} md={12}>
-                                Dias disponibles <Label bsStyle="primary"> {avalableDaysData} </Label>
-                                <FormGroup controlId="formInlineDate">
-                                    <Label>Fecha de Inicio</Label>
-                                    <Field type="Date" id='idStartDate' name="startDate" component={renderField}
-                                        onBlur={handleSubmit((values) => {
-                                            values.user = user.user;
-                                            return consultar(values)
-                                        })}
-                                    />
-                                </FormGroup>
-                                <FormGroup controlId="formInlineDate">
-                                    <Label>Fecha de Fin</Label>
-                                    <Field type="Date" id='idEndtDate' name="endDate" component={renderField}
-                                        onBlur={handleSubmit((values) => {
-                                            values.user = user.user;
-                                            return consultar(values)
-                                        })}
-                                    />
-                                </FormGroup>
-                                {mensaje === '' ? <div /> : <Alert>{mensaje}</Alert>}
-                                <Button bsStyle="success" type="submit" disabled={availableDaysVacation}>Solicitar</Button>
-                            </Col>
-                        </div>
-                    </Row>
-                </Grid>
+                <div className="form">
+                    Dias disponibles <Label bsStyle="primary"> {avalableDaysData} </Label>
+                    <FormGroup controlId="formInlineDate">
+                        <Label>Fecha de Inicio</Label>
+                        <Field type="Date" name="startDate" component={renderField}
+                            onBlur={handleSubmit((values) => {
+                                values.user = user.user;
+                                return consultar(values)
+                            })}
+                        />
+                    </FormGroup>
+                    <FormGroup controlId="formInlineDate">
+                        <Label>Fecha de Fin</Label>
+                        <Field type="Date" name="endDate" component={renderField}
+                            onBlur={handleSubmit((values) => {
+                                values.user = user.user;
+                                return consultar(values)
+                            })}
+                        />
+                    </FormGroup>
+                    {mensaje === '' ? <div /> : <Alert>{mensaje}</Alert>}
+                    <Button className="my-button" bsStyle="success" type="submit" disabled={availableDaysVacation}>Solicitar</Button>
+                </div>
             </form>
         </div >
     )

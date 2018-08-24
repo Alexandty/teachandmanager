@@ -3,10 +3,10 @@ import { Alert } from 'react-bootstrap';
 
 const SinSolicitudes = (props) => {
     return (<div className='sinSolicitudes'>
-        <Alert bsStyle="info">
-            <h1>
+        <Alert bsStyle="info" className="user-info">
+            <h2>
                 {props.title}
-            </h1>
+            </h2>
             <p>
                 {props.children}
             </p>
