@@ -46,10 +46,16 @@ textarea {
   resize: none;
 }
 
-.user-info{
+.user-info {
   margin: 25px;
   text-align: left;
-  font: 1.3em sans-serif;
+  font: 1.2em sans-serif;
+}
+
+.request-info {
+  margin: 25px;
+  text-align: center;
+  font: 1.2em sans-serif;
 }
 
 h2 {

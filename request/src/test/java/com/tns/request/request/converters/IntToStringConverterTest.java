@@ -46,4 +46,20 @@ public class IntToStringConverterTest {
 		Assert.assertEquals("esto es lo que se espera", "rechazado", resultado);
 	}
 
+	@Test
+	public void debeRetornarCancelado() {
+		int estado = 3;
+		String resultado = metodosDeConversIntToString.convertToEntityAttribute(estado);
+
+		Assert.assertEquals("se espera cancelado", "cancelado", resultado);
+	}
+	
+	@Test
+	public void debeRetornarCanceladoString() {
+		String estado = "cancelado";
+		int resultado = metodosDeConversIntToString.convertToDatabaseColumn(estado);
+
+		Assert.assertEquals("se espera 3", 3, resultado);
+
+	}
 }

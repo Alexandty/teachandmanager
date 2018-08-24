@@ -29,8 +29,8 @@ public class SolicitudLiderController {
 	}
 
 	@PutMapping("vacaciones/actualizar/{idRequest}")
-	public ResponseEntity<SolicitudVacaciones> putUpdateSolicitud(@PathVariable("idRequest") Long idRequest, @RequestBody SolicitudVacaciones solicitudVacaciones) {
-
+	public ResponseEntity<SolicitudVacaciones> putUpdateSolicitud(@PathVariable("idRequest") Long idRequest,
+			@RequestBody SolicitudVacaciones solicitudVacaciones) {
 		return solicitudVacacionesService.updateSolicitud(idRequest, solicitudVacaciones);
 	}
 }

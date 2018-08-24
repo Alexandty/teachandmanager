@@ -2,7 +2,7 @@ package com.tns.request.request.converters;
 
 import javax.persistence.AttributeConverter;
 
-public  class IntToStringConverter implements AttributeConverter<String, Integer> {
+public class IntToStringConverter implements AttributeConverter<String, Integer> {
 
 	@Override
 	public Integer convertToDatabaseColumn(String values) {
@@ -14,7 +14,8 @@ public  class IntToStringConverter implements AttributeConverter<String, Integer
 		case "rechazado":
 			estado = 2;
 			break;
-		default:
+		case "cancelado":
+			estado = 3;
 			break;
 		}
 		return estado;
@@ -30,7 +31,8 @@ public  class IntToStringConverter implements AttributeConverter<String, Integer
 		case 2:
 			estado = "rechazado";
 			break;
-		default:
+		case 3:
+			estado = "cancelado";
 			break;
 		}
 		return estado;

@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Label } from 'react-bootstrap';
+import { Table, Glyphicon, Button, Label } from 'react-bootstrap';
 import Moment from 'moment';
 import { loadRequestVacation } from './action';
 import SinSolicitudes from './../../Components/NoSolicitudes';
+import Confirmar from '../../Components/Confirmar';
 
 export const RequestVacationList = ({ loadRequestVacation, VacationData, user }) => {
   loadRequestVacation(user.user)
@@ -28,16 +29,31 @@ export const RequestVacationList = ({ loadRequestVacation, VacationData, user })
           </thead>
           <tbody>
             {VacationData
-              .sort((vacationA, vacationB) => {
-                if (vacationA === vacationB) return 1
-                else if (vacationA < vacationB) return -1
-                else return 1
-              })
+              // .sort((vacationA, vacationB) => {
+              //   if (vacationA === vacationB) return 1
+              //   else if (vacationA < vacationB) return -1
+              //   else return 1
+              // })
               .map(Vacation =>
                 <tr key={Vacation.idRequest}>
                   <td>{Moment(Vacation.startDate).format('DD/MM/YYYY')}</td>
                   <td>{Moment(Vacation.endDate).format('DD/MM/YYYY')}</td>
                   <td>{Vacation.requestedDays}</td>
+                  {/* <td>
+                    <Label bsStyle={definirestiloSegunEstado(solicitud.estado)}>{solicitud.estado}</Label>
+                  </td>
+                  <td>
+                    <Button
+                      bsStyle='success' bsSize="xsmall"
+                      disabled={solicitud.estado === 'pendiente' ? false : true}
+                      onClick={() => ConfirmarCambio(solicitud, 'aprobado')}
+                    >
+                      <Glyphicon
+                        glyph="glyphicon glyphicon-thumbs-down"
+                        disabled={solicitud.estado === 'pendiente' ? false : true}
+                      />
+                    </Button>
+                  </td> */}
                 </tr>
               )}
           </tbody>

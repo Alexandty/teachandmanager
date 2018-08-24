@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import action from './action';
 import { Table, Glyphicon, Button, Label } from 'react-bootstrap';
 import Moment from 'moment';
-
 import SinSolicitudes from '../../Components/NoSolicitudes';
 import Confirmar from '../../Components/Confirmar';
 import PedirMotivo from '../PedirMotivo';
@@ -97,11 +96,11 @@ export const RequestVacationLider = ({
                     </thead>
                     <tbody>
                         {listVacationRequestSolvers
-                            .sort((solicitudA, solicitudB) => {
-                                if (solicitudA === solicitudB) return 1
-                                else if (solicitudA < solicitudB) return -0
-                                else return 0
-                            })
+                            // .sort((solicitudA, solicitudB) => {
+                            //     if (solicitudA === solicitudB) return 1
+                            //     else if (solicitudA < solicitudB) return -1
+                            //     else return 1
+                            // })
                             .map(solicitud =>
                                 <tr key={solicitud.idRequest}>
                                     <td>{solicitud.personId.name}{" "}{solicitud.personId.lastName}</td>
