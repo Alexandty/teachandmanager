@@ -1,6 +1,5 @@
 import React from 'react';
 import { Alert } from 'react-bootstrap';
-import { SSL_OP_PKCS1_CHECK_1 } from 'constants';
 
 const SinSolicitudes = (props) => {
     return (<div className='sinSolicitudes'>

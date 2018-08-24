@@ -14,4 +14,16 @@ const loadRequestVacation = (user) => {
   };
 };
 
-export { loadRequestVacation };
+const cambiarEstado = (solicitud) => {
+  return (dispatch) => {
+    return axios
+      .put('http://localhost:8081/solicitud/vacaciones/' + solicitud.idRequest, solicitud)
+      .then(response => {
+        dispatch({ type: 'UPTDATE_REQUEST_VACATION_SOLVERS' });
+      }).catch(error => {
+        dispatch({ type: 'ERROR', error });
+      });
+  };
+}
+
+export { loadRequestVacation, cambiarEstado };

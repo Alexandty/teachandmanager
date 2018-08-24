@@ -16,7 +16,7 @@ const action = {
             return axios
                 .put('http://localhost:8081/solicitudlider/vacaciones/actualizar/' + solicitud.idRequest, solicitud)
                 .then(response => {
-                    dispatch({ type: 'UPTDATE_REQUEST_VACATION_SOLVERS'});
+                    dispatch({ type: 'UPTDATE_REQUEST_VACATION_SOLVERS' });
                 }).catch(error => {
                     dispatch({ type: 'ERROR', error });
                 });

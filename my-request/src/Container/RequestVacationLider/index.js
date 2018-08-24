@@ -10,7 +10,7 @@ import PedirMotivo from '../PedirMotivo';
 var mostrarConfirmacion = false;
 var mostrarPedirMotivo = false;
 
-var estadoACambiar = 'pendiente';
+var estadoACambiar = '';
 var solicitidACambiar = {};
 
 const definirestiloSegunEstado = (estado) => {
@@ -79,7 +79,6 @@ export const RequestVacationLider = ({
                 <PedirMotivo
                     mostrar={mostrarPedirMotivo}
                     titulo={'Ingrese el motivo del rechazo'}
-                    respuesta={''}
                     enviarMotivo={(motivo) => cambiarEstado(recibirMotivo(motivo))}
                 />
                 <Table striped bordered condensed hover>
@@ -91,16 +90,11 @@ export const RequestVacationLider = ({
                             <th>Fecha de Retorno</th>
                             <th>Dias Solicitados</th>
                             <th>Estado</th>
-                            <th>Accion</th>
+                            <th>Cancelar</th>
                         </tr>
                     </thead>
                     <tbody>
                         {listVacationRequestSolvers
-                            // .sort((solicitudA, solicitudB) => {
-                            //     if (solicitudA === solicitudB) return 1
-                            //     else if (solicitudA < solicitudB) return -1
-                            //     else return 1
-                            // })
                             .map(solicitud =>
                                 <tr key={solicitud.idRequest}>
                                     <td>{solicitud.personId.name}{" "}{solicitud.personId.lastName}</td>

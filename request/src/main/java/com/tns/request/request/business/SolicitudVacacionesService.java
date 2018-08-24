@@ -102,15 +102,9 @@ public class SolicitudVacacionesService {
 	public List<SolicitudVacaciones> getAllSolverSolicitudes(String username) {
 		Person persona = personRepository.findByUserIdUsername(username);
 		List<Person> solversList = getSolversDelLider(persona.getIdPerson());
-		// return solversList.stream().map(p -> p.getIdPerson())
-		// .map(p ->
-		// solicitudVacacionesRepository.findByPersonIdIdPerson(p)).flatMap(List::stream)
-		// .collect(Collectors.toList());
-		List<SolicitudVacaciones> solList = solversList.stream().map(p -> p.getIdPerson())
+		return solversList.stream().map(p -> p.getIdPerson())
 				.map(p -> solicitudVacacionesRepository.findByPersonIdIdPerson(p)).flatMap(List::stream)
-				.collect(Collectors.toList());
-		return solList.stream().sorted((s1, s2) -> s1.getEndDate().compareTo(s2.getEndDate()))
-				.collect(Collectors.toList());
+				.sorted((s1, s2) -> s1.getEndDate().compareTo(s2.getEndDate())).collect(Collectors.toList());
 	}
 
 	public ResponseEntity<SolicitudVacaciones> updateSolicitud(Long idRequest,
