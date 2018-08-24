@@ -45,6 +45,7 @@ describe("Probando componente LoginForm", () => {
         expect(wrap.find(Button).props()).toEqual({
             type: 'submit',
             disabled: true,
+            "className": "my-button",
             children: "LOGIN"
         })
     });
@@ -59,6 +60,7 @@ describe("Probando componente LoginForm", () => {
         expect(wrap.find(Button).props()).toEqual({
             type: 'submit',
             disabled: true,
+            "className": "my-button",
             children: "LOGIN"
         })
     });

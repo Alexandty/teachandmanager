@@ -33,6 +33,7 @@ exports[`Probando componente LoginForm Validando toMatchSnapshot 1`] = `
           <Field
             component={[Function]}
             label="Username"
+            maxLength="20"
             name="username"
             type="text"
           />
@@ -41,12 +42,21 @@ exports[`Probando componente LoginForm Validando toMatchSnapshot 1`] = `
           <Field
             component={[Function]}
             label="Password"
+            maxLength="20"
             name="password"
             type="password"
           />
         </div>
         <br />
+        <div>
+          <Label
+            bsClass="label"
+            bsStyle="danger"
+          />
+        </div>
+        <br />
         <Button
+          className="my-button"
           disabled={true}
           type="submit"
         >
