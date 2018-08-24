@@ -1,12 +1,3 @@
-// describe('Test para el action del requestaVacationLider', () => {
-//     it('Debe despachar el type LOAD_REQUEST_VACATION_SOLVERS y la lista con datos', () => {
-//         mockAxios.get.m
-//     })
-// })
-// afterEach(() => {
-//     // cleaning up the mess left behind the previous test
-//     mockAxios.reset();
-// });
 import axios from 'axios'
 jest.mock('axios')
 import action from './../action';
@@ -57,16 +48,4 @@ describe('Testing action requestVacation', () => {
         expect(axios.put).toHaveBeenCalledWith('http://localhost:8081/solicitudlider/vacaciones/actualizar/1', sol)
         expect(dispatch).toHaveBeenCalledWith({ type: 'ERROR', error: "Error" })
     });
-    // xit('should call action action.obtenerListaSolicitudesSolvers', () => {
-    //     let response = {
-    //         data: 1,
-    //     }
-    //     let resObtener = action.obtenerListaSolicitudesSolvers(null);
-    //     const MckDisp = {
-    //         type: 'LOAD_REQUEST_VACATION_SOLVERS',
-    //         list: { response }
-    //     };
-    //     let res = resObtener();
-    //     expect(res.resolve(MckDisp)).toEqual(MckDisp);
-    // });
 });
