@@ -29,12 +29,14 @@ import org.springframework.http.ResponseEntity;
 import com.tns.request.request.dto.SolicitudVacacionesUsernameDTO;
 import com.tns.request.request.exception.BusinessException;
 import com.tns.request.request.model.AsignacionLider;
+import com.tns.request.request.model.AsignacionLiderPK;
 import com.tns.request.request.model.Person;
 import com.tns.request.request.model.SolicitudVacaciones;
 import com.tns.request.request.repository.IAsignacionRepository;
 import com.tns.request.request.repository.IPersonRepository;
 import com.tns.request.request.repository.ISolicitudVacacionesRepository;
 import com.tns.request.request.util.UtilDate;
+import com.tns.request.request.util.UtilEmail;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SolicitudVacacionesServiceTest {
@@ -50,6 +52,9 @@ public class SolicitudVacacionesServiceTest {
 
 	@Mock
 	private IAsignacionRepository asignacionRepository;
+
+	@Mock
+	private UtilEmail utilEmail;
 
 	@Test
 	public void debeBuscarDiasHabilesdisfurtadosYDevolverLaSuma() {
@@ -165,20 +170,6 @@ public class SolicitudVacacionesServiceTest {
 	}
 
 	@Test
-	public void debeRetornarOkCuandoActualiceSolicitud() {
-		SolicitudVacaciones solVa = new SolicitudVacaciones();
-		solVa.setEstado("estado");
-		solVa.setMotivo("motivo");
-		Optional<SolicitudVacaciones> sv = Optional.ofNullable(solVa);
-		when(solicitudVacacionesRepository.findById(anyLong())).thenReturn(sv);
-		ResponseEntity<SolicitudVacaciones> updateSolicitud = solicitudVacacionesService.updateSolicitud(anyLong(),
-				solVa);
-
-		verify(solicitudVacacionesRepository).save(Matchers.anyObject());
-		assertTrue(HttpStatus.OK.equals(updateSolicitud.getStatusCode()));
-	}
-
-	@Test
 	public void debeRetornarUnaListaDePersonas() throws NoSuchMethodException, SecurityException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		Method method = SolicitudVacacionesService.class.getDeclaredMethod("getSolversDelLider", long.class);
@@ -216,6 +207,7 @@ public class SolicitudVacacionesServiceTest {
 		List<Person> pList = new ArrayList<>();
 		pList.add(person);
 		pList = (List<Person>) method.invoke(solicitudVacacionesService, 0);
+
 		List<SolicitudVacaciones> res = solicitudVacacionesService.getAllSolverSolicitudes(anyString());
 
 		Assert.assertNotNull(res);
@@ -229,13 +221,90 @@ public class SolicitudVacacionesServiceTest {
 		Date endDate = UtilDate.getDateFromString("3/1/2019");
 		sVU.setStartDate(startDate);
 		sVU.setEndDate(endDate);
-		// when(solicitudVacacionesService.obtenerTotalDiasDisfrutados(anyString())).thenReturn(0);
 		Person person = new Person();
 		person.setEntryDate(eDate);
 		when(personRepository.findByUserIdUsername(anyString())).thenReturn(person);
 
 		solicitudVacacionesService.getDiasDisponiblesVacaUserDTO(sVU);
 	}
+
+	@Test
+	public void debeRetornarOkCuandoActualiceSolicitud() throws NoSuchMethodException, SecurityException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		SolicitudVacaciones solVa = new SolicitudVacaciones();
+		solVa.setEstado("estado");
+		solVa.setMotivo("motivo");
+		Person person = new Person();
+		person.setIdPerson(1L);
+		person.setEmail("techtest@yopmail.com");
+		solVa.setPersonId(person);
+		Optional<SolicitudVacaciones> sv = Optional.ofNullable(solVa);
+		when(solicitudVacacionesRepository.findById(anyLong())).thenReturn(sv);
+		Optional<Person> p = Optional.ofNullable(person);
+		when(personRepository.findById(anyLong())).thenReturn(p);
+
+		ResponseEntity<SolicitudVacaciones> updateSolicitud = solicitudVacacionesService.updateSolicitud(anyLong(),
+				solVa);
+
+		verify(solicitudVacacionesRepository).save(Matchers.anyObject());
+		assertTrue(HttpStatus.OK.equals(updateSolicitud.getStatusCode()));
+	}
+
+	@Test
+	public void debeLLamarMetodoSendEmail() throws NoSuchMethodException, SecurityException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException {
+		Method method = SolicitudVacacionesService.class.getDeclaredMethod("sendEmail", SolicitudVacaciones.class);
+		method.setAccessible(true);
+		Person person = new Person();
+		person.setIdPerson(1L);
+		person.setEmail("techtest@yopmail.com");
+		Optional<Person> p = Optional.ofNullable(person);
+		when(personRepository.findById(anyLong())).thenReturn(p);
+		SolicitudVacaciones sol = new SolicitudVacaciones();
+		sol.setPersonId(person);
+		sol.setEstado("estado");
+		sol.setMotivo("motivo");
+
+		method.invoke(solicitudVacacionesService, sol);
+
+		verify(utilEmail).sendNotification(anyString(), anyString(), anyString());
+
+	}
+
+	@Test
+	public void debeRetornarElSolverLiderPersonDeAcuerdoAId() throws NoSuchMethodException, SecurityException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		Method method = SolicitudVacacionesService.class.getDeclaredMethod("getSolver", AsignacionLider.class);
+		method.setAccessible(true);
+		AsignacionLider asig = new AsignacionLider();
+		AsignacionLiderPK idAsignacion = new AsignacionLiderPK();
+		idAsignacion.setIdSolver(1L);
+		asig.setIdAsignacion(idAsignacion);
+		Person person = new Person();
+		Optional<Person> p = Optional.ofNullable(person);
+		when(personRepository.findById(1L)).thenReturn(p);
+
+		method.invoke(solicitudVacacionesService, asig);
+		verify(personRepository).findById(anyLong());
+	}
+
+	@Test(expected = InvocationTargetException.class)
+	public void debeRetornarExceptionAlBuscarSolverLiderPersonDeAcuerdoAId() throws NoSuchMethodException,
+			SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		Method method = SolicitudVacacionesService.class.getDeclaredMethod("getSolver", AsignacionLider.class);
+		method.setAccessible(true);
+		AsignacionLider asig = new AsignacionLider();
+		AsignacionLiderPK idAsignacion = new AsignacionLiderPK();
+		idAsignacion.setIdSolver(1L);
+		asig.setIdAsignacion(idAsignacion);
+		Optional<Person> p = Optional.empty();
+		when(personRepository.findById(1L)).thenReturn(p);
+
+		method.invoke(solicitudVacacionesService, asig);
+		
+		verify(personRepository).findById(anyLong());
+	}
+
 	// @Test(expected = BusinessException.class)
 	// public void debeRetornarExceptionNoEncontrarSolvers() throws
 	// NoSuchMethodException, SecurityException,

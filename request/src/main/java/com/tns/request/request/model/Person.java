@@ -31,6 +31,9 @@ public class Person {
 	@Column(name = "entry_date")
 	private Date entryDate;
 
+	@Column(name = "email")
+	private String email;
+
 	@Column(name = "rol_lider")
 	@Convert(converter = BooleanToStringConverter.class)
 	private boolean rolLider;
@@ -39,6 +42,14 @@ public class Person {
 	@JoinColumn(name = "fk_user")
 	private User userId;
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public boolean getRol() {
 		return rolLider;
 	}

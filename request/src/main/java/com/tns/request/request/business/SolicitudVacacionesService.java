@@ -20,9 +20,13 @@ import com.tns.request.request.repository.IAsignacionRepository;
 import com.tns.request.request.repository.IPersonRepository;
 import com.tns.request.request.repository.ISolicitudVacacionesRepository;
 import com.tns.request.request.util.UtilDate;
+import com.tns.request.request.util.UtilEmail;
 
 @Service
 public class SolicitudVacacionesService {
+
+	@Autowired
+	private UtilEmail utilEmail;
 
 	@Autowired
 	private ISolicitudVacacionesRepository solicitudVacacionesRepository;
@@ -96,7 +100,7 @@ public class SolicitudVacacionesService {
 
 	private Person getSolver(AsignacionLider asignacion) {
 		return personRepository.findById(asignacion.getIdAsignacion().getIdSolver())
-				.orElseThrow(() -> new BusinessException("No se encontro solver...."));
+				.orElseThrow(() -> new BusinessException("No se encontro solver asociado al líder"));
 	}
 
 	public List<SolicitudVacaciones> getAllSolverSolicitudes(String username) {
@@ -115,10 +119,16 @@ public class SolicitudVacacionesService {
 			solicitudSave.setEstado(solicitudVacaciones.getEstado());
 			solicitudSave.setMotivo(solicitudVacaciones.getMotivo());
 			SolicitudVacaciones solicitudUpdate = solicitudVacacionesRepository.save(solicitudSave);
+			sendEmail(solicitudSave);
 			return new ResponseEntity<>(solicitudUpdate, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+
+	private void sendEmail(SolicitudVacaciones solicitud) {
+		Optional<Person> person = personRepository.findById(solicitud.getPersonId().getIdPerson());
+		utilEmail.sendNotification(solicitud.getEstado(), solicitud.getMotivo(), person.get().getEmail());
 	}
 
 }
