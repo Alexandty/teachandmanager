@@ -17,8 +17,7 @@ public class UtilEmail {
 
 	public void sendNotification(String estado, String motivo, String email) {
 		SimpleMailMessage mail = new SimpleMailMessage();
-		// mail.setFrom("techtest@yopmail.com");
-		mail.setTo("techtest@yopmail.com");
+		mail.setTo(email);
 		mail.setSubject("Actualización de solicitud");
 		mail.setText("Solicitud actualizada a " + estado + " , porque " + motivo);
 		javaMailSender.send(mail);

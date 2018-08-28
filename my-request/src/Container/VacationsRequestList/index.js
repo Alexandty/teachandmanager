@@ -29,30 +29,30 @@ const definirestiloSegunEstado = (estado) => {
       break;
   }
   return estilo;
-}
+};
 const ConfirmarCambio = (Vacation, nuevoEstado) => {
   solicitudACambiar = Vacation;
   estadoACambiar = nuevoEstado;
   solicitudACambiar.estado = nuevoEstado;
   mostrarConfirmacion = true;
-}
+};
 
 const continuar = (cambiarEstado) => {
   mostrarConfirmacion = false;
   if (estadoACambiar === 'cancelado') {
     mostrarPedirMotivo = true;
   }
-}
+};
 
 const closeConfirmarCambio = () => {
   mostrarConfirmacion = false;
-}
+};
 
 const recibirMotivo = (motivo) => {
   mostrarPedirMotivo = false;
   solicitudACambiar.motivo = motivo;
   return solicitudACambiar;
-}
+};
 
 export const RequestVacationList = ({ loadRequestVacation, VacationData, user, cambiarEstado }) => {
   loadRequestVacation(user.user)

@@ -127,7 +127,9 @@ public class SolicitudVacacionesService {
 	}
 
 	private void sendEmail(SolicitudVacaciones solicitud) {
-		Optional<Person> person = personRepository.findById(solicitud.getPersonId().getIdPerson());
+		AsignacionLider asignac = asignacionRepository
+				.findByIdAsignacionIdSolver(solicitud.getPersonId().getIdPerson());
+		Optional<Person> person = personRepository.findById(asignac.getIdAsignacion().getIdLider());
 		utilEmail.sendNotification(solicitud.getEstado(), solicitud.getMotivo(), person.get().getEmail());
 	}
 

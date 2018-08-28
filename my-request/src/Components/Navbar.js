@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import '../index.css'
+import '../index.css';
 
 const NavbarApp = ({ lider }) => (
     <Navbar inverse collapseOnSelect>
@@ -27,7 +27,7 @@ const NavbarApp = ({ lider }) => (
             </Nav>
         </Navbar.Collapse>
     </Navbar>
-)
+);
 
 const mapStateToProps = (state) => {
     return {

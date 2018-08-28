@@ -11,4 +11,5 @@ public interface IAsignacionRepository extends CrudRepository<AsignacionLider, A
 
 	List<AsignacionLider> findByIdAsignacionIdLider(long idLider);
 
+	AsignacionLider findByIdAsignacionIdSolver(long idSolver);
 }

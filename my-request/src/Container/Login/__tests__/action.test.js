@@ -25,4 +25,10 @@ describe('Testing action Login', () => {
 
         expect(axios.post).toHaveBeenCalledWith('http://localhost:8081/login/get/person', values)
     });
+    it('should action invalidFields', () => {
+        const msj = '';
+        const dispatch = jest.fn();
+       
+        action.invalidFields(msj)(dispatch);
+    });
 });

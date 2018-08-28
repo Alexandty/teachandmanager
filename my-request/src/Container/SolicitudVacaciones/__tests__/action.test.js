@@ -50,4 +50,14 @@ describe('Testing action SolicitudVacaciones', () => {
         expect(dispatch).toHaveBeenCalledWith({ type: 'ADD_SOLICITUD_VACACIONES' })
     });
 
+    it('should action loadAvailableDays', async () => {
+        const user = 'JJ';
+        const dispatch = jest.fn();
+        axios.get.mockReturnValue(new Promise((resolve) => resolve(user)));
+
+        await action.loadAvailableDays(user)(dispatch);
+
+        expect(dispatch).toHaveBeenCalledWith({ type: 'GET_AVAILABLE_DAYS' })
+    });
+
 });

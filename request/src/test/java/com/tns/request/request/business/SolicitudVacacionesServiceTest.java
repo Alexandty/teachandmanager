@@ -240,6 +240,11 @@ public class SolicitudVacacionesServiceTest {
 		solVa.setPersonId(person);
 		Optional<SolicitudVacaciones> sv = Optional.ofNullable(solVa);
 		when(solicitudVacacionesRepository.findById(anyLong())).thenReturn(sv);
+		AsignacionLider asg = new AsignacionLider();
+		AsignacionLiderPK asPK = new AsignacionLiderPK();
+		asPK.setIdLider(1L);
+		asg.setIdAsignacion(asPK);
+		when(asignacionRepository.findByIdAsignacionIdSolver(anyLong())).thenReturn(asg);
 		Optional<Person> p = Optional.ofNullable(person);
 		when(personRepository.findById(anyLong())).thenReturn(p);
 
@@ -259,11 +264,16 @@ public class SolicitudVacacionesServiceTest {
 		person.setIdPerson(1L);
 		person.setEmail("techtest@yopmail.com");
 		Optional<Person> p = Optional.ofNullable(person);
-		when(personRepository.findById(anyLong())).thenReturn(p);
 		SolicitudVacaciones sol = new SolicitudVacaciones();
 		sol.setPersonId(person);
 		sol.setEstado("estado");
 		sol.setMotivo("motivo");
+		AsignacionLider asg = new AsignacionLider();
+		AsignacionLiderPK asPK = new AsignacionLiderPK();
+		asPK.setIdLider(1L);
+		asg.setIdAsignacion(asPK);
+		when(asignacionRepository.findByIdAsignacionIdSolver(anyLong())).thenReturn(asg);
+		when(personRepository.findById(anyLong())).thenReturn(p);
 
 		method.invoke(solicitudVacacionesService, sol);
 
@@ -301,35 +311,8 @@ public class SolicitudVacacionesServiceTest {
 		when(personRepository.findById(1L)).thenReturn(p);
 
 		method.invoke(solicitudVacacionesService, asig);
-		
+
 		verify(personRepository).findById(anyLong());
 	}
-
-	// @Test(expected = BusinessException.class)
-	// public void debeRetornarExceptionNoEncontrarSolvers() throws
-	// NoSuchMethodException, SecurityException,
-	// IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-	// AsignacionLider params = new AsignacionLider();
-	// Method method =
-	// SolicitudVacacionesService.class.getDeclaredMethod("getSolver",
-	// AsignacionLider.class);
-	// method.setAccessible(true);
-	// when(personRepository.findById(anyLong())).thenReturn(null);
-	//
-	// method.invoke(solicitudVacacionesService, params);
-	// }
-
-	// @Test
-	// public void debeRetornarPersonaPorAsignacion() throws NoSuchMethodException,
-	// SecurityException,
-	// IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-	// Method method =
-	// SolicitudVacacionesService.class.getDeclaredMethod("getSolver",
-	// AsignacionLider.class);
-	// method.setAccessible(true);
-	// when(personRepository.findById(anyLong())).thenReturn(null);
-	// Person p = (Person) method.invoke(solicitudVacacionesService,0);
-	// Assert.assertNotNull(p);
-	// }
 
 }
