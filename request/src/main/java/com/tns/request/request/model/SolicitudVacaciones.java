@@ -37,9 +37,20 @@ public class SolicitudVacaciones {
 	@Column(name = "estado")
 	@Convert(converter = IntToStringConverter.class)
 	private String estado;
-	
+
 	@Column(name = "return_date")
 	private Date returnDate;
+
+	@Column(name = "application_date")
+	private Date applicationDate;
+
+	@OneToOne
+	@JoinColumn(name = "id_person")
+	private Person personId;
+
+	public SolicitudVacaciones() {
+		super();
+	}
 	
 	public Date getReturnDate() {
 		return returnDate;
@@ -49,9 +60,13 @@ public class SolicitudVacaciones {
 		this.returnDate = returnDate;
 	}
 
-	@OneToOne
-	@JoinColumn(name = "id_person")
-	private Person personId;
+	public Date getApplicationDate() {
+		return applicationDate;
+	}
+
+	public void setApplicationDate(Date applicationDate) {
+		this.applicationDate = applicationDate;
+	}
 
 	public String getMotivo() {
 		return motivo;
@@ -61,7 +76,7 @@ public class SolicitudVacaciones {
 		this.motivo = motivo;
 	}
 
-	public String  getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
@@ -75,10 +90,6 @@ public class SolicitudVacaciones {
 
 	public void setPersonId(Person personId) {
 		this.personId = personId;
-	}
-
-	public SolicitudVacaciones() {
-		super();
 	}
 
 	public Long getIdRequest() {

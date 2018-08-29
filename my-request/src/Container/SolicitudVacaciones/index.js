@@ -25,40 +25,48 @@ const renderField = ({
 export const SolicitudForm = props => {
     const { loadAvailableDays, guardar, consultar, handleSubmit,
         avalableDaysData, user, availableDaysVacation, mensaje } = props;
-    loadAvailableDays(user.user)
+    loadAvailableDays(user.user);
     return (
-        <div>
-            <h2>Solicitud</h2>
-            <form onSubmit={handleSubmit((values) => {
-                values.user = user.user;
-                return guardar(values)
-            })}>
-                <div className="form">
-                    Dias disponibles <Label bsStyle="primary"> {avalableDaysData} </Label>
-                    <FormGroup controlId="formInlineDate">
-                        <Label>Fecha de Inicio</Label>
-                        <Field type="Date" name="startDate" component={renderField}
-                            onBlur={handleSubmit((values) => {
-                                values.user = user.user;
-                                return consultar(values)
-                            })}
-                        />
-                    </FormGroup>
-                    <FormGroup controlId="formInlineDate">
-                        <Label>Fecha de Fin</Label>
-                        <Field type="Date" name="endDate" component={renderField}
-                            onBlur={handleSubmit((values) => {
-                                values.user = user.user;
-                                return consultar(values)
-                            })}
-                        />
-                    </FormGroup>
-                    {mensaje === '' ? <div /> : <Alert>{mensaje}</Alert>}
-                    <Button className="my-button" bsStyle="success" type="submit" disabled={availableDaysVacation}>Solicitar</Button>
+        <div className="container">
+            <div className="row justify-content-md-center">
+                <div className="col col-lg-3">
+                    <div>
+                        <h2>Solicitud</h2>
+                        <form onSubmit={handleSubmit((values) => {
+                            values.user = user.user;
+                            return guardar(values)
+                        })}>
+                            <div className="form">
+                                <div className="user-info">
+                                    <Label bsStyle="primary"> Días disponibles: {avalableDaysData} </Label>
+                                </div>
+                                <FormGroup controlId="formInlineDate">
+                                    <Label>Fecha de Inicio</Label>
+                                    <Field type="Date" name="startDate" component={renderField}
+                                        onBlur={handleSubmit((values) => {
+                                            values.user = user.user;
+                                            return consultar(values)
+                                        })}
+                                    />
+                                </FormGroup>
+                                <FormGroup controlId="formInlineDate">
+                                    <Label>Fecha de Fin</Label>
+                                    <Field type="Date" name="endDate" component={renderField}
+                                        onBlur={handleSubmit((values) => {
+                                            values.user = user.user;
+                                            return consultar(values)
+                                        })}
+                                    />
+                                </FormGroup>
+                                {mensaje === '' ? <div /> : <Alert>{mensaje}</Alert>}
+                                <Button className="my-button" bsStyle="success" type="submit" disabled={availableDaysVacation}>Solicitar</Button>
+                            </div>
+                        </form>
+                    </div >
                 </div>
-            </form>
-        </div >
-    )
+            </div>
+        </div>
+    );
 }
 
 const Solicitud = reduxForm({

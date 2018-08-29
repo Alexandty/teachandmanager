@@ -43,11 +43,11 @@ const action = {
             const solicitudVacaciones = {
                 startDate: Moment(values.startDate).format(),
                 endDate: Moment(values.endDate).format(),
+                applicationDate: Moment(new Date()).format(),
                 user: values.user,
                 motivo: "",
                 estado: "pendiente"
             };
-
             return axios.post('http://localhost:8081/solicitud/vacaciones/create/', solicitudVacaciones)
                 .then(result => {
                     dispatch(addSV(result.data));

@@ -8,6 +8,8 @@ public class SolicitudVacacionesDTO {
 
 	private Date endDate;
 
+	private Date applicationDate;
+
 	private int requestedDays;
 
 	private String motivo;
@@ -65,6 +67,14 @@ public class SolicitudVacacionesDTO {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public Date getApplicationDate() {
+		return applicationDate;
+	}
+
+	public void setApplicationDate(Date applicationDate) {
+		this.applicationDate = applicationDate;
 	}
 
 }

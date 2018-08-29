@@ -6,8 +6,8 @@ public class SolicitudVacacionesUsernameDTO extends SolicitudVacacionesDTO {
 
 	private String user;
 
-	public SolicitudVacacionesUsernameDTO(Date startDate, Date endDate, int requestedDays, String motivo, String estado,
-			String user) {
+	public SolicitudVacacionesUsernameDTO(Date applicationDate, Date startDate, Date endDate, int requestedDays,
+			String motivo, String estado, String user) {
 		super(startDate, endDate, requestedDays, motivo, estado);
 		this.user = user;
 	}

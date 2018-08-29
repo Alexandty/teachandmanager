@@ -25,8 +25,6 @@ const definirestiloSegunEstado = (estado) => {
         case 'pendiente':
             estilo = 'default'
             break;
-        default:
-            break;
     }
     return estilo;
 };

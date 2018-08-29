@@ -46,6 +46,7 @@ public class SolicitudVacacionesService {
 		solVac.setRequestedDays((int) UtilDate.diferenciaDias(solVUDTO.getStartDate(), solVUDTO.getEndDate()));
 		solVac.setEndDate(solVUDTO.getEndDate());
 		solVac.setStartDate(solVUDTO.getStartDate());
+		solVac.setApplicationDate(solVUDTO.getApplicationDate());
 		solVac.setReturnDate(UtilDate.getDateFromString(dateReturn));
 		solVac.setEstado(solVUDTO.getEstado());
 		solVac.setMotivo(solVUDTO.getMotivo());
@@ -135,8 +136,8 @@ public class SolicitudVacacionesService {
 		Optional<Person> personSolver = personRepository.findById(asignac.getIdAsignacion().getIdSolver());
 		String[] to = { personLider.get().getEmail() };
 		String subject = "Solicitud de vacaciones";
-		String text = personSolver.get().getName() + " solicita vacaciones del " + solicitud.getStartDate() + " al "
-				+ solicitud.getEndDate();
+		String text = "Hoy " + solicitud.getApplicationDate() + " , " + personSolver.get().getName()
+				+ " solicita vacaciones del " + solicitud.getStartDate() + " al " + solicitud.getEndDate();
 		sendEmail(to, subject, text);
 	}
 
