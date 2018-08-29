@@ -63,20 +63,6 @@ public class UserBusinessTest {
 		Assert.assertEquals("Debe retornar PersonDTO p", p, res);
 	}
 
-//	@Test(expected = BusinessException.class)
-//	public void debeFallarAlObtenerPersonDTOPorUser() {
-//		User user = new User();
-//		user.setUsername("juanjuan");
-//		user.setPassword("12341234");
-//		when(validate.user(user)).thenReturn(true);
-//		when(validate.specialCharacters(user.getPassword())).thenReturn(true);
-//		when(validate.specialCharacters(user.getUsername())).thenReturn(true);
-//		when(userRepository.findByUsername(user.getUsername())).thenReturn(user);
-////		when(userBusiness.getUser(any())).thenReturn(null);
-//
-//		userBusiness.getPerson(user);
-//	}
-
 	@Test(expected = BusinessException.class)
 	public void noDebeHallarUsuario() {
 		User user = new User();

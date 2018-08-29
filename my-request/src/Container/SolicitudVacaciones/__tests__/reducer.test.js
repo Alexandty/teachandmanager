@@ -20,7 +20,7 @@ describe('Test del reducer ADD_SOLICITUD_VACACIONES', () => {
         expect(AddSoliitudVacaciones([], action)).toEqual({ "avalableDaysData": 1 });
     })
     it('Debe ingresar al type ERROR_SOLICITUD_VACACIONES', () => {
-        const action = { type: "GET_AVAILABLE_DAYS", avalableDaysData: 1 }
-        expect(AddSoliitudVacaciones([], action)).toEqual({ "avalableDaysData": 1 });
+        const action = { type: "ERROR_SOLICITUD_VACACIONES", availableDaysVacation: true }
+        expect(AddSoliitudVacaciones([], action)).toEqual({ "availableDaysVacation": true });
     })
 });
