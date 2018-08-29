@@ -36,9 +36,6 @@ public class UserBusiness {
 
 	public PersonDTO getPerson(User user) {
 		User userBD = getUser(user);
-		if (userBD != null) {
-			return personBusiness.getPerson(userBD.getUsername());
-		}
-		throw new BusinessException("No existe persona ligada al usuario");
+		return personBusiness.getPerson(userBD.getUsername());
 	}
 }
