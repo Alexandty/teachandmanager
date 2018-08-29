@@ -55,7 +55,7 @@ const recibirMotivo = (motivo) => {
 };
 
 export const RequestVacationList = ({ loadRequestVacation, VacationData, user, cambiarEstado }) => {
-  loadRequestVacation(user.user)
+  loadRequestVacation(user.user);
   return (
     VacationData.length === 0 ?
       <SinSolicitudes title={'!Lo sentimos¡'}>
@@ -115,7 +115,7 @@ export const RequestVacationList = ({ loadRequestVacation, VacationData, user, c
           </tbody>
         </Table>
       </div>
-  )
+  );
 };
 const mapStateToProps = state => {
   return {
@@ -127,10 +127,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadRequestVacation(user) {
-      dispatch(loadRequestVacation(user))
+      dispatch(loadRequestVacation(user));
     },
     cambiarEstado(solicutdActualizada) {
-      dispatch(cambiarEstado(solicutdActualizada))
+      dispatch(cambiarEstado(solicutdActualizada));
     }
   }
 }

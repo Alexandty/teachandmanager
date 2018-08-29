@@ -7,10 +7,6 @@ import actions from './action';
 import Button from '../../Components/Button';
 import '../../App.css';
 
-// const maxLength = max => value =>
-//     value && value.length > max ? `Must be ${max} characters or less` : undefined
-// const maxLength15 = maxLength(20)
-
 const renderField = ({
     input, label, type, maxLength, invalidFields, meta: { touched, error, warning, dispatch }
 }) => (

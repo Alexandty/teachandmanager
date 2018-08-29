@@ -146,10 +146,18 @@ public class SolicitudVacacionesServiceTest {
 		Date eDate = UtilDate.getDateFromString("1/2/2020");
 		solDTO.setStartDate(sDate);
 		solDTO.setEndDate(eDate);
-		Person p = new Person();
-		p.setEntryDate(new Date(1));
-		when(personRepository.findByUserIdUsername(anyString())).thenReturn(p);
+		Person person = new Person();
+		person.setIdPerson(1L);
+		person.setEntryDate(new Date(1));
+		when(personRepository.findByUserIdUsername(anyString())).thenReturn(person);
 
+		AsignacionLider asg = new AsignacionLider();
+		AsignacionLiderPK asPK = new AsignacionLiderPK();
+		asPK.setIdLider(1L);
+		asg.setIdAsignacion(asPK);
+		when(asignacionRepository.findByIdAsignacionIdSolver(anyLong())).thenReturn(asg);
+		Optional<Person> p = Optional.ofNullable(person);
+		when(personRepository.findById(anyLong())).thenReturn(p);
 		SolicitudVacaciones res = new SolicitudVacaciones();
 		res.setStartDate(sDate);
 		solicitudVacacionesService.crearSolicitud(solDTO);
@@ -256,32 +264,6 @@ public class SolicitudVacacionesServiceTest {
 	}
 
 	@Test
-	public void debeLLamarMetodoSendEmail() throws NoSuchMethodException, SecurityException, IllegalAccessException,
-			IllegalArgumentException, InvocationTargetException {
-		Method method = SolicitudVacacionesService.class.getDeclaredMethod("sendEmail", SolicitudVacaciones.class);
-		method.setAccessible(true);
-		Person person = new Person();
-		person.setIdPerson(1L);
-		person.setEmail("techtest@yopmail.com");
-		Optional<Person> p = Optional.ofNullable(person);
-		SolicitudVacaciones sol = new SolicitudVacaciones();
-		sol.setPersonId(person);
-		sol.setEstado("estado");
-		sol.setMotivo("motivo");
-		AsignacionLider asg = new AsignacionLider();
-		AsignacionLiderPK asPK = new AsignacionLiderPK();
-		asPK.setIdLider(1L);
-		asg.setIdAsignacion(asPK);
-		when(asignacionRepository.findByIdAsignacionIdSolver(anyLong())).thenReturn(asg);
-		when(personRepository.findById(anyLong())).thenReturn(p);
-
-		method.invoke(solicitudVacacionesService, sol);
-
-		verify(utilEmail).sendNotification(anyString(), anyString(), anyString());
-
-	}
-
-	@Test
 	public void debeRetornarElSolverLiderPersonDeAcuerdoAId() throws NoSuchMethodException, SecurityException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		Method method = SolicitudVacacionesService.class.getDeclaredMethod("getSolver", AsignacionLider.class);
@@ -314,5 +296,57 @@ public class SolicitudVacacionesServiceTest {
 
 		verify(personRepository).findById(anyLong());
 	}
+
+	@Test
+	public void debeLLamarMetodoSendNewEmail() throws NoSuchMethodException, SecurityException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException {
+		Method method = SolicitudVacacionesService.class.getDeclaredMethod("sendNewEmail", SolicitudVacaciones.class);
+		method.setAccessible(true);
+		Person person = new Person();
+		person.setIdPerson(1L);
+		person.setEmail("techtest@yopmail.com");
+		Optional<Person> p = Optional.ofNullable(person);
+		SolicitudVacaciones sol = new SolicitudVacaciones();
+		sol.setPersonId(person);
+		sol.setEstado("estado");
+		sol.setMotivo("motivo");
+		AsignacionLider asg = new AsignacionLider();
+		AsignacionLiderPK asPK = new AsignacionLiderPK();
+		asPK.setIdLider(1L);
+		asg.setIdAsignacion(asPK);
+		when(asignacionRepository.findByIdAsignacionIdSolver(anyLong())).thenReturn(asg);
+		when(personRepository.findById(anyLong())).thenReturn(p);
+
+		method.invoke(solicitudVacacionesService, sol);
+
+		verify(utilEmail).sendNotification(any());
+	}
+
+	@Test
+	public void debeLLamarMetodosendUpgradeEmail() throws NoSuchMethodException, SecurityException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		Method method = SolicitudVacacionesService.class.getDeclaredMethod("sendUpgradeEmail",
+				SolicitudVacaciones.class);
+		method.setAccessible(true);
+		Person person = new Person();
+		person.setIdPerson(1L);
+		person.setEmail("techtest@yopmail.com");
+		Optional<Person> p = Optional.ofNullable(person);
+		SolicitudVacaciones sol = new SolicitudVacaciones();
+		sol.setPersonId(person);
+		sol.setEstado("estado");
+		sol.setMotivo("motivo");
+		AsignacionLider asg = new AsignacionLider();
+		AsignacionLiderPK asPK = new AsignacionLiderPK();
+		asPK.setIdLider(1L);
+		asg.setIdAsignacion(asPK);
+		when(asignacionRepository.findByIdAsignacionIdSolver(anyLong())).thenReturn(asg);
+		when(personRepository.findById(anyLong())).thenReturn(p);
+
+		method.invoke(solicitudVacacionesService, sol);
+
+		verify(utilEmail).sendNotification(any());
+	}
+
 
 }

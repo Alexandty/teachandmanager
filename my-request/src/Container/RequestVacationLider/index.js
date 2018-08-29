@@ -29,18 +29,18 @@ const definirestiloSegunEstado = (estado) => {
             break;
     }
     return estilo;
-}
+};
 
 const ConfirmarCambio = (solicitud, nuevoEstado) => {
     solicitidACambiar = solicitud;
     estadoACambiar = nuevoEstado;
     solicitidACambiar.estado = nuevoEstado;
     mostrarConfirmacion = true;
-}
+};
 
 const closeConfirmarCambio = () => {
     mostrarConfirmacion = false;
-}
+};
 
 const continuar = (cambiarEstado) => {
     mostrarConfirmacion = false;
@@ -50,13 +50,13 @@ const continuar = (cambiarEstado) => {
     if (estadoACambiar === 'rechazado') {
         mostrarPedirMotivo = true;
     }
-}
+};
 
 const recibirMotivo = (motivo) => {
     mostrarPedirMotivo = false;
     solicitidACambiar.motivo = motivo;
     return solicitidACambiar;
-}
+};
 
 export const RequestVacationLider = ({
     obtenerListaSolicitudesSolvers, cambiarEstado, listVacationRequestSolvers, user

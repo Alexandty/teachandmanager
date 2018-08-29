@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import com.tns.request.request.dto.SolicitudVacacionesUsernameDTO;
@@ -49,6 +50,7 @@ public class SolicitudVacacionesService {
 		solVac.setEstado(solVUDTO.getEstado());
 		solVac.setMotivo(solVUDTO.getMotivo());
 		solVac.setPersonId(persona);
+		sendNewEmail(solVac);
 		return solicitudVacacionesRepository.save(solVac);
 	}
 
@@ -119,18 +121,43 @@ public class SolicitudVacacionesService {
 			solicitudSave.setEstado(solicitudVacaciones.getEstado());
 			solicitudSave.setMotivo(solicitudVacaciones.getMotivo());
 			SolicitudVacaciones solicitudUpdate = solicitudVacacionesRepository.save(solicitudSave);
-			sendEmail(solicitudSave);
+			sendUpgradeEmail(solicitudSave);
 			return new ResponseEntity<>(solicitudUpdate, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
-	private void sendEmail(SolicitudVacaciones solicitud) {
+	private void sendNewEmail(SolicitudVacaciones solicitud) {
 		AsignacionLider asignac = asignacionRepository
 				.findByIdAsignacionIdSolver(solicitud.getPersonId().getIdPerson());
-		Optional<Person> person = personRepository.findById(asignac.getIdAsignacion().getIdLider());
-		utilEmail.sendNotification(solicitud.getEstado(), solicitud.getMotivo(), person.get().getEmail());
+		Optional<Person> personLider = personRepository.findById(asignac.getIdAsignacion().getIdLider());
+		Optional<Person> personSolver = personRepository.findById(asignac.getIdAsignacion().getIdSolver());
+		String[] to = { personLider.get().getEmail() };
+		String subject = "Solicitud de vacaciones";
+		String text = personSolver.get().getName() + " solicita vacaciones del " + solicitud.getStartDate() + " al "
+				+ solicitud.getEndDate();
+		sendEmail(to, subject, text);
+	}
+
+	private void sendUpgradeEmail(SolicitudVacaciones solicitud) {
+		AsignacionLider asignac = asignacionRepository
+				.findByIdAsignacionIdSolver(solicitud.getPersonId().getIdPerson());
+		Optional<Person> personLider = personRepository.findById(asignac.getIdAsignacion().getIdLider());
+		Optional<Person> personSolver = personRepository.findById(asignac.getIdAsignacion().getIdSolver());
+		String[] to = { personLider.get().getEmail(), personSolver.get().getEmail() };
+		String subject = "Actualización solicitud de vacaciones";
+		String text = "Para la solicitud del Solver " + personSolver.get().getName() + " el estado ha cambiado a "
+				+ solicitud.getEstado() + " ";
+		sendEmail(to, subject, text);
+	}
+
+	private void sendEmail(String[] to, String subject, String text) {
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setTo(to);
+		mail.setSubject(subject);
+		mail.setText(text);
+		utilEmail.sendNotification(mail);
 	}
 
 }

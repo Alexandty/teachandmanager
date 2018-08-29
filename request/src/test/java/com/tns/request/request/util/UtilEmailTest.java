@@ -27,8 +27,7 @@ public class UtilEmailTest {
 
 	@Test
 	public void debeEnviarSolicitudDeCorreo() {
-		String var = anyString();
-		utilEmail.sendNotification(var, var, var);
+		utilEmail.sendNotification(any());
 		verify(javaMailSender).send(any(SimpleMailMessage.class));
 	}
 

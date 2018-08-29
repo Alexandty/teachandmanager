@@ -5,6 +5,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
+import com.tns.request.request.model.Person;
+import com.tns.request.request.model.SolicitudVacaciones;
+
 @Component
 public class UtilEmail {
 
@@ -15,11 +18,8 @@ public class UtilEmail {
 		super();
 	}
 
-	public void sendNotification(String estado, String motivo, String email) {
-		SimpleMailMessage mail = new SimpleMailMessage();
-		mail.setTo(email);
-		mail.setSubject("Actualización de solicitud");
-		mail.setText("Solicitud actualizada a " + estado + " , porque " + motivo);
+	public void sendNotification(SimpleMailMessage mail) {
 		javaMailSender.send(mail);
 	}
+
 }
