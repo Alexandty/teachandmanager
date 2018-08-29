@@ -1,72 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Probando vista SolicitudForm Validando toMatchSnapshot 1`] = `
-<div>
-  <h2>
-    Solicitud
-  </h2>
-  <form>
+<div
+  className="container"
+>
+  <div
+    className="row justify-content-md-center"
+  >
     <div
-      className="form"
+      className="col col-lg-3"
     >
-      Dias disponibles 
-      <Label
-        bsClass="label"
-        bsStyle="primary"
-      >
-         
-        0
-         
-      </Label>
-      <FormGroup
-        bsClass="form-group"
-        controlId="formInlineDate"
-      >
-        <Label
-          bsClass="label"
-          bsStyle="default"
-        >
-          Fecha de Inicio
-        </Label>
-        <Field
-          component={[Function]}
-          name="startDate"
-          type="Date"
-        />
-      </FormGroup>
-      <FormGroup
-        bsClass="form-group"
-        controlId="formInlineDate"
-      >
-        <Label
-          bsClass="label"
-          bsStyle="default"
-        >
-          Fecha de Fin
-        </Label>
-        <Field
-          component={[Function]}
-          name="endDate"
-          type="Date"
-        />
-      </FormGroup>
-      <Alert
-        bsClass="alert"
-        bsStyle="info"
-        closeLabel="Close alert"
-      />
-      <Button
-        active={false}
-        block={false}
-        bsClass="btn"
-        bsStyle="success"
-        className="my-button"
-        disabled={true}
-        type="submit"
-      >
-        Solicitar
-      </Button>
+      <div>
+        <h2>
+          Solicitud
+        </h2>
+        <form>
+          <div
+            className="form"
+          >
+            <div
+              className="user-info"
+            >
+              <Label
+                bsClass="label"
+                bsStyle="primary"
+              >
+                 Días disponibles: 
+                0
+                 
+              </Label>
+            </div>
+            <FormGroup
+              bsClass="form-group"
+              controlId="formInlineDate"
+            >
+              <Label
+                bsClass="label"
+                bsStyle="default"
+              >
+                Fecha de Inicio
+              </Label>
+              <Field
+                component={[Function]}
+                name="startDate"
+                type="Date"
+              />
+            </FormGroup>
+            <FormGroup
+              bsClass="form-group"
+              controlId="formInlineDate"
+            >
+              <Label
+                bsClass="label"
+                bsStyle="default"
+              >
+                Fecha de Fin
+              </Label>
+              <Field
+                component={[Function]}
+                name="endDate"
+                type="Date"
+              />
+            </FormGroup>
+            <Alert
+              bsClass="alert"
+              bsStyle="info"
+              closeLabel="Close alert"
+            />
+            <Button
+              active={false}
+              block={false}
+              bsClass="btn"
+              bsStyle="success"
+              className="my-button"
+              disabled={true}
+              type="submit"
+            >
+              Solicitar
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
-  </form>
+  </div>
 </div>
 `;
