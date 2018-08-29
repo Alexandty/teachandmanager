@@ -1,5 +1,7 @@
 package com.tns.request.request.business;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 import org.junit.Assert;
@@ -9,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.tns.request.request.dto.PersonDTO;
 import com.tns.request.request.exception.BusinessException;
 import com.tns.request.request.model.User;
 import com.tns.request.request.repository.IUserRepository;
@@ -26,6 +29,9 @@ public class UserBusinessTest {
 	@Mock
 	private IUserRepository userRepository;
 
+	@Mock
+	private PersonBusiness personBusiness;
+
 	@Test
 	public void debeRetornarUsuarioCorrecto() {
 		User user = new User();
@@ -40,6 +46,36 @@ public class UserBusinessTest {
 		when(userRepository.findByUsername(user.getUsername())).thenReturn(userBD);
 		Assert.assertNotNull(userBusiness.getUser(user));
 	}
+
+	@Test
+	public void debeObtenerPersonDTOPorUser() {
+		User user = new User();
+		user.setUsername("juanjuan");
+		user.setPassword("12341234");
+		when(validate.user(user)).thenReturn(true);
+		when(validate.specialCharacters(user.getPassword())).thenReturn(true);
+		when(validate.specialCharacters(user.getUsername())).thenReturn(true);
+		when(userRepository.findByUsername(user.getUsername())).thenReturn(user);
+		PersonDTO p = new PersonDTO();
+		when(personBusiness.getPerson(anyString())).thenReturn(p);
+
+		PersonDTO res = userBusiness.getPerson(user);
+		Assert.assertEquals("Debe retornar PersonDTO p", p, res);
+	}
+
+//	@Test(expected = BusinessException.class)
+//	public void debeFallarAlObtenerPersonDTOPorUser() {
+//		User user = new User();
+//		user.setUsername("juanjuan");
+//		user.setPassword("12341234");
+//		when(validate.user(user)).thenReturn(true);
+//		when(validate.specialCharacters(user.getPassword())).thenReturn(true);
+//		when(validate.specialCharacters(user.getUsername())).thenReturn(true);
+//		when(userRepository.findByUsername(user.getUsername())).thenReturn(user);
+////		when(userBusiness.getUser(any())).thenReturn(null);
+//
+//		userBusiness.getPerson(user);
+//	}
 
 	@Test(expected = BusinessException.class)
 	public void noDebeHallarUsuario() {

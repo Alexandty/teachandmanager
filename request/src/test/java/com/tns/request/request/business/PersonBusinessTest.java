@@ -7,6 +7,8 @@ import static org.mockito.Matchers.notNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Date;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,5 +40,19 @@ public class PersonBusinessTest {
 		person.getUserId().setUsername("user");
 		PersonDTO personDTO = personBusiness.buildPersonDTO(person);
 		Assert.assertTrue(person.getName().equals(personDTO.getName()));
+	}
+
+	@Test
+	public void debeObtenerPersonPorUsername() {
+		String any = anyString();
+		Person p = new Person();
+		p.setName(any);
+		p.setLastName(any);
+		p.setEntryDate(new Date());
+		p.setRol(true);
+		p.setUserId(new User());
+		when(personRepository.findByUserIdUsername(any)).thenReturn(p);
+
+		personBusiness.getPerson(any);
 	}
 }
