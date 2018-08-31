@@ -310,12 +310,15 @@ public class SolicitudVacacionesServiceTest {
 		sol.setPersonId(person);
 		sol.setEstado("estado");
 		sol.setMotivo("motivo");
+		sol.setStartDate(new Date());
+		sol.setEndDate(new Date());
 		AsignacionLider asg = new AsignacionLider();
 		AsignacionLiderPK asPK = new AsignacionLiderPK();
 		asPK.setIdLider(1L);
 		asg.setIdAsignacion(asPK);
 		when(asignacionRepository.findByIdAsignacionIdSolver(anyLong())).thenReturn(asg);
 		when(personRepository.findById(anyLong())).thenReturn(p);
+		
 
 		method.invoke(solicitudVacacionesService, sol);
 

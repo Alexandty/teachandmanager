@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import holasolver from '../holasolver.png';
 
 export const WelcomeMessage = ({ name, lastName, user }) => {
     if (!name) {
@@ -9,6 +10,7 @@ export const WelcomeMessage = ({ name, lastName, user }) => {
         <div>
             <h1 className="saludo">Bienvenido</h1>
             <h3>{name} {lastName}</h3>
+            <img src={holasolver} width="800" height="640" alt="saludo"></img>
         </div>
     )
 }

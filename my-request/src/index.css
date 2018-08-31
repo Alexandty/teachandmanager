@@ -8,21 +8,24 @@ body {
 
 h1 {
   color: #551572;
-  font-family: 'Roboto', sans-serif;
 }
 
 button{
   background-color:#009bb0;
   color: #fff;
-  font-family: 'Roboto', sans-serif;
 }
 
 label{
   color: #551572;
-  font-style: 'Roboto', sans-serif;
+  display: block;
+  text-align: left;
+  margin: 5px 0 5px 80px;
 }
 
 .login{
   color: #551572;
-  font-style: 'Roboto', sans-serif;
+}
+
+input {
+  padding: 3px 10px;
 }

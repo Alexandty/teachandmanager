@@ -137,7 +137,8 @@ public class SolicitudVacacionesService {
 		String[] to = { personLider.get().getEmail() };
 		String subject = "Solicitud de vacaciones";
 		String text = "Hoy " + solicitud.getApplicationDate() + " , " + personSolver.get().getName()
-				+ " solicita vacaciones del " + solicitud.getStartDate() + " al " + solicitud.getEndDate();
+				+ " solicita vacaciones del " + solicitud.getStartDate() + " al " + solicitud.getEndDate() + " para un total de"
+				+ UtilDate.calcularDiasDisfrutados(solicitud.getStartDate(), solicitud.getEndDate()) + " días hábiles.";
 		sendEmail(to, subject, text);
 	}
 
@@ -149,7 +150,7 @@ public class SolicitudVacacionesService {
 		String[] to = { personLider.get().getEmail(), personSolver.get().getEmail() };
 		String subject = "Actualización solicitud de vacaciones";
 		String text = "Para la solicitud del Solver " + personSolver.get().getName() + " el estado ha cambiado a "
-				+ solicitud.getEstado() + " ";
+				+ solicitud.getEstado() + ". Motivo: "+" '"+solicitud.getMotivo()+"' ";
 		sendEmail(to, subject, text);
 	}
 

@@ -8,7 +8,7 @@ const NavbarApp = ({ lider }) => (
     <Navbar inverse collapseOnSelect>
         <Navbar.Header>
             <Navbar.Brand>
-                <img src="http://www.techandsolve.com/wp-content/themes/techandsolve/images/logo-tech-and-solve-footer.png" width="100" height="80" alt="logo"></img>
+                <a className="navbar-brand">Tech and Manager</a>
             </Navbar.Brand>
             <Navbar.Toggle />
         </Navbar.Header>
@@ -24,6 +24,7 @@ const NavbarApp = ({ lider }) => (
                 </NavDropdown>
             </Nav>
             <Nav pullRight>
+            asd
             </Nav>
         </Navbar.Collapse>
     </Navbar>
