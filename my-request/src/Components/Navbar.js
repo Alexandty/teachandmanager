@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../index.css';
 
-const NavbarApp = ({ lider }) => (
+const NavbarApp = ({ lider, user, name, lastName }) => (
+
     <Navbar inverse collapseOnSelect>
+        {console.log(user)}
         <Navbar.Header>
             <Navbar.Brand>
                 <a className="navbar-brand">Tech and Manager</a>
@@ -23,8 +25,8 @@ const NavbarApp = ({ lider }) => (
                     {lider ? <MenuItem eventKey={3.3}><Link to={"/solicitudeslider"}>Mis Solicitudes</Link></MenuItem> : <div />}
                 </NavDropdown>
             </Nav>
-            <Nav pullRight>
-            asd
+            <Nav pullRight className="user-nav">
+                <a>{name}{" "}{lastName}</a>
             </Nav>
         </Navbar.Collapse>
     </Navbar>
